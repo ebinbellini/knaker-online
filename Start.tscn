@@ -1,0 +1,105 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://font/YuminTitle.tres" type="DynamicFont" id=1]
+[ext_resource path="res://start.gd" type="Script" id=2]
+[ext_resource path="res://video/loader.ogv" type="VideoStream" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fadeout"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="Start" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
+margin_left = 359.0
+margin_top = 194.0
+margin_right = 687.0
+margin_bottom = 315.0
+custom_fonts/bold_font = ExtResource( 1 )
+custom_fonts/normal_font = ExtResource( 1 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[wave amp=50 freq=1.2][b]Knåker[/b][/wave]"
+text = "Knåker"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VideoPlayer" type="VideoPlayer" parent="ColorRect"]
+margin_left = 479.935
+margin_top = 315.0
+margin_right = 556.935
+margin_bottom = 373.0
+stream = ExtResource( 3 )
+autoplay = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/VideoPlayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 69.0
+margin_top = -9.0
+margin_right = 18.0
+margin_bottom = 3.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="ColorRect/VideoPlayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -9.0
+margin_top = 46.0
+margin_right = 20.0
+margin_bottom = 18.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
+anims/fadeout = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="ColorRect"]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="DeleteTimer" type="Timer" parent="ColorRect"]
+wait_time = 0.5
+[connection signal="timeout" from="ColorRect/Timer" to="ColorRect" method="_on_Timer_timeout"]
+[connection signal="timeout" from="ColorRect/DeleteTimer" to="ColorRect" method="remove_this_node"]
