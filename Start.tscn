@@ -20,7 +20,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[node name="Start" type="Control"]
+[node name="start" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -95,11 +95,11 @@ __meta__ = {
 anims/fadeout = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="ColorRect"]
+wait_time = 2.0
+one_shot = true
+
+[node name="MoveTimer" type="Timer" parent="ColorRect"]
 wait_time = 0.5
 one_shot = true
-autostart = true
-
-[node name="DeleteTimer" type="Timer" parent="ColorRect"]
-wait_time = 0.5
 [connection signal="timeout" from="ColorRect/Timer" to="ColorRect" method="_on_Timer_timeout"]
-[connection signal="timeout" from="ColorRect/DeleteTimer" to="ColorRect" method="remove_this_node"]
+[connection signal="timeout" from="ColorRect/MoveTimer" to="ColorRect" method="move_timer_done"]

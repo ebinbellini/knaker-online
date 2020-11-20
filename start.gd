@@ -1,8 +1,10 @@
 extends Node
 
 var time_max = 50
+var first_load = true
 var timer_done = false
 var loaded_scene = null
+var scene_to_move = null
 
 
 onready var animator = get_node("AnimationPlayer")
@@ -10,7 +12,9 @@ onready var timer = get_node("Timer")
 
 
 func _ready():
-	var path = "res://matchmaking/matchmaking.tscn"
+	start_netclient_node()
+
+	var path = "res://choosename/choosename.tscn"
 	var loader = ResourceLoader.load_interactive(path)
 	if loader == null:
 		print("could not start loading")
@@ -19,7 +23,19 @@ func _ready():
 	load_interactively(loader)
 
 
+func start_netclient_node():
+	var net_scene = load("res://net.tscn")
+	var inst = net_scene.instance()
+	get_node("/root").call_deferred("add_child", inst)
+
+
+func load_and_set_scene(path):
+	var loader = ResourceLoader.load_interactive(path)
+	load_interactively(loader)
+
+
 func load_interactively(loader):
+	print("LADDAR IN ", loader)
 	if loader == null:
 		return
 
@@ -45,6 +61,9 @@ func load_interactively(loader):
 			
 
 func set_new_scene(scene):
+	if first_load:
+		timer.start()
+		first_load = false
 	loaded_scene = scene
 	if (timer_done):
 		set_scene(scene)
@@ -57,10 +76,11 @@ func set_scene(scene):
 
 func insert_node(scene):
 	var inst = scene.instance()
-	get_node("/root/Start/Next").add_child(inst)
+	get_node("/root/start/Next").add_child(inst)
 
-	var delt = get_node("DeleteTimer")
-	delt.start()
+	scene_to_move = inst
+	var movt = get_node("MoveTimer")
+	movt.start()
 
 
 func _on_Timer_timeout():
@@ -69,6 +89,10 @@ func _on_Timer_timeout():
 		set_scene(loaded_scene)
 
 
-func remove_this_node():
-	queue_free()
+func move_timer_done():
+	if scene_to_move:
+		var parent = scene_to_move.get_parent()
+		parent.move_child(scene_to_move, parent.get_child_count())
 
+		var parent2 = parent.get_parent()
+		parent2.move_child(parent, parent2.get_child_count())

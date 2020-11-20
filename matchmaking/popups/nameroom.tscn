@@ -4,7 +4,7 @@
 [ext_resource path="res://font/Yumin25.tres" type="DynamicFont" id=2]
 [ext_resource path="res://matchmaking/popups/create.tscn" type="PackedScene" id=3]
 [ext_resource path="res://font/YuminButton.tres" type="DynamicFont" id=4]
-[ext_resource path="res://matchmaking/button.gd" type="Script" id=5]
+[ext_resource path="res://matchmaking/popups/createroombtn.gd" type="Script" id=5]
 [ext_resource path="res://matchmaking/popups/popup.gd" type="Script" id=6]
 
 [sub_resource type="Animation" id=1]
