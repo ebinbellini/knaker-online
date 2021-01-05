@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://font/YuminTitle.tres" type="DynamicFont" id=1]
 [ext_resource path="res://start.gd" type="Script" id=2]
 [ext_resource path="res://video/loader.ogv" type="VideoStream" id=3]
+[ext_resource path="res://errors/networkerror.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fadeout"
@@ -101,5 +102,12 @@ one_shot = true
 [node name="MoveTimer" type="Timer" parent="ColorRect"]
 wait_time = 0.5
 one_shot = true
+
+[node name="RemoveTimer" type="Timer" parent="ColorRect"]
+one_shot = true
+
+[node name="neterror" parent="." instance=ExtResource( 4 )]
+[connection signal="finished" from="ColorRect/VideoPlayer" to="ColorRect" method="restart_loader_video"]
 [connection signal="timeout" from="ColorRect/Timer" to="ColorRect" method="_on_Timer_timeout"]
 [connection signal="timeout" from="ColorRect/MoveTimer" to="ColorRect" method="move_timer_done"]
+[connection signal="timeout" from="ColorRect/RemoveTimer" to="ColorRect" method="remove_old_scenes"]

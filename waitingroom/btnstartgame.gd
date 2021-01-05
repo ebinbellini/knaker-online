@@ -6,7 +6,6 @@ onready var net = get_node("/root/net")
  
 
 func _ready():
-	print("TEsT")
 	btn.connect("pressed", self, "start_game")
 
 

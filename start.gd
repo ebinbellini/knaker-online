@@ -5,15 +5,21 @@ var first_load = true
 var timer_done = false
 var loaded_scene = null
 var scene_to_move = null
+var scenes_to_remove = []
 
 
-onready var animator = get_node("AnimationPlayer")
-onready var timer = get_node("Timer")
-
+onready var animator: AnimationPlayer = get_node("AnimationPlayer")
+onready var timer: Timer = get_node("Timer")
+onready var remove_timer: Timer = get_node("RemoveTimer")
+onready var neterranim: Node = get_node("../neterror/anim")
+onready var loader_vid: VideoPlayer = get_node("VideoPlayer")
+onready var next_node: Control = get_node("/root/start/Next")
 
 func _ready():
 	start_netclient_node()
 
+
+func connected_ok():
 	var path = "res://choosename/choosename.tscn"
 	var loader = ResourceLoader.load_interactive(path)
 	if loader == null:
@@ -23,36 +29,57 @@ func _ready():
 	load_interactively(loader)
 
 
+func network_error():
+	print("NETFEL")
+	neterranim.play("display")
+
+
+func hide_network_error():
+	print("INTE LÄNGRE NETFEL")
+	neterranim.play_backwards("display")
+
+
 func start_netclient_node():
+	get_tree().connect("connected_to_server", self, "connected_ok")
+	get_tree().connect("connection_failed", self, "network_error")
+	get_tree().connect("server_disconnected", self, "network_error")
+
 	var net_scene = load("res://net.tscn")
 	var inst = net_scene.instance()
 	get_node("/root").call_deferred("add_child", inst)
 
 
-func load_and_set_scene(path):
+func remove_old_scenes():
+	for scene in scenes_to_remove:
+		scene.queue_free()
+
+
+func load_and_set_scene(path, caller = null, callback = null):
+	# Remove old scenes after 1 second
+	for child in next_node.get_children():
+		if not scenes_to_remove.has(child):
+			scenes_to_remove.append(child)
+
 	var loader = ResourceLoader.load_interactive(path)
 	load_interactively(loader)
+	if caller != null:
+		caller.call(callback)
 
 
 func load_interactively(loader):
-	print("LADDAR IN ", loader)
 	if loader == null:
 		return
 
 	var t = OS.get_ticks_msec()
-	# Use "time_max" to control for how long we block this thread.
 	while OS.get_ticks_msec() < t + time_max:
-		# Poll your loader.
 		var err = loader.poll()
 
-		if err == ERR_FILE_EOF: # Finished loading.
+		if err == ERR_FILE_EOF:
 			var resource = loader.get_resource()
 			loader = null
 			set_new_scene(resource)
 			break
-		elif err == OK:
-			pass
-		else: # Error during loading.
+		elif err != OK:
 			print(err)
 			loader = null
 			break
@@ -76,7 +103,7 @@ func set_scene(scene):
 
 func insert_node(scene):
 	var inst = scene.instance()
-	get_node("/root/start/Next").add_child(inst)
+	next_node.add_child(inst)
 
 	scene_to_move = inst
 	var movt = get_node("MoveTimer")
@@ -96,3 +123,7 @@ func move_timer_done():
 
 		var parent2 = parent.get_parent()
 		parent2.move_child(parent, parent2.get_child_count())
+
+
+func restart_loader_video():
+	loader_vid.play()

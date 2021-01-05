@@ -32,6 +32,7 @@ anchor_right = 0.13
 margin_right = 51.88
 margin_bottom = 44.0
 rect_pivot_offset = Vector2( 99, 22 )
+mouse_default_cursor_shape = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -29,9 +29,10 @@ tracks/1/keys = {
 
 [node name="whitebutton" type="Control"]
 anchor_right = 0.13
-margin_right = 63.88
+margin_right = 34.88
 margin_bottom = 51.0
 rect_pivot_offset = Vector2( 99, 22 )
+mouse_default_cursor_shape = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -65,6 +66,7 @@ anims/hover = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 focus_mode = 0
+mouse_default_cursor_shape = 2
 enabled_focus_mode = 0
 flat = true
 __meta__ = {

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://font/Yumin25.tres" type="DynamicFont" id=1]
 [ext_resource path="res://video/loader.ogv" type="VideoStream" id=2]
 [ext_resource path="res://game/game.gd" type="Script" id=3]
+[ext_resource path="res://game/table.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "rem_loader"
@@ -31,7 +32,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Control:visible")
+tracks/2/path = NodePath("table:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -43,7 +44,7 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 tracks/3/type = "bezier"
-tracks/3/path = NodePath("Control:rect_position:y")
+tracks/3/path = NodePath("table:rect_position:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -53,7 +54,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0.3, 0.6 )
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Control:modulate")
+tracks/4/path = NodePath("table:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -65,7 +66,7 @@ tracks/4/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="Control" type="Control"]
+[node name="game" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
@@ -146,20 +147,9 @@ autostart = true
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/rem_loader = SubResource( 1 )
 
-[node name="Control" type="Control" parent="."]
+[node name="table" parent="." instance=ExtResource( 4 )]
 visible = false
-modulate = Color( 1, 1, 1, 0.0268829 )
-anchor_right = 1.0
-anchor_bottom = 1.0
+modulate = Color( 1, 1, 1, 0.0481604 )
 margin_top = 100.0
 margin_bottom = 100.0
-
-[node name="Label" type="Label" parent="Control"]
-margin_left = 320.221
-margin_top = 214.958
-margin_right = 695.221
-margin_bottom = 242.958
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "DU SPELAR JUST NU KNÅKER"
 [connection signal="timeout" from="Timer" to="." method="remove_loader"]

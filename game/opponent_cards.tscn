@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://imgs/deckofcards.svg" type="Texture" id=1]
+[ext_resource path="res://font/YuminButton.tres" type="DynamicFont" id=2]
+[ext_resource path="res://font/Yumin36.tres" type="DynamicFont" id=3]
+[ext_resource path="res://imgs/down arrow.svg" type="Texture" id=4]
+[ext_resource path="res://game/opponent_cards.gd" type="Script" id=5]
+
+[node name="opponent" type="Control"]
+margin_right = 130.0
+margin_bottom = 208.0
+rect_min_size = Vector2( 130, 150 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 3.09307
+margin_top = 0.407074
+margin_right = 453.093
+margin_bottom = 450.408
+rect_scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="handcount" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -18.9191
+margin_top = 34.9057
+margin_right = 45.0809
+margin_bottom = 80.9057
+rect_rotation = 15.082
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "3"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="Label" parent="."]
+anchor_right = 1.0
+margin_left = 0.418121
+margin_top = 115.4
+margin_right = 0.418121
+margin_bottom = 135.4
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "{{name}}"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="downarrow" type="TextureRect" parent="."]
+margin_left = 93.3943
+margin_top = 90.0053
+margin_right = 169.394
+margin_bottom = 140.006
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="down" type="Label" parent="downarrow"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 7.6388
+margin_top = 6.51039
+margin_right = 35.6388
+margin_bottom = 46.5104
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="upcards" type="HBoxContainer" parent="."]
+margin_left = 3.34495
+margin_top = 124.599
+margin_right = 191.345
+margin_bottom = 274.599
+rect_scale = Vector2( 0.5, 0.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

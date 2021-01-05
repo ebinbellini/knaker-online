@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   height="178"
+   width="138"
+   sodipodi:docname="knakerikon original - コピー.svg"
+   id="svg101"
+   stroke-miterlimit="10"
+   stroke-linecap="square"
+   stroke="none"
+   fill="none"
+   viewBox="0 0 138 178"
+   version="1.1">
+  <metadata
+     id="metadata107">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs105">
+    <filter
+       y="-0.12"
+       x="-0.16000000000000003"
+       height="1.22"
+       width="1.3300000000000001"
+       id="filter1258"
+       inkscape:label="Drop Shadow"
+       style="color-interpolation-filters:sRGB;">
+      <feFlood
+         id="feFlood1248"
+         result="flood"
+         flood-color="rgb(238,17,17)"
+         flood-opacity="1" />
+      <feComposite
+         id="feComposite1250"
+         result="composite1"
+         operator="in"
+         in2="SourceGraphic"
+         in="flood" />
+      <feGaussianBlur
+         id="feGaussianBlur1252"
+         result="blur"
+         stdDeviation="5.479912472647702"
+         in="composite1" />
+      <feOffset
+         id="feOffset1254"
+         result="offset"
+         dy="0"
+         dx="0" />
+      <feComposite
+         id="feComposite1256"
+         result="composite2"
+         operator="xor"
+         in2="offset"
+         in="SourceGraphic" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     inkscape:current-layer="svg101"
+     inkscape:window-maximized="1"
+     inkscape:window-y="35"
+     inkscape:window-x="-11"
+     inkscape:cy="81.081143"
+     inkscape:cx="81.462681"
+     inkscape:zoom="3.0148148"
+     showgrid="false"
+     id="namedview103"
+     inkscape:window-height="1000"
+     inkscape:window-width="1920"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <clipPath
+     id="p.0">
+    <path
+       id="path2"
+       clip-rule="nonzero"
+       d="M 0,0 H 720 V 540 H 0 Z" />
+  </clipPath>
+  <rect
+     y="16.284449"
+     x="17.104099"
+     height="145.20944"
+     width="102.96692"
+     id="rect932"
+     style="fill:#e0e0e0;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;fill-opacity:1;stroke-opacity:1;stroke-miterlimit:10;stroke-dasharray:none;filter:url(#filter1258)" />
+</svg>
