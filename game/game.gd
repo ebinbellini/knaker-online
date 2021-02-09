@@ -5,6 +5,8 @@ onready var loader: Control = get_node("loader")
 onready var anim: AnimationPlayer = get_node("anim")
 onready var table: Node = get_node("table")
 
+export var card_backside_texture: Resource = preload("res://cards/baksida.png")
+
 enum { Spade, Heart, Diamond, Clover }
 enum { Knight = 11, Queen, King, Ace, Knaker }
 
@@ -25,6 +27,7 @@ func _ready():
 
 func prepare_game_scene():
 	load_textures()
+	table.disable_hover_for_down_cards()
 
 
 func remove_loader():
@@ -35,6 +38,7 @@ func load_textures():
 	var color_folders: Array = ["spades", "heart", "diamonds", "clovers"]
 	var unique_names: Array = ["knekt", "drottning", "knug", "ess"]
 
+	# Load regular cards textures
 	for color in [ Spade, Heart, Diamond, Clover ]:
 		# 2 - 10, Kn 11, Q 12, K 13, A 14
 		for value in range(2, 15):
@@ -62,18 +66,24 @@ func load_textures():
 			# Store texture
 			textures.append(txr)
 
-	# Load knakers
+	# Load knaker textures
 	for card in [["res://cards/knakers/black knaker.png", Spade], ["res://cards/knakers/red knaker.png", Heart]]:
-		# Create texture object
 		var txr = CardTexture.new()
+
 		txr.color = card[1]
 		txr.value = Knaker
-
-		# Load texture
 		txr.res = load(card[0])
 
-		# Store texture
 		textures.append(txr)
+
+	# Load empty card texture
+	var txr = CardTexture.new()
+
+	txr.color = Spade
+	txr.value = 1
+	txr.res = load("res://cards/emptycard.png")
+
+	textures.append(txr)
 
 
 func find_card_texture(card: Array) -> Texture:

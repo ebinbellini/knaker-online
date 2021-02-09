@@ -62,6 +62,9 @@ func join_room(room_name):
 
 
 remote func go_to_waiting_room():
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+
 	var path = "res://waitingroom/waiting.tscn"
 	start.call_deferred("load_and_set_scene", path)
 
@@ -86,6 +89,9 @@ func request_start_game():
 
 
 remote func start_loading_game():
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+
 	var path = "res://game/game.tscn"
 	# Wait for the scene to load, then tell the server I am ready
 	start.call_deferred("load_and_set_scene", path, self, "ready_for_game")
@@ -121,6 +127,9 @@ func find_player(pid: int) -> Player:
 
 
 remote func update_my_cards(thand: Array, tup: Array, down_count: int):
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+
 	# Recieve my cards from the server
 	my_hand = transferable_array_to_cards(thand)
 	my_up = transferable_array_to_cards(tup)
@@ -128,9 +137,13 @@ remote func update_my_cards(thand: Array, tup: Array, down_count: int):
 
 	game.update_my_hand(thand)
 	game.update_my_up(tup)
+	# TODO DOWN CARDS
 
 
 remote func update_player_names(names: Array):
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+
 	for player in names:
 		var index = find_player_index(player[0])
 		if index == -1:
@@ -145,6 +158,9 @@ remote func update_player_names(names: Array):
 
 
 remote func update_player_cards(id: int, hand_count: int, up: Array, down_count: int):
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+
 	print("JAG ÄR ", get_tree().get_network_unique_id())
 	print(id, hand_count, up, down_count)
 	var p = find_player(id)
@@ -179,3 +195,22 @@ func transferable_array_to_cards(transferable_array: Array) -> Array:
 	for transferable in transferable_array:
 		result.append(transferable_to_card(transferable))
 	return result
+
+
+func place_cards(cards: Array):
+	rpc_id(1, "place_cards", rname, cards)
+
+
+remote func unruly_move(reason: String):
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+
+	table.show_snackbar(tr(reason))
+
+
+remote func cards_placed(cards: Array, placer_pid: int):
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+
+	table.cards_placed(cards, placer_pid)
+	

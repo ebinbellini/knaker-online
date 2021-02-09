@@ -4,7 +4,7 @@ extends Node
 onready var video = get_node("video")
 onready var player_count = get_node("pcount")
 onready var net = get_node("/root/net")
-onready var button = get_node("startbtn")
+onready var button = get_node("coolbutton")
 
 
 func _ready():
@@ -24,4 +24,8 @@ func restart_video():
 
 func player_count_changed(new_count):
 	print("player count changed to ", new_count)
-	player_count.text = str(new_count) + " players in room"
+	player_count.text = str(new_count) + tr("PLYRS_IN_ROOM")
+	
+	
+func start_game():
+	net.request_start_game()

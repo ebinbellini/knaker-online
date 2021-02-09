@@ -45,9 +45,9 @@ __meta__ = {
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
 margin_left = 359.0
-margin_top = 194.0
+margin_top = 215.863
 margin_right = 687.0
-margin_bottom = 315.0
+margin_bottom = 336.863
 custom_fonts/bold_font = ExtResource( 1 )
 custom_fonts/normal_font = ExtResource( 1 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
@@ -60,10 +60,10 @@ __meta__ = {
 }
 
 [node name="VideoPlayer" type="VideoPlayer" parent="ColorRect"]
-margin_left = 479.935
-margin_top = 315.0
-margin_right = 556.935
-margin_bottom = 373.0
+margin_left = 446.935
+margin_top = 310.0
+margin_right = 523.935
+margin_bottom = 368.0
 stream = ExtResource( 3 )
 autoplay = true
 __meta__ = {

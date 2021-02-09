@@ -30,12 +30,11 @@ func connected_ok():
 
 
 func network_error():
-	print("NETFEL")
+	# TODO retry button
 	neterranim.play("display")
 
 
 func hide_network_error():
-	print("INTE LÄNGRE NETFEL")
 	neterranim.play_backwards("display")
 
 

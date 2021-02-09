@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://font/Yumin36.tres" type="DynamicFont" id=1]
+[ext_resource path="res://game/pile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/mycard.tscn" type="PackedScene" id=2]
+[ext_resource path="res://font/Yumin25.tres" type="DynamicFont" id=3]
 [ext_resource path="res://game/table.gd" type="Script" id=4]
 
 [node name="table" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -1.05948
+margin_right = -1.05945
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -23,8 +26,10 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 12.0
 margin_top = -175.0
 margin_right = -402.0
+mouse_filter = 1
 scroll_vertical_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -83,19 +88,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
+[node name="label" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 374.677
-margin_top = -275.089
-margin_right = 600.677
-margin_bottom = -234.089
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = ExtResource( 1 )
+margin_left = 230.0
+margin_top = -281.0
+margin_right = 495.0
+margin_bottom = -219.0
+custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Trading phase"
+text = "TRADING_PHASE"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="pile" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = -67.0
+margin_right = 285.0
+margin_bottom = 157.0
+rect_scale = Vector2( 0.6, 0.6 )

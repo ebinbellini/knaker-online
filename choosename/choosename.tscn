@@ -1,15 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://font/YuminTitle.tres" type="DynamicFont" id=1]
 [ext_resource path="res://font/Yumin25.tres" type="DynamicFont" id=2]
-[ext_resource path="res://choosename/btn.tscn" type="PackedScene" id=3]
-[ext_resource path="res://choosename/choosenamebtn.gd" type="Script" id=4]
+[ext_resource path="res://widgets/button/btn.tscn" type="PackedScene" id=3]
 [ext_resource path="res://imgs/icon.png" type="Texture" id=5]
 [ext_resource path="res://choosename/choosename.gd" type="Script" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "enter"
 length = 0.6
+step = 0.01
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("TextureRect:rect_position:x")
 tracks/0/interp = 1
@@ -50,13 +50,15 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-margin_left = 139.146
-margin_top = 144.418
-margin_right = 910.146
-margin_bottom = 255.418
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -139.0
+margin_bottom = -43.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Enter a username"
+text = "ENTER_NAME"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -76,19 +78,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="redbutton" parent="." instance=ExtResource( 3 )]
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/enter = SubResource( 1 )
+
+[node name="coolbutton" parent="." instance=ExtResource( 3 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -93.6664
-margin_top = 42.1493
-margin_right = 91.3336
-margin_bottom = 86.1493
-script = ExtResource( 4 )
-
-[node name="anim" type="AnimationPlayer" parent="."]
-anims/enter = SubResource( 1 )
+margin_left = -91.5
+margin_top = 36.0
+margin_right = 93.5
+margin_bottom = 80.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_left = 1.0
@@ -107,7 +108,7 @@ __meta__ = {
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = -233.362
 margin_top = 126.637
-margin_right = 209.639
+margin_right = 209.647
 margin_bottom = 750.637
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
@@ -119,4 +120,5 @@ __meta__ = {
 wait_time = 0.7
 one_shot = true
 autostart = true
+[connection signal="pressed" from="coolbutton" to="." method="create_room"]
 [connection signal="timeout" from="Timer" to="." method="enter"]

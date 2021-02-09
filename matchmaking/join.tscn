@@ -48,19 +48,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 38.0
-margin_top = 13.0
-margin_right = 159.0
-margin_bottom = 38.0
-mouse_filter = 1
-custom_fonts/normal_font = ExtResource( 2 )
-custom_colors/default_color = Color( 0.976471, 0.976471, 0.976471, 1 )
-text = "JOIN ROOM"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/hover = SubResource( 1 )
 
@@ -71,6 +58,17 @@ focus_mode = 0
 mouse_filter = 1
 enabled_focus_mode = 0
 flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 2 )
+text = "JOIN_RBTN"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
