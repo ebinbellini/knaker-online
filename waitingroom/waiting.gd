@@ -13,6 +13,7 @@ func _ready():
 	anim.connect("animation_finished", self, "restart_video")
 	anim.play("cardfly");
 
+	# TODO THIS IS NOT WORKING
 	var owner = net.is_room_owner()
 	if owner:
 		button.visible = true

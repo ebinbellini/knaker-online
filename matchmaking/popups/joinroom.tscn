@@ -6,8 +6,6 @@
 [ext_resource path="res://font/YuminButton.tres" type="DynamicFont" id=4]
 [ext_resource path="res://matchmaking/popups/joinroom.gd" type="Script" id=5]
 
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "popup"
 length = 0.22
@@ -136,6 +134,7 @@ margin_top = 48.9988
 margin_right = 425.996
 margin_bottom = 93.9988
 custom_fonts/font = ExtResource( 2 )
+text = "ENTER_RNAME"
 __meta__ = {
 "_edit_use_anchors_": false
 }
