@@ -17,7 +17,6 @@ func _ready():
 
 
 func update_cards(up, downc, handc):
-	print("upp-korten är ", up)
 	down_count.text = str(downc)
 	hand_count.text = str(handc)
 
@@ -27,12 +26,10 @@ func update_cards(up, downc, handc):
 		inst.disable_hover()
 		up_cards.add_child(inst)
 		inst.set_card_type(card[0], card[1], txr)
-		print("value ", card[0], " color ", card[1], " txr ", txr)
 
 
 
 func set_player_data(id: int, assigned_name: String):
-	print(id, " är idn och namnet var ", assigned_name)
 	pid = id
 
 	# Can't set label text before initialized into scene

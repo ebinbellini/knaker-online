@@ -23,7 +23,5 @@ func serve(w http.ResponseWriter, r *http.Request) {
 		url = "knaker.html"
 	}
 
-	print("förstöker serveraa " + url + "\n")
-
 	http.ServeFile(w, r, url)
 }

@@ -11,8 +11,8 @@ WAITING_FPLY,Waiting for players,Inväntar spelare,ゲーマーズを待って�
 OPLYR_IN_ROOM,1 player in room,1 spelare i rummet,1人のゲーマーがいる
 PLYRS_IN_ROOM, players in room, spelare i rummet,人のゲーマーがいる
 START_GAME,Start game!!,Starta spel!!,スタート！！
-HTSMT0C,You have to select more than 0 cards,Du måste välja fler än 0 kort,０よりカードをもっと選びて下さい
+HTSMT0C,You have to select more than 0 cards,Du måste välja fler än 0 kort,０より多くのカードを選びて下さい
 INYTY,It's not your turn yet,Det är inte din tur ännu,まだ君の番ではない
 YMNPTCN,You may not play that card now,Du får inte spela det kortet ännu,そのカードはまだダメです
-YMNPTCH,You may not place that card here,Du får inte spela det kortet här,そのカードはこの堆に置くのはいけません
-YMNPTHCH,You may not place those cards here,Du får inte spela de korten här,そのカードはこの堆に置くのはいけません
+YMNPTCH,You may not place that card here,Du får inte spela det kortet här,そのカードはこの堆に置いてはいけません
+YMNPTHCH,You may not place those cards here,Du får inte spela de korten här,そのカードはこの堆に置いてはいけません

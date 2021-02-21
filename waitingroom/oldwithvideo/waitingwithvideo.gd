@@ -1,17 +1,15 @@
 extends Node
 
 
-onready var anim: AnimationPlayer = get_node("CardFlyAnimation/AnimationPlayer")
+onready var video = get_node("video")
 onready var player_count = get_node("pcount")
 onready var net = get_node("/root/net")
 onready var button = get_node("coolbutton")
 
-var stop: bool = false
-var backwards: bool = false
 
 func _ready():
-	anim.connect("animation_finished", self, "restart_video")
-	anim.play("cardfly");
+	video.connect("finished", self, "restart_video")
+	video.play()
 
 	var owner = net.is_room_owner()
 	if owner:
@@ -20,13 +18,8 @@ func _ready():
 	net.connect("player_count_changed", self, "player_count_changed")
 
 
-func restart_video(anim_name: String):
-	if not stop:
-		backwards = not backwards
-		if backwards:
-			anim.play_backwards(anim_name)
-		else:
-			anim.play(anim_name)
+func restart_video():
+	video.play()
 
 
 func player_count_changed(new_count):
@@ -34,5 +27,4 @@ func player_count_changed(new_count):
 	
 	
 func start_game():
-	stop = true
 	net.request_start_game()

@@ -7,32 +7,57 @@
 [node name="pile" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -698.0
-margin_bottom = -376.0
+margin_right = -587.0
+margin_bottom = -300.0
 rect_min_size = Vector2( 60, 150 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="front" type="TextureRect" parent="."]
-margin_right = 1674.0
-margin_bottom = 2359.0
-rect_scale = Vector2( 0.094, 0.094 )
+[node name="bg" type="TextureRect" parent="."]
+margin_left = 76.4538
+margin_top = 32.0917
+margin_right = 1750.45
+margin_bottom = 2391.09
+rect_scale = Vector2( 0.1, 0.1 )
 mouse_filter = 2
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="front" type="TextureRect" parent="."]
+margin_left = 81.8053
+margin_top = 38.6323
+margin_right = 1755.8
+margin_bottom = 2397.63
+rect_scale = Vector2( 0.094, 0.094 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="counter" type="Label" parent="."]
-margin_left = 178.027
-margin_top = 67.6216
-margin_right = 314.027
-margin_bottom = 156.622
+margin_left = 255.076
+margin_top = 108.632
+margin_right = 391.076
+margin_bottom = 197.633
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Button" type="Button" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+enabled_focus_mode = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Button" to="." method="clicked"]

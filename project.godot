@@ -55,7 +55,6 @@ limits/tcp/connect_timeout_seconds=10
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 quality/intended_usage/framebuffer_allocation=1
 quality/intended_usage/framebuffer_allocation.mobile=1
 vram_compression/import_etc=true

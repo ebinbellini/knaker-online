@@ -5,8 +5,8 @@ signal placed
 signal held
 
 # What card is this
-export var value: int = 2
-export var color: int = 1
+export var value: int = 0
+export var color: int = 0
 
 # Should this card not react to mouse events
 export var disabled: bool = false
@@ -40,6 +40,8 @@ var hovered = false
 var selected = false
 # Is this a card on the player's hand
 var is_hand_card = false
+# Is this a down facing card
+var is_down_card = false
 
 
 func _ready():
@@ -47,6 +49,9 @@ func _ready():
 		# Only true for hand cards
 		is_hand_card = true
 		table = table.get_parent()
+	elif get_parent().name == "mydown":
+		# Only true for down facing cards
+		is_down_card = true
 
 	pile = table.get_node("pile")
 
@@ -109,7 +114,8 @@ func disable_dragging():
 			# The mouse is over the pile
 			emit_signal("placed", self)
 	elif holding:
-		emit_signal("clicked", self)
+		if not is_down_card:
+			emit_signal("clicked", self)
 		holding = false
 
 
@@ -146,12 +152,19 @@ func remove_hovered_style():
 func set_card_type(new_value: int, new_color: int, image: Texture):
 	value = new_value
 	color = new_color
+	call_deferred("set_texture", image)
+
+
+func set_texture(image: Texture):
 	front.texture = image
 
 
 func disable_hover():
-	# Disables the hovering effect
 	disabled = true
+
+
+func enable_hover():
+	disabled = false
 
 
 func select_with_number(num: int):
@@ -178,7 +191,7 @@ func set_selected_order(num: int):
 	order_number.set_text(str(num))
 
 
-func is_selected():
+func is_selected() -> bool:
 	return selected
 
 

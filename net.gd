@@ -40,24 +40,20 @@ func _ready():
 
 
 func connect_to_server():
-	print("ANSLUTER NU")
 	var peer = WebSocketClient.new()
 	peer.connect_to_url("ws://" + SERVER_URL + ":" + str(PORT), PoolStringArray(["ludus"]), true)
 	get_tree().network_peer = peer
 
 
 func create_room(room_name):
-	print("SKAPAR RUM ", room_name)
 	rname = room_name
 	room_owner = true
-	print("begärde att få skapa rum " + room_name)
 	rpc_id(1, "create_room", room_name)
 
 
 func join_room(room_name):
 	rname = room_name
 	room_owner = false
-	print("begärde att gå med i rum " + room_name)
 	rpc_id(1, "join_room", room_name)
 
 
@@ -70,12 +66,11 @@ remote func go_to_waiting_room():
 
 
 func update_rooms():
+	# TODO view list of public rooms
 	rpc_id(1, "update_rooms")
-	print(room_names)
 
 
 func set_username(name):
-	print("sätter ", name)
 	rpc_id(1, "set_username", name)
 	username = name
 	
@@ -137,7 +132,7 @@ remote func update_my_cards(thand: Array, tup: Array, down_count: int):
 
 	game.update_my_hand(thand)
 	game.update_my_up(tup)
-	# TODO DOWN CARDS
+	game.update_my_down(down_count)
 
 
 remote func update_player_names(names: Array):
@@ -161,8 +156,6 @@ remote func update_player_cards(id: int, hand_count: int, up: Array, down_count:
 	if get_tree().get_rpc_sender_id() != 1:
 		return
 
-	print("JAG ÄR ", get_tree().get_network_unique_id())
-	print(id, hand_count, up, down_count)
 	var p = find_player(id)
 	p.hand_count = hand_count
 	p.up_cards = up
@@ -213,4 +206,7 @@ remote func cards_placed(cards: Array, placer_pid: int):
 		return
 
 	table.cards_placed(cards, placer_pid)
-	
+
+
+func place_down_card(_card_node: Control):
+	rpc_id(1, "place_down_card", rname)

@@ -5,7 +5,7 @@ onready var loader: Control = get_node("loader")
 onready var anim: AnimationPlayer = get_node("anim")
 onready var table: Node = get_node("table")
 
-export var card_backside_texture: Resource = preload("res://cards/baksida.png")
+var card_backside_texture: Resource = preload("res://cards/baksida.png")
 
 enum { Spade, Heart, Diamond, Clover }
 enum { Knight = 11, Queen, King, Ace, Knaker }
@@ -43,10 +43,8 @@ func load_textures():
 		# 2 - 10, Kn 11, Q 12, K 13, A 14
 		for value in range(2, 15):
 			# Find the folder
-			var folder: String = ""
+			var folder: String = color_folders[color]
 			var name: String = str(value)
-
-			folder = color_folders[color]
 
 			# Find the name of the file
 			if (value > 10):
@@ -67,11 +65,11 @@ func load_textures():
 			textures.append(txr)
 
 	# Load knaker textures
-	for card in [["res://cards/knakers/black knaker.png", Spade], ["res://cards/knakers/red knaker.png", Heart]]:
+	for card in [["res://cards/knakers/black knaker.png", Spade], ["res://cards/knakers/red knaker.png", Clover], ["res://cards/knakers/red knaker.png", Heart]]:
 		var txr = CardTexture.new()
 
-		txr.color = card[1]
 		txr.value = Knaker
+		txr.color = card[1]
 		txr.res = load(card[0])
 
 		textures.append(txr)
@@ -102,3 +100,6 @@ func update_my_hand(hand: Array):
 func update_my_up(up: Array):
 	for card in up:
 		table.insert_card_to_my_up(card)
+
+func update_my_down(count: int):
+	table.update_my_down_count(count)

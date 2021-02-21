@@ -8,6 +8,7 @@ onready var label = get_node("Label")
 
 var ready: bool = false
 
+
 func _ready():
 	tween.interpolate_property(self, "rect_position",
 		Vector2(272, 605), Vector2(272, 500), .4,
@@ -17,7 +18,6 @@ func _ready():
 	tween.connect("tween_all_completed", self, "done_moving")
 
 	ready = true
-
 
 
 func _process(_delta):

@@ -1,9 +1,7 @@
 extends Button
 
-# TODO:
-# Red Gradient
-# When hovered the gradient slides to the right somehow
-# And becomes a black/gray gradient
+# Black Gradient
+# When hovered the gradient slides to the right and becomes red on the left end
 
 var color1: Color = Color(0, 0, 0)
 var color2: Color = Color(0.2, 0.2, 0.2)

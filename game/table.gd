@@ -23,7 +23,10 @@ var selected_cards_ammount: int = 0
 
 
 func _ready():
-	pass
+	for card in my_down.get_children():
+		card.connect("held", self, "card_held")
+		card.connect("placed", net, "place_down_card")
+		pile.connect("clicked", self, "place_selected_cards")
 
 
 func _gui_input(event: InputEvent):
@@ -41,6 +44,16 @@ func _gui_input(event: InputEvent):
 func disable_hover_for_down_cards():
 	for card in my_down.get_children():
 		card.disable_hover()
+
+
+func update_my_down_count(count: int):
+	var current_count = my_down.get_child_count()
+	if current_count == count:
+		return
+
+	if count < current_count:
+		for i in range(current_count - count):
+			my_down.get_children()[i].queue_free()
 
 
 func insert_card_to_my_hand(card: Array):
@@ -74,7 +87,7 @@ func insert_card_in_container(card: Array, container: Node):
 func create_card_node(card: Array) -> Node:
 	var texture = game.find_card_texture(card)
 	var card_node = mycard.instance()
-	card_node.call_deferred("set_card_type", card[0], card[1], texture)
+	card_node.set_card_type(card[0], card[1], texture)
 	return card_node
 
 
@@ -91,7 +104,6 @@ func insert_enemy_players(players: Array):
 		if player.id != get_tree().get_network_unique_id():
 			var opc: Control = opponent_cards.instance()
 			opc.set_player_data(player.id, player.name)
-			print(player.id, player.name)
 			opponents.add_child(opc)
 
 
@@ -135,27 +147,34 @@ func card_clicked(card_node: Control):
 		card_node.deselect()
 
 		# Decrease number on all cards with a higher number than this card
+		# TODO ammount can become negative somehow
 		selected_cards_ammount -= 1
 		for cdn in card_node.get_parent().get_children():
 			var order: int = cdn.get_selected_order()
 			if dorder < order:
 				cdn.set_selected_order(order-1)
+	
+	update_card_availability()
 
 
 func card_placed(card_node: Control):
-	# TODO Remove card_node from array
-	var placing: Array = [card_node]
+	var placing: Array = []
 
-	if card_node.is_selected():
-		# Ignore placed card and instead place all selected cards
-		for child in card_node.get_parent().get_children():
-			if child.is_selected():
-				placing.append(child)
-		placing.sort_custom(self, "sort_card_placements")
+	if card_node == null or card_node.get_parent() != my_down:
+		if card_node == null or card_node.is_selected():
+			# Ignore placed card and instead place all selected cards
+			placing = get_selected_cards()
+			placing.sort_custom(self, "sort_card_placements")
+		else:
+			# Place only the placed card
+			placing = [card_node]
+
+		request_placing_of_cards(placing)
 	else:
-		# Place only the placed card
-		placing = [card_node]
+		net.place_down_card()
 
+
+func request_placing_of_cards(placing: Array):
 	# Save for later in global variable
 	cards_to_place = placing
 
@@ -165,6 +184,28 @@ func card_placed(card_node: Control):
 
 	# Send placement order through net 
 	net.place_cards(transferable)
+
+
+func get_selected_cards() -> Array:
+	var selected: Array = []
+
+	for child in my_hand.get_children():
+		if child.is_selected():
+			selected.append(child)
+
+	for child in my_up.get_children():
+		if child.is_selected():
+			selected.append(child)
+
+	# TODO down
+
+	return selected
+
+
+func place_selected_cards():
+	var placing: Array = get_selected_cards()
+	placing.sort_custom(self, "sort_card_placements")
+	request_placing_of_cards(placing)
 
 
 func sort_card_placements(card1, card2):
@@ -185,6 +226,7 @@ func cards_placed(cards, placer_pid):
 	pile.set_card_type(top[0], top[1], txtr)
 	pile.increase_ammount(clen)
 
+	# Check if the cards were placed by me
 	if placer_pid == get_tree().get_network_unique_id():
 		move_accepted()
 
@@ -193,4 +235,58 @@ func move_accepted():
 	selected_cards_ammount = 0
 	for card in cards_to_place:
 		card.queue_free()
+	cards_to_place = []
 
+	update_card_availability()
+
+
+func update_card_availability():
+	if are_my_down_placeable():
+		enable_down_cards()
+	else:
+		disable_down_cards()
+
+	if are_my_up_placeable():
+		enable_up_cards()
+	else:
+		disable_up_cards()
+
+
+func are_my_up_placeable() -> bool:
+	for card in my_hand.get_children():
+		if not card.is_queued_for_deletion() and not card.is_selected():
+			return false
+	
+	return true
+
+
+func enable_up_cards():
+	for card in my_up.get_children():
+		card.enable_hover()
+
+
+func disable_up_cards():
+	for card in my_up.get_children():
+		card.disable_hover()
+
+
+func are_my_down_placeable() -> bool:
+	for card in my_hand.get_children():
+		if not card.is_queued_for_deletion() and not card.is_selected():
+			return false
+
+	for card in my_up.get_children():
+		if not card.is_queued_for_deletion() and not card.is_selected():
+			return false
+
+	return true
+
+
+func enable_down_cards():
+	for card in my_down.get_children():
+		card.enable_hover()
+
+
+func disable_down_cards():
+	for card in my_down.get_children():
+		card.disable_hover()
