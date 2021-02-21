@@ -79,7 +79,7 @@ func load_textures():
 
 	txr.color = Spade
 	txr.value = 1
-	txr.res = load("res://cards/emptycard.png")
+	txr.res = load("res://cards/cardoutline.png")
 
 	textures.append(txr)
 

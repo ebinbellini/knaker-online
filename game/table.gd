@@ -290,3 +290,7 @@ func enable_down_cards():
 func disable_down_cards():
 	for card in my_down.get_children():
 		card.disable_hover()
+
+
+func empty_pile():
+	pile.empty_pile()

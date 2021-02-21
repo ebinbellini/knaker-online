@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://cards/emptycard.png" type="Texture" id=1]
+[ext_resource path="res://cards/cardoutline.png" type="Texture" id=1]
 [ext_resource path="res://game/pile.gd" type="Script" id=2]
 [ext_resource path="res://font/YuminTitle.tres" type="DynamicFont" id=3]
 

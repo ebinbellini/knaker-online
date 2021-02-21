@@ -5,7 +5,6 @@ signal clicked
 var value: int = 0
 var color: int = 0
 var card_ammount: int = 0
-var empty_texture: Texture = preload("res://cards/emptycard.png")
 
 onready var front: TextureRect = get_node("front")
 onready var counter: Label = get_node("counter")
@@ -27,10 +26,12 @@ func update_counter():
 	counter.set_text(str(card_ammount))
 
 
-func flip_pile():
+func empty_pile():
+	value = 0
+	color = 0
 	card_ammount = 0
 	update_counter()
-	front.texture = empty_texture
+	front.texture = null
 
 
 func clicked():

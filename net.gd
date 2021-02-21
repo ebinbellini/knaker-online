@@ -210,3 +210,7 @@ remote func cards_placed(cards: Array, placer_pid: int):
 
 func place_down_card(_card_node: Control):
 	rpc_id(1, "place_down_card", rname)
+
+
+remote func empty_pile():
+	table.empty_pile()
