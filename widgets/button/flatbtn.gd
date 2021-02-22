@@ -1,15 +1,15 @@
 extends Button
 
-# Black Gradient
-# When hovered the gradient slides to the right and becomes red on the left end
+# A dark gray gradient that turns to medium gray when hovered
+# The button has 50% opacity
 
 var primary: Color = primary1
 var secondary: Color = secondary1
 
 const primary1: Color = Color(0, 0, 0)
-const primary2: Color = Color(0.4, 0.02, 0.02)
+const primary2: Color = Color(0.2, 0.2, 0.2)
 const secondary1: Color = Color(0.2, 0.2, 0.2)
-const secondary2: Color = Color(0.2, 0, 0)
+const secondary2: Color = Color(0.5, 0.5, 0.5)
 
 var is_hovered: bool = false
 var is_pressed: bool = false
@@ -76,10 +76,12 @@ func reset_gradient():
 
 func _draw():
 	var size: Vector2 = rect_size
+
+	primary.a = 0.5
 	
 	# Divide gradient into 32 rectangles
 	for i in range(sections):
-		secondary.a = i / sections
+		secondary.a = 0.5 * i / sections
 		var color: Color = primary.blend(secondary)
 		var rect: Rect2 = Rect2(Vector2(i * size.x / sections, 0), Vector2(size.x / sections,  size.y))
 		draw_rect(rect, color)

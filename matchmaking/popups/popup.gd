@@ -14,5 +14,7 @@ func remove_popup():
 
 
 func display():
-	lineedit.grab_focus()
+	if lineedit:
+		lineedit.grab_focus()
+
 	anim.play("popup")

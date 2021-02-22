@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://imgs/popup.svg" type="Texture" id=1]
+[ext_resource path="res://game/confirmleave.gd" type="Script" id=1]
 [ext_resource path="res://font/Yumin25.tres" type="DynamicFont" id=2]
 [ext_resource path="res://widgets/button/btn.tscn" type="PackedScene" id=3]
-[ext_resource path="res://font/YuminButton.tres" type="DynamicFont" id=4]
-[ext_resource path="res://matchmaking/popups/joinroom.gd" type="Script" id=5]
+[ext_resource path="res://widgets/button/flatbtn.tscn" type="PackedScene" id=5]
+[ext_resource path="res://imgs/popup.svg" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "popup"
@@ -71,10 +71,10 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.01 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.04, 0.22 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ false, true ]
+"values": [ false, true, true ]
 }
 
 [node name="popup" type="ColorRect"]
@@ -82,9 +82,11 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -0.420288
+margin_top = 1.16635
 margin_right = -0.420288
+margin_bottom = 1.16638
 color = Color( 0, 0, 0, 0 )
-script = ExtResource( 5 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -95,6 +97,8 @@ anims/popup = SubResource( 1 )
 [node name="Button" type="Button" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+focus_mode = 1
+enabled_focus_mode = 1
 flat = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -106,9 +110,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -233.0
+margin_left = -237.0
 margin_top = -160.0
-margin_right = 233.0
+margin_right = 237.0
 margin_bottom = 116.0
 rect_scale = Vector2( 0.85, 0.85 )
 rect_pivot_offset = Vector2( 259, 150 )
@@ -117,48 +121,62 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="content"]
-margin_left = -680.774
-margin_top = -415.665
-margin_right = 1208.23
-margin_bottom = 717.335
+anchor_right = 1.0
+anchor_bottom = 0.956
+margin_left = -676.023
+margin_top = -413.842
+margin_right = 738.977
+margin_bottom = 435.226
 rect_scale = Vector2( 0.25, 0.25 )
 rect_pivot_offset = Vector2( 900, 550 )
-texture = ExtResource( 1 )
+texture = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="content"]
-margin_left = 33.9955
-margin_top = 48.9988
-margin_right = 425.996
-margin_bottom = 93.9988
+margin_left = 39.3109
+margin_top = 50.1522
+margin_right = 431.311
+margin_bottom = 95.1522
 custom_fonts/font = ExtResource( 2 )
-text = "ENTER_RNAME"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LineEdit" type="LineEdit" parent="content"]
-margin_left = 33.8368
-margin_top = 83.227
-margin_right = 377.837
-margin_bottom = 119.227
-custom_fonts/font = ExtResource( 4 )
-max_length = 30
+text = "AYSYWTL"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="coolbutton" parent="content" instance=ExtResource( 3 )]
-margin_left = 210.332
-margin_top = 202.96
-margin_right = 401.332
-margin_bottom = 244.96
+margin_left = 255.301
+margin_top = 203.864
+margin_right = 401.301
+margin_bottom = 245.864
 
 [node name="Label" parent="content/coolbutton" index="2"]
-text = "JOIN_RBTN"
-[connection signal="text_entered" from="content/LineEdit" to="." method="submit"]
-[connection signal="pressed" from="content/coolbutton" to="." method="submit" binds= [ false ]]
+anchor_left = 0.033
+anchor_top = 0.167
+anchor_right = 0.986
+anchor_bottom = 0.896
+margin_left = 0.00400019
+margin_top = -0.0160007
+margin_right = -0.0320129
+margin_bottom = -0.00800323
+text = "LEAVE"
+
+[node name="coolbutton2" parent="content" instance=ExtResource( 5 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -339.382
+margin_top = -61.0958
+margin_right = -188.382
+margin_bottom = -19.0958
+
+[node name="Label" parent="content/coolbutton2" index="2"]
+text = "CANCEL"
+[connection signal="pressed" from="content/coolbutton" to="." method="confirm"]
+[connection signal="pressed" from="content/coolbutton2" to="." method="remove_popup"]
 
 [editable path="content/coolbutton"]
+
+[editable path="content/coolbutton2"]

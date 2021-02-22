@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://game/pile.tscn" type="PackedScene" id=1]
-[ext_resource path="res://game/mycard.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game/cards/pile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://game/cards/mycard.tscn" type="PackedScene" id=2]
 [ext_resource path="res://font/Yumin25.tres" type="DynamicFont" id=3]
 [ext_resource path="res://game/table.gd" type="Script" id=4]
+[ext_resource path="res://imgs/leaveroom.png" type="Texture" id=5]
+[ext_resource path="res://game/confirmleave.tscn" type="PackedScene" id=6]
 
 [node name="table" type="Control"]
 anchor_right = 1.0
@@ -88,15 +90,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="label" type="Label" parent="."]
+[node name="phase" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 230.0
-margin_top = -281.0
-margin_right = 495.0
-margin_bottom = -219.0
+margin_left = 227.511
+margin_top = -216.866
+margin_right = 492.511
+margin_bottom = -154.866
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "TRADING_PHASE"
@@ -115,3 +117,17 @@ margin_top = -70.3231
 margin_right = 321.961
 margin_bottom = 229.677
 rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="leavebutton" type="TextureButton" parent="."]
+margin_left = 965.4
+margin_top = 17.946
+margin_right = 1050.4
+margin_bottom = 111.946
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="leavepopup" parent="." instance=ExtResource( 6 )]
+[connection signal="pressed" from="leavebutton" to="leavepopup" method="display"]

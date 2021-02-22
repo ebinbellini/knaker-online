@@ -157,10 +157,10 @@ __meta__ = {
 }
 
 [node name="coolbutton" parent="content" instance=ExtResource( 3 )]
-margin_left = 191.181
-margin_top = 196.593
-margin_right = 403.181
-margin_bottom = 244.593
+margin_left = 216.548
+margin_top = 201.96
+margin_right = 403.548
+margin_bottom = 244.96
 
 [node name="Label" parent="content/coolbutton" index="2"]
 anchor_left = 0.033

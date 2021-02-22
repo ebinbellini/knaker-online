@@ -10,8 +10,8 @@ onready var net: Node = get_node("/root/net")
 
 onready var game: Control = get_parent()
 
-var mycard = preload("res://game/mycard.tscn")
-var opponent_cards = preload("res://game/opponent_cards.tscn")
+export var mycard = preload("res://game/cards/mycard.tscn")
+var opponent_cards = preload("res://game/cards/opponent_cards.tscn")
 var snackbar = preload("res://widgets/snackbar/snackbar.tscn")
 
 var removed_all_hover_styles: bool = false

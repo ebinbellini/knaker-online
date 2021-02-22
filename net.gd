@@ -213,3 +213,11 @@ func place_down_card(_card_node: Control):
 
 remote func empty_pile():
 	table.empty_pile()
+
+
+func leave_game():
+	rpc_id(0, "leave_game", rname)
+	game.queue_free()
+	var waiting_room: Control = get_node("/root/start/Next/WaitingRoom")
+	if waiting_room:
+		waiting_room.queue_free()

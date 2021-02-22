@@ -1,10 +1,12 @@
 extends "res://matchmaking/popups/popup.gd"
 
 
-onready var input = get_node("content/LineEdit")
 onready var net = get_node("/root/net")
 
 
-func submit(_unused):
-	net.join_room(input.text)
+func confirm():
+	net.leave_game()
+
+
+func cancel():
 	remove_popup()
