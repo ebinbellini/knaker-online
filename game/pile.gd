@@ -9,8 +9,6 @@ var card_ammount: int = 0
 onready var front: TextureRect = get_node("front")
 onready var counter: Label = get_node("counter")
 
-# TODO place selected cards when clicked
-
 func set_card_type(new_value: int, new_color: int, image: Texture):
 	value = new_value
 	color = new_color

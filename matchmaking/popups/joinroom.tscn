@@ -151,14 +151,14 @@ __meta__ = {
 }
 
 [node name="coolbutton" parent="content" instance=ExtResource( 3 )]
-margin_left = 196.332
-margin_top = 196.96
-margin_right = 414.332
-margin_bottom = 241.96
-rect_scale = Vector2( 0.8, 0.8 )
+margin_left = 182.863
+margin_top = 200.327
+margin_right = 400.863
+margin_bottom = 245.327
 
 [node name="Label" parent="content/coolbutton" index="2"]
 text = "JOIN_RBTN"
-[connection signal="pressed" from="content/coolbutton" to="." method="submit"]
+[connection signal="text_entered" from="content/LineEdit" to="." method="submit"]
+[connection signal="pressed" from="content/coolbutton" to="." method="submit" binds= [ false ]]
 
 [editable path="content/coolbutton"]

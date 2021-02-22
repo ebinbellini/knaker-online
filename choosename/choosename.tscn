@@ -120,5 +120,6 @@ __meta__ = {
 wait_time = 0.7
 one_shot = true
 autostart = true
-[connection signal="pressed" from="coolbutton" to="." method="create_room"]
+[connection signal="text_entered" from="LineEdit" to="." method="create_room"]
+[connection signal="pressed" from="coolbutton" to="." method="create_room" binds= [ false ]]
 [connection signal="timeout" from="Timer" to="." method="enter"]

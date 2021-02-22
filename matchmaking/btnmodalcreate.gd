@@ -1,6 +1,6 @@
 extends "res://matchmaking/button.gd"
 
-onready var popupanim = get_node("../../popupcreate/anim")
+onready var popup = get_node("../../popupcreate")
 onready var btn = get_node("Button")
 
 
@@ -9,5 +9,5 @@ func _ready():
 
 
 func display_popup():
-	popupanim.play("popup")
+	popup.display()
 

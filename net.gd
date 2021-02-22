@@ -162,7 +162,6 @@ remote func update_player_cards(id: int, hand_count: int, up: Array, down_count:
 	p.down_count = down_count
 
 	table.update_player_cards(id, up, down_count, hand_count)
-	# TODO update in GUI as well
 	
 
 func card_to_transferable(card: Card) -> Array:
