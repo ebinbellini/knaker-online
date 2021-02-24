@@ -21,9 +21,6 @@ onready var table: Control = get_parent().get_parent()
 # Set later in _ready
 var pile: Control
 
-# Is the mouse hovering over this card
-#var mouse_over: bool 
-
 # Is this card being dragged
 var dragging: bool = false
 # Is this card being held
@@ -56,7 +53,6 @@ func _ready():
 	pile = table.get_node("pile")
 
 	connect("mouse_entered", self, "show_hovered_style")
-	connect("mouse_exited", self, "remove_hovered_style")
 
 
 func _gui_input(event: InputEvent):

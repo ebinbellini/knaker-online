@@ -23,10 +23,12 @@ var selected_cards_ammount: int = 0
 
 
 func _ready():
+	pile.connect("clicked", self, "place_selected_cards")
+
+	# The down cards are not inserted dynamically
 	for card in my_down.get_children():
 		card.connect("held", self, "card_held")
 		card.connect("placed", net, "place_down_card")
-		pile.connect("clicked", self, "place_selected_cards")
 
 
 func _gui_input(event: InputEvent):
