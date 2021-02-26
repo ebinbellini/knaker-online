@@ -222,11 +222,8 @@ func show_snackbar(text: String):
 
 
 func cards_placed(cards, placer_pid):
-	var clen: int = len(cards)
-	var top: Array = cards[clen-1]
-	var txtr: Texture = game.find_card_texture(top)
-	pile.set_card_type(top[0], top[1], txtr)
-	pile.increase_ammount(clen)
+	for card in cards:
+		pile.insert_card(card[0], card[1])
 
 	# Check if the cards were placed by me
 	if placer_pid == get_tree().get_network_unique_id():

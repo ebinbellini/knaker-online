@@ -9,6 +9,7 @@ onready var start = get_node("/root/start/ColorRect")
 
 func enter():
 	anim.play("enter")
+	input.grab_focus()
 	
 
 func create_room(_unused):

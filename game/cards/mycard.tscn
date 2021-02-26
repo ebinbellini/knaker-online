@@ -7,7 +7,7 @@
 [ext_resource path="res://font/Yumin36.tres" type="DynamicFont" id=5]
 [ext_resource path="res://imgs/cardhovereffect2 - yellow.png" type="Texture" id=6]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "hover"
 length = 0.3
 tracks/0/type = "value"
@@ -65,7 +65,7 @@ tracks/4/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "startdragging"
 length = 0.1
 tracks/0/type = "value"
@@ -94,8 +94,8 @@ __meta__ = {
 }
 
 [node name="anim" type="AnimationPlayer" parent="."]
-anims/hover = SubResource( 2 )
-anims/startdragging = SubResource( 3 )
+anims/hover = SubResource( 1 )
+anims/startdragging = SubResource( 2 )
 
 [node name="Control" type="Control" parent="."]
 margin_left = -10.0

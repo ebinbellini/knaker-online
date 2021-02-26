@@ -21,6 +21,7 @@ class Card:
 
 onready var textures: Array = []
 
+
 func _ready():
 	prepare_game_scene()
 
@@ -76,9 +77,8 @@ func load_textures():
 
 	# Load empty card texture
 	var txr = CardTexture.new()
-
-	txr.color = Spade
 	txr.value = 1
+	txr.color = Spade
 	txr.res = load("res://cards/cardoutline.png")
 
 	textures.append(txr)

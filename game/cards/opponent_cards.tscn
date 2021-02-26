@@ -1,26 +1,28 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://font/Yumin36.tres" type="DynamicFont" id=1]
 [ext_resource path="res://font/YuminButton.tres" type="DynamicFont" id=2]
 [ext_resource path="res://game/cards/opponent_cards.gd" type="Script" id=3]
 [ext_resource path="res://imgs/down arrow.svg" type="Texture" id=4]
 [ext_resource path="res://imgs/deckofcards.svg" type="Texture" id=5]
+[ext_resource path="res://game/cards/mycard.tscn" type="PackedScene" id=6]
+[ext_resource path="res://font/Yumin25.tres" type="DynamicFont" id=7]
 
 [node name="opponent" type="Control"]
-margin_right = 130.0
+margin_right = 157.0
 margin_bottom = 208.0
-rect_min_size = Vector2( 130, 150 )
+rect_min_size = Vector2( 157, 208 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 3.09307
-margin_top = 0.407074
-margin_right = 453.093
-margin_bottom = 450.408
-rect_scale = Vector2( 0.25, 0.25 )
+margin_left = 16.5626
+margin_top = 4.35102
+margin_right = 466.563
+margin_bottom = 454.352
+rect_scale = Vector2( 0.15, 0.15 )
 texture = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -29,12 +31,12 @@ __meta__ = {
 [node name="handcount" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -18.9191
-margin_top = 34.9057
-margin_right = 45.0809
-margin_bottom = 80.9057
+margin_left = -47.2996
+margin_top = 18.3264
+margin_right = 16.7004
+margin_bottom = 64.3264
 rect_rotation = 15.082
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "3"
 align = 1
@@ -43,11 +45,13 @@ __meta__ = {
 }
 
 [node name="name" type="Label" parent="."]
+anchor_top = 0.5
 anchor_right = 1.0
-margin_left = 0.418121
-margin_top = 115.4
-margin_right = 0.418121
-margin_bottom = 135.4
+anchor_bottom = 0.5
+margin_left = 0.561234
+margin_top = -27.9594
+margin_right = 0.561234
+margin_bottom = -7.9594
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "{{name}}"
@@ -57,11 +61,11 @@ __meta__ = {
 }
 
 [node name="downarrow" type="TextureRect" parent="."]
-margin_left = 93.3943
-margin_top = 90.0053
-margin_right = 169.394
-margin_bottom = 140.006
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = 92.2719
+margin_top = 24.3413
+margin_right = 168.272
+margin_bottom = 74.342
+rect_scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -70,10 +74,10 @@ __meta__ = {
 [node name="down" type="Label" parent="downarrow"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 7.6388
-margin_top = 6.51039
-margin_right = 35.6388
-margin_bottom = 46.5104
+margin_left = 8.00016
+margin_top = 7.0
+margin_right = 28.0002
+margin_bottom = 47.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "3"
@@ -82,11 +86,31 @@ __meta__ = {
 }
 
 [node name="upcards" type="HBoxContainer" parent="."]
-margin_left = 3.34495
-margin_top = 124.599
-margin_right = 191.345
-margin_bottom = 274.599
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = -0.0224359
+margin_top = 86.9965
+margin_right = 187.978
+margin_bottom = 236.997
+rect_scale = Vector2( 0.7, 0.7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="card" parent="upcards" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 60.0
+margin_bottom = 150.0
+
+[node name="card2" parent="upcards" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 64.0
+margin_right = 124.0
+margin_bottom = 150.0
+
+[node name="card3" parent="upcards" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 128.0
+margin_right = 188.0
+margin_bottom = 150.0

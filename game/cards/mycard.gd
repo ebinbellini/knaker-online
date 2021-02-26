@@ -157,10 +157,14 @@ func set_texture(image: Texture):
 
 func disable_hover():
 	disabled = true
+	mouse_filter = MOUSE_FILTER_PASS
+	mouse_default_cursor_shape = CURSOR_ARROW
 
 
 func enable_hover():
 	disabled = false
+	mouse_filter = MOUSE_FILTER_STOP
+	mouse_default_cursor_shape = CURSOR_POINTING_HAND
 
 
 func select_with_number(num: int):
