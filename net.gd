@@ -98,6 +98,10 @@ func ready_for_game():
 	call_deferred("get_game_node_ref")
 
 
+remote func all_players_ready():
+	game.remove_loader()
+
+
 func get_game_node_ref():
 	game = get_node("/root/start/Next/game")
 	table = game.table
@@ -221,3 +225,13 @@ func leave_game():
 	var waiting_room: Control = get_node("/root/start/Next/WaitingRoom")
 	if waiting_room:
 		waiting_room.queue_free()
+
+
+remote func update_done_trading_ammount(ammount: int):
+	var text: String = str(ammount) + "/" + str(len(players)) + tr("PLAYERS_DONE")
+	table.update_done_trading_button_text(text)
+
+
+remote func start_playing_phase():
+	table.start_playing_phase()
+

@@ -140,11 +140,6 @@ margin_right = 306.261
 margin_bottom = 187.437
 rect_scale = Vector2( 0.96, 2.44 )
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
-one_shot = true
-autostart = true
-
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/rem_loader = SubResource( 1 )
 
@@ -153,4 +148,3 @@ visible = false
 modulate = Color( 1, 1, 1, 0.0481604 )
 margin_top = 100.0
 margin_bottom = 100.0
-[connection signal="timeout" from="Timer" to="." method="remove_loader"]

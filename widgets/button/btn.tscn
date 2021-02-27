@@ -58,3 +58,6 @@ custom_fonts/font = ExtResource( 2 )
 text = "SUBMIT"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

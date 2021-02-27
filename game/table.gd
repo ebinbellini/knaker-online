@@ -6,8 +6,13 @@ onready var my_down: Control = get_node("mydown")
 onready var my_up: Control = get_node("myup")
 onready var opponents: Control = get_node("opponents")
 onready var pile: Control = get_node("pile")
-onready var net: Node = get_node("/root/net")
+onready var done_trading_button: Button = get_node("donetrading")
+onready var done_trading_label: Label = get_node("donetradinglabel")
+onready var phase_label: Label = get_node("phase")
+onready var banner: Control = get_node("banner")
 
+
+onready var net: Node = get_node("/root/net")
 onready var game: Control = get_parent()
 
 export var mycard = preload("res://game/cards/mycard.tscn")
@@ -16,9 +21,7 @@ var snackbar = preload("res://widgets/snackbar/snackbar.tscn")
 
 var removed_all_hover_styles: bool = false
 var cards_to_place: Array = []
-
 var held_card: Control = null
-
 var selected_cards_ammount: int = 0
 
 
@@ -293,3 +296,20 @@ func disable_down_cards():
 
 func empty_pile():
 	pile.empty_pile()
+
+
+func send_done_trading():
+	done_trading_button.visible = false
+	net.rpc_id(0, "done_trading")
+
+	
+func update_done_trading_button_text(text: String):
+	done_trading_label.set_text(text)
+
+
+func start_playing_phase():
+	banner.display_message("Playing phase")
+	phase_label.set_text(tr("PLAYING_PHASE"))
+	done_trading_button.visible = false
+	done_trading_label.visible = false
+	pile.visible = true

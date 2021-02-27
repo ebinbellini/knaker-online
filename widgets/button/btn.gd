@@ -19,6 +19,7 @@ const transition_time: float = 0.2
 
 onready var tween: Tween = get_node("Tween")
 onready var anim: AnimationPlayer = get_node("anim")
+onready var label: Label = get_node("Label")
 
 
 func _ready():
@@ -87,3 +88,7 @@ func _draw():
 
 func tween_done():
 	set_process(false)
+
+
+func update_text(text: String):
+	label.set_text(text)

@@ -106,7 +106,7 @@ func disable_dragging():
 		var mp: Vector2 = get_viewport().get_mouse_position()
 		var pp: Vector2 = pile.rect_position
 		var pe: Vector2 = pp + pile.rect_size
-		if mp.x > pp.x and mp.y > pp.y and mp.x < pe.x and mp.y < pe.y:
+		if pile.visible and mp.x > pp.x and mp.y > pp.y and mp.x < pe.x and mp.y < pe.y:
 			# The mouse is over the pile
 			emit_signal("placed", self)
 	elif holding:

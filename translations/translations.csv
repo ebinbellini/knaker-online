@@ -6,7 +6,8 @@ JOIN_RBTN,Join room,Gå med i rum,ルームに加わる
 CHOOSE_RNAME,Choose a name for your room,Välj ett namn till ditt rum,ルームに名前をつけて
 ENTER_RNAME,Enter the name of the room,Skriv in rummets namn,ルームの名前を入力
 STARTING_GAME,Starting game...,Startar spelet...,ゲームを始める。。。
-TRADING_PHASE,Trading phase,Bytesfas,売買時期
+TRADING_PHASE,Trading phase,Bytesfas,交換の時期
+PLAYING_PHASE,Playing phase,Spelfas,プレイの時期
 WAITING_FPLY,Waiting for players,Inväntar spelare,ゲーマーズを待ってる
 OPLYR_IN_ROOM,1 player in room,1 spelare i rummet,1人のゲーマーがいる
 PLYRS_IN_ROOM, players in room, spelare i rummet,人のゲーマーがいる
@@ -16,7 +17,11 @@ INYTY,It's not your turn yet,Det är inte din tur ännu,まだ君の番ではな
 YMNPTCN,You may not play that card now,Du får inte spela det kortet ännu,そのカードはまだダメです
 YMNPTCH,You may not place that card here,Du får inte spela det kortet här,そのカードはこの堆に置いてはいけません
 YMNPTHCH,You may not place those cards here,Du får inte spela de korten här,そのカードはこの堆に置いてはいけません
+YMNPCDTP,You may not place cards during the trading phase,Du får inte placera kort under bytesfasen,交換の時期にカードを選びてはいけない
 AEHO,An error has occurred,Ett fel har uppstått,エラーが発生しました
 AYSYWTL,Are you certain that you want to leave?,Är du säker på att du vill lämna?,本当に離れたいですか
 LEAVE,Leave,Lämna,離れて
 CANCEL,Cancel,Avbryt,キャンセル
+DONE_TRDNG,Done trading,Klar med byten,交換は完了
+PLAYERS_DONE, players are done, spelare är klara,人のゲーマーが完了
+OPLAYERS_DONE,0 players are done,0 spelare är klara,0人のゲーマーが完了

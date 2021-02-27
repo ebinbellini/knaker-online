@@ -25,6 +25,7 @@ func insert_card(value: int, color: int):
 	top_value = value
 	top_color = color
 
+	# Create the new card
 	var txtr: Texture = game.find_card_texture([value, color])
 	var card: Node2D = pilecard.instance()
 	card.set_card_type(color, value, txtr)
@@ -59,4 +60,10 @@ func update_card_positions():
 
 func update_scrollbar():
 	var required_space: int = 21 + (2 + card_ammount) * card_width
-	scrollbar.max_value = max(0, required_space - rect_size.x)
+	var max_scroll: int = int(required_space - rect_size.x)
+
+	if max_scroll <= 0:
+		scrollbar.visible = false
+	else:
+		scrollbar.visible = true
+		scrollbar.max_value = max_scroll

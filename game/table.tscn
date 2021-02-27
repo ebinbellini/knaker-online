@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://game/pile/pile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/cards/mycard.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://game/table.gd" type="Script" id=4]
 [ext_resource path="res://imgs/leaveroom.png" type="Texture" id=5]
 [ext_resource path="res://game/confirmleave.tscn" type="PackedScene" id=6]
+[ext_resource path="res://widgets/button/btn.tscn" type="PackedScene" id=7]
+[ext_resource path="res://game/banner.tscn" type="PackedScene" id=8]
 
 [node name="table" type="Control"]
 anchor_right = 1.0
@@ -113,10 +115,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -198.335
-margin_top = -65.9729
-margin_right = 195.665
-margin_bottom = 112.027
+margin_left = -195.665
+margin_top = -79.3213
+margin_right = 198.335
+margin_bottom = 98.6786
 
 [node name="leavebutton" type="TextureButton" parent="."]
 margin_left = 965.4
@@ -130,4 +132,47 @@ __meta__ = {
 }
 
 [node name="leavepopup" parent="." instance=ExtResource( 6 )]
+
+[node name="donetrading" parent="." instance=ExtResource( 7 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -127.0
+margin_top = -50.0
+margin_right = 127.0
+margin_bottom = -2.0
+
+[node name="Label" parent="donetrading" index="2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -117.0
+margin_top = -24.0
+margin_right = 117.0
+margin_bottom = 24.0
+text = "DONE_TRDNG"
+
+[node name="donetradinglabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -168.0
+margin_top = 10.0
+margin_right = 168.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "OPLAYERS_DONE"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="banner" parent="." instance=ExtResource( 8 )]
 [connection signal="pressed" from="leavebutton" to="leavepopup" method="display"]
+[connection signal="pressed" from="donetrading" to="." method="send_done_trading"]
+
+[editable path="donetrading"]

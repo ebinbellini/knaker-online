@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://imgs/arrow banner.svg" type="Texture" id=1]
+[ext_resource path="res://font/YuminTitle.tres" type="DynamicFont" id=2]
+[ext_resource path="res://game/banner.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "display"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("arrow:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -1410, -0.25, 0, 0.0610051, 1168.25, -250, -0.277332, -13.2448, 0.326618, 15.4206, -150, -0.28905, -45.1644, 0.394207, 76.6637, 1410, -0.0234362, -1068.33, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1.5, 2 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="banner" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0.25098 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="arrow" type="TextureRect" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -1410.0
+margin_top = -100.0
+margin_right = -1034.0
+margin_bottom = 100.0
+mouse_filter = 2
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="arrow"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -44.5
+margin_bottom = 44.5
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.972549, 0.972549, 0.972549, 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/display = SubResource( 1 )
