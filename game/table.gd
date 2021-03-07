@@ -10,7 +10,7 @@ onready var done_trading_button: Button = get_node("donetrading")
 onready var done_trading_label: Label = get_node("donetradinglabel")
 onready var phase_label: Label = get_node("phase")
 onready var banner: Control = get_node("banner")
-
+onready var deck_ammount_label: Label = get_node("deck/ammount")
 
 onready var net: Node = get_node("/root/net")
 onready var game: Control = get_parent()
@@ -30,8 +30,9 @@ func _ready():
 
 	# The down cards are not inserted dynamically
 	for card in my_down.get_children():
+		# Down cards cannot be selected, so no "clicked" signal is needed
 		card.connect("held", self, "card_held")
-		card.connect("placed", net, "place_down_card")
+		card.connect("dropped", self, "card_dropped")
 
 
 func _gui_input(event: InputEvent):
@@ -46,9 +47,82 @@ func _gui_input(event: InputEvent):
 				held_card.disable_dragging()
 
 
-func disable_hover_for_down_cards():
-	for card in my_down.get_children():
-		card.disable_hover()
+func update_my_hand(new_hand: Array):
+	for card in new_hand:
+		# Only insert if the card is not in my hand already
+		if not is_card_in_container(card, my_hand):
+			insert_card_in_container(card, my_hand)
+
+	for card in my_hand.get_children():
+		if not is_card_in_array([card.value, card.color], new_hand):
+			card.get_parent().remove_child(card)
+			card.queue_free()
+
+
+func update_my_up(new_up: Array):
+	# Add new up cards
+	for new_stack in new_up:
+		var new_top: Array = new_stack[len(new_stack)-1]
+		var found: bool = false
+
+		for up_stack in my_up.get_children():
+			var top_card: Array = up_stack.get_top_card()
+			if top_card == new_top:
+				found = true
+
+		if not found:
+			var card_node: Control = create_card_node(new_top)
+			my_up.add_child(card_node)
+			card_node.set_stack_cards(new_stack)
+			card_node.connect("held", self, "card_held")
+			card_node.connect("clicked", self, "card_clicked")
+			card_node.connect("dropped", self, "card_dropped")
+
+	# Remove old up cards
+	for i in my_up.get_child_count():
+		var top_card: Array = my_up.get_child(i).get_top_card()
+
+		var found: bool = false
+
+		for new_stack in new_up:
+			var new_top: Array = new_stack[len(new_stack)-1]
+			if new_top == top_card: 
+				found = true
+				break
+
+		if not found:
+			my_up.get_child(i).queue_free()
+
+
+func is_card_in_array(card: Array, array: Array) -> bool:
+	for comp in array:
+		if are_cards_equal(card, comp):
+			return true
+
+	return false
+
+
+func are_cards_equal(card1: Array, card2: Array) -> bool:
+	return card1[0] == card2[0] and card1[1] == card2[1]
+
+
+func insert_card_in_container(card: Array, container: Control) -> Control:
+	var card_node = create_card_node(card)
+	container.add_child(card_node)
+	card_node.connect("held", self, "card_held")
+	card_node.connect("clicked", self, "card_clicked")
+	card_node.connect("dropped", self, "card_dropped")
+
+	# Move card to make container sorted, assuming the container was sorted before insertion
+	var children: Array = container.get_children()
+	for i in range(len(children)):
+		var child = children[i]
+		# Insert before the first higher card
+		if child.value > card[0] or (child.value == card[0] and child.color > card[1]):
+			container.move_child(card_node, i)
+			break
+
+	return card_node
 
 
 func update_my_down_count(count: int):
@@ -61,35 +135,46 @@ func update_my_down_count(count: int):
 			my_down.get_children()[i].queue_free()
 
 
-func insert_card_to_my_hand(card: Array):
-	insert_card_in_container(card, my_hand)
+func card_dropped(card: Control):
+	if pile.visible:
+		if is_mouse_over_node(pile):
+			# The mouse is over the pile
+			card_placed(card)
+	else:
+		# Trading phase
+		if card.get_parent().name == "myup" and is_mouse_over_node(my_hand):
+			net.rpc_id(1, "pick_up_card", [card.value, card.color])
+		elif card.get_parent().name == "hbox" and is_mouse_over_node(my_up):
+			var length = len(my_up.get_children())
+			# Loop backwards over cards
+			for i in range(length - 1, -1, -1):
+				var up_card: Control = my_up.get_child(i)
+				if is_mouse_over_node(up_card):
+					net.rpc_id(1, "put_down_card", [card.value, card.color], i)
+					return
+
+			# No specific card hovered
+			net.rpc_id(1, "put_down_card", [card.value, card.color], -1)
+		elif is_mouse_over_node(opponents):
+			# Find which up card in which opponent's possession is hovered over
+			for opponent in opponents.get_children():
+				var up_cards = opponent.get_node("upcards").get_children()
+				for i in len(up_cards):
+					if is_mouse_over_node(up_cards[i]):
+						net.rpc_id(1, "place_card_on_opponent", [card.value, card.color], opponent.pid, i)
+						return
 
 
-func insert_card_to_my_up(card: Array):
-	insert_card_in_container(card, my_up)
+func is_mouse_over_node(node: Control):
+	var pos: Vector2 = node.get_global_position()
+	var size: Vector2 = node.get_global_position() + node.rect_size
+
+	# Check if mouse is within a given rectangle on the viewport
+	var mp: Vector2 = get_viewport().get_mouse_position()
+	return mp.x > pos.x and mp.y > pos.y and mp.x < size.x and mp.y < size.y
 
 
-func insert_card_in_container(card: Array, container: Node):
-	# Only insert if the card is not in my hand already
-	if is_card_in_container(card, container):
-		return
-
-	var card_node = create_card_node(card)
-	container.add_child(card_node)
-	card_node.connect("held", self, "card_held")
-	card_node.connect("clicked", self, "card_clicked")
-	card_node.connect("placed", self, "card_placed")
-
-	# Move card to make hand sorted, assuming hand was sorted before insertion
-	var children: Array = container.get_children()
-	for i in range(len(children)):
-		var child = children[i]
-		if child.value > card[0] && child.color > card[1]:
-			container.move_child(card_node, i)
-			break
-
-
-func create_card_node(card: Array) -> Node:
+func create_card_node(card: Array) -> Control:
 	var texture = game.find_card_texture(card)
 	var card_node = mycard.instance()
 	card_node.set_card_type(card[0], card[1], texture)
@@ -144,20 +229,24 @@ func card_held(card_node: Control):
 
 
 func card_clicked(card_node: Control):
-	if not card_node.is_selected():
-		selected_cards_ammount += 1
-		card_node.select_with_number(selected_cards_ammount)
+	if card_node.get_parent().name == "myup":
+		net.rpc_id(1, "pick_up_card", [card_node.value, card_node.color])
 	else:
-		var dorder: int = card_node.get_selected_order()
-		card_node.deselect()
+		# TODO Loop over hand cards to update selected_cards_ammount
+		if not card_node.is_selected():
+			selected_cards_ammount += 1
+			card_node.select_with_number(selected_cards_ammount)
+		else:
+			var dorder: int = card_node.get_selected_order()
+			card_node.deselect()
 
-		# Decrease number on all cards with a higher number than this card
-		# TODO ammount can become negative somehow
-		selected_cards_ammount -= 1
-		for cdn in card_node.get_parent().get_children():
-			var order: int = cdn.get_selected_order()
-			if dorder < order:
-				cdn.set_selected_order(order-1)
+			# Decrease number on all cards with a higher number than this card
+			# TODO ammount can become negative somehow
+			selected_cards_ammount -= 1
+			for cdn in card_node.get_parent().get_children():
+				var order: int = cdn.get_selected_order()
+				if dorder < order:
+					cdn.set_selected_order(order-1)
 	
 	update_card_availability()
 
@@ -255,6 +344,10 @@ func update_card_availability():
 
 
 func are_my_up_placeable() -> bool:
+	# They are always placeable during trading phase
+	if not pile.visible:
+		return true
+
 	for card in my_hand.get_children():
 		if not card.is_queued_for_deletion() and not card.is_selected():
 			return false
@@ -273,6 +366,10 @@ func disable_up_cards():
 
 
 func are_my_down_placeable() -> bool:
+	# Never placeable during trading phase
+	if not pile.visible:
+		return false
+
 	for card in my_hand.get_children():
 		if not card.is_queued_for_deletion() and not card.is_selected():
 			return false
@@ -308,8 +405,13 @@ func update_done_trading_button_text(text: String):
 
 
 func start_playing_phase():
-	banner.display_message("Playing phase")
+	banner.display_message(tr("PLAYING_PHASE"))
 	phase_label.set_text(tr("PLAYING_PHASE"))
 	done_trading_button.visible = false
 	done_trading_label.visible = false
 	pile.visible = true
+	update_card_availability()
+
+
+func update_deck_ammount(ammount: int):
+	deck_ammount_label.set_text(str(ammount))

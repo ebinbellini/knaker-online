@@ -28,7 +28,7 @@ func _ready():
 
 func prepare_game_scene():
 	load_textures()
-	table.disable_hover_for_down_cards()
+	table.disable_down_cards()
 
 
 func remove_loader():
@@ -90,16 +90,3 @@ func find_card_texture(card: Array) -> Texture:
 			return txr.res
 
 	return null
-
-
-func update_my_hand(hand: Array):
-	for card in hand:
-		table.insert_card_to_my_hand(card)
-		
-
-func update_my_up(up: Array):
-	for card in up:
-		table.insert_card_to_my_up(card)
-
-func update_my_down(count: int):
-	table.update_my_down_count(count)

@@ -14,8 +14,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( -1410, -0.25, 0, 0.0610051, 1168.25, -250, -0.277332, -13.2448, 0.326618, 15.4206, -150, -0.28905, -45.1644, 0.394207, 76.6637, 1410, -0.0234362, -1068.33, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.5, 1.5, 2 )
+"points": PoolRealArray( -1410, -0.25, 0, 0.0564104, 117.652, -250, -0.448126, -43.4138, 0.40237, 31.4815, -150, -0.332541, -57.8192, 0.374759, 67.8193, 1080, -0.00827754, -211.921, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.6, 1.4, 2 )
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("ColorRect:modulate")
@@ -24,7 +24,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5, 1.5, 2 ),
+"times": PoolRealArray( 0, 0.6, 1.4, 2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -53,9 +53,9 @@ __meta__ = {
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -1410.0
+margin_left = 1080.0
 margin_top = -100.0
-margin_right = -1034.0
+margin_right = 1456.0
 margin_bottom = 100.0
 mouse_filter = 2
 texture = ExtResource( 1 )

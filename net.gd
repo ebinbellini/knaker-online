@@ -80,7 +80,7 @@ func is_room_owner():
 
 
 func request_start_game():
-	rpc_id(1, "request_start_game", rname)
+	rpc_id(1, "request_start_game")
 
 
 remote func start_loading_game():
@@ -94,11 +94,14 @@ remote func start_loading_game():
 
 func ready_for_game():
 	# Tell the server that I'm ready to start playing
-	rpc_id(1, "ready_for_game", rname)
+	rpc_id(1, "ready_for_game")
 	call_deferred("get_game_node_ref")
 
 
 remote func all_players_ready():
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+
 	game.remove_loader()
 
 
@@ -131,26 +134,32 @@ remote func update_my_cards(thand: Array, tup: Array, down_count: int):
 
 	# Recieve my cards from the server
 	my_hand = transferable_array_to_cards(thand)
-	my_up = transferable_array_to_cards(tup)
+	my_up = []
+	for stack in tup:
+		my_up.append(transferable_array_to_cards(stack))
 	my_down_count = down_count
 
-	game.update_my_hand(thand)
-	game.update_my_up(tup)
-	game.update_my_down(down_count)
+	table.update_my_hand(thand)
+	table.update_my_up(tup)
+	table.update_my_down_count(down_count)
 
 
 remote func update_player_names(names: Array):
+	# names is an array consisting of elements with the form [PID, Username]
+
 	if get_tree().get_rpc_sender_id() != 1:
 		return
 
 	for player in names:
 		var index = find_player_index(player[0])
 		if index == -1:
+			# Insert new player
 			var new_player: Player = Player.new()
 			new_player.id = player[0]
 			new_player.name = player[1]
 			players.append(new_player)
 		else:
+			# Update existing player's name
 			find_player(player[0]).name = player[1]
 
 	emit_signal("player_count_changed", len(names))
@@ -194,7 +203,7 @@ func transferable_array_to_cards(transferable_array: Array) -> Array:
 
 
 func place_cards(cards: Array):
-	rpc_id(1, "place_cards", rname, cards)
+	rpc_id(1, "place_cards", cards)
 
 
 remote func unruly_move(reason: String):
@@ -212,15 +221,18 @@ remote func cards_placed(cards: Array, placer_pid: int):
 
 
 func place_down_card(_card_node: Control):
-	rpc_id(1, "place_down_card", rname)
+	rpc_id(1, "place_down_card")
 
 
 remote func empty_pile():
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+
 	table.empty_pile()
 
 
 func leave_game():
-	rpc_id(0, "leave_game", rname)
+	rpc_id(0, "leave_game")
 	game.queue_free()
 	var waiting_room: Control = get_node("/root/start/Next/WaitingRoom")
 	if waiting_room:
@@ -228,10 +240,22 @@ func leave_game():
 
 
 remote func update_done_trading_ammount(ammount: int):
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+
 	var text: String = str(ammount) + "/" + str(len(players)) + tr("PLAYERS_DONE")
 	table.update_done_trading_button_text(text)
 
 
 remote func start_playing_phase():
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+
 	table.start_playing_phase()
 
+
+remote func deck_ammount_changed(ammount: int):
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+
+	table.update_deck_ammount(ammount)

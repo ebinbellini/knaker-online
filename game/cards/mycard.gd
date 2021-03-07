@@ -1,12 +1,16 @@
 extends Control
 
 signal clicked
-signal placed
+signal dropped
 signal held
 
 # What card is this
 export var value: int = 0
 export var color: int = 0
+
+# Only used for up cards where there can be multiple cards stacked on top of
+# each other
+export var ammount: int = -1
 
 # Should this card not react to mouse events
 export var disabled: bool = false
@@ -18,8 +22,6 @@ onready var order_number: Label = get_node("Control/ordernumber")
 onready var hover_effect: Control = get_node("Control/hovereffect")
 onready var select_effect: Control = get_node("Control/selecteffect")
 onready var table: Control = get_parent().get_parent()
-# Set later in _ready
-var pile: Control
 
 # Is this card being dragged
 var dragging: bool = false
@@ -32,13 +34,15 @@ var holding_start_position: Vector2
 # Parent node before dragging started
 var previous_parent: Control = null
 # Is hovering style actived
-var hovered = false
+var hovered: bool = false
 # Is this card selected
-var selected = false
+var selected: bool = false
 # Is this a card on the player's hand
-var is_hand_card = false
+var is_hand_card: bool = false
 # Is this a down facing card
-var is_down_card = false
+var is_down_card: bool = false
+# All cards in this stack. Only used for up cards.
+var stack_cards: Array = []
 
 
 func _ready():
@@ -49,8 +53,6 @@ func _ready():
 	elif get_parent().name == "mydown":
 		# Only true for down facing cards
 		is_down_card = true
-
-	pile = table.get_node("pile")
 
 	connect("mouse_entered", self, "show_hovered_style")
 
@@ -102,13 +104,7 @@ func disable_dragging():
 		dragging = false
 		holding = false
 
-		# Check if mouse is within pile
-		var mp: Vector2 = get_viewport().get_mouse_position()
-		var pp: Vector2 = pile.rect_position
-		var pe: Vector2 = pp + pile.rect_size
-		if pile.visible and mp.x > pp.x and mp.y > pp.y and mp.x < pe.x and mp.y < pe.y:
-			# The mouse is over the pile
-			emit_signal("placed", self)
+		emit_signal("dropped", self)
 	elif holding:
 		if not is_down_card:
 			emit_signal("clicked", self)
@@ -182,6 +178,10 @@ func deselect():
 		select_effect.set_visible(false)
 		order_number.set_text("")
 
+		# Only for up cards
+		if not is_hand_card and not is_down_card:
+			set_ammount(ammount)
+
 
 func get_selected_order() -> int:
 	return int(order_number.get_text())
@@ -201,3 +201,25 @@ func get_card_value():
 
 func get_card_color():
 	return color
+
+
+func set_ammount(num: int):
+	ammount = num
+	if ammount > 1:
+		order_number.set_text(str(num))
+	else:
+		order_number.set_text("")
+
+
+func increase_ammount():
+	ammount += 1
+	set_ammount(ammount)
+
+
+func set_stack_cards(cards: Array):
+	stack_cards = cards
+	set_ammount(len(stack_cards))
+
+
+func get_top_card() -> Array:
+	return stack_cards[len(stack_cards) - 1]

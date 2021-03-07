@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://game/pile/pile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/cards/mycard.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://game/confirmleave.tscn" type="PackedScene" id=6]
 [ext_resource path="res://widgets/button/btn.tscn" type="PackedScene" id=7]
 [ext_resource path="res://game/banner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://imgs/deckofcards.svg" type="Texture" id=9]
+[ext_resource path="res://font/Yumin36.tres" type="DynamicFont" id=10]
 
 [node name="table" type="Control"]
 anchor_right = 1.0
@@ -50,11 +52,11 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -204.0
-margin_top = -108.0
-margin_right = 254.0
-margin_bottom = 92.0
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = -273.0
+margin_top = -128.0
+margin_right = 119.0
+margin_bottom = 72.0
+rect_scale = Vector2( 0.7, 0.7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -84,11 +86,12 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -204.0
-margin_top = -201.366
-margin_right = 254.0
-margin_bottom = -10.366
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = -273.0
+margin_top = -243.0
+margin_right = 115.0
+margin_bottom = -52.0
+rect_min_size = Vector2( 388, 191 )
+rect_scale = Vector2( 0.7, 0.7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -111,6 +114,7 @@ __meta__ = {
 }
 
 [node name="pile" parent="." instance=ExtResource( 1 )]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -130,8 +134,6 @@ texture_normal = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="leavepopup" parent="." instance=ExtResource( 6 )]
 
 [node name="donetrading" parent="." instance=ExtResource( 7 )]
 anchor_left = 0.5
@@ -171,7 +173,44 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="deck" type="Control" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -158.082
+margin_top = -80.6326
+margin_right = -19.0819
+margin_bottom = 59.3674
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="deck"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 9 )
+
+[node name="ammount" type="Label" parent="deck"]
+margin_left = 60.0
+margin_top = 8.0
+margin_right = 137.0
+margin_bottom = 118.0
+rect_rotation = 14.7342
+custom_fonts/font = ExtResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "55"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="banner" parent="." instance=ExtResource( 8 )]
+margin_left = -7.15256e-07
+
+[node name="leavepopup" parent="." instance=ExtResource( 6 )]
 [connection signal="pressed" from="leavebutton" to="leavepopup" method="display"]
 [connection signal="pressed" from="donetrading" to="." method="send_done_trading"]
 

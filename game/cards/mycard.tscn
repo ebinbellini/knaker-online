@@ -156,14 +156,15 @@ __meta__ = {
 }
 
 [node name="ordernumber" type="Label" parent="Control"]
-margin_left = 88.0
+margin_left = 22.0
 margin_top = 238.0
-margin_right = 145.0
+margin_right = 126.0
 margin_bottom = 278.0
 rect_scale = Vector2( 1.5, 1.5 )
 mouse_filter = 1
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -17,6 +17,11 @@ func _ready():
 	if owner:
 		button.visible = true
 
+	var count: int = net.player_count()
+	if count == 0:
+		count = 1
+	player_count_changed(count)
+
 	net.connect("player_count_changed", self, "player_count_changed")
 
 
@@ -29,7 +34,7 @@ func restart_video(anim_name: String):
 			anim.play(anim_name)
 
 
-func player_count_changed(new_count):
+func player_count_changed(new_count: int):
 	player_count.text = str(new_count) + tr("PLYRS_IN_ROOM")
 	
 	

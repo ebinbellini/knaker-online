@@ -11,29 +11,31 @@ onready var table: Control = get_parent().get_parent()
 export var pid: int = 0
 export var pname: String = ""
 
+var all_up_cards: Array = []
+
 
 func _ready():
 	nametag.text = pname
 
 
-func update_cards(new_up, new_downc, new_handc):
+func update_cards(new_up: Array, new_downc: int, new_handc: int):
 	down_count.text = str(new_downc)
 	hand_count.text = str(new_handc)
 
-	# Add new up cards
-	for card in new_up:
-		if not is_card_in_array(card, card_nodes_to_transferables(up_cards.get_children())):
-			var txr: Texture = table.game.find_card_texture(card)
-			var inst: Control = table.mycard.instance()
-			inst.disable_hover()
-			up_cards.add_child(inst)
-			inst.set_card_type(card[0], card[1], txr)
-
 	# Remove old up cards
 	for card in up_cards.get_children():
-		if not is_card_in_array([card.value, card.color], new_up):
-			card.get_parent().remove_child(card)
-			card.queue_free()
+		card.queue_free()
+
+	# Add new up cards
+	for new_stack in new_up:
+		var new_top: Array = new_stack[len(new_stack)-1]
+		var txr: Texture = table.game.find_card_texture(new_top)
+		var inst: Control = table.mycard.instance()
+		inst.disable_hover()
+		up_cards.add_child(inst)
+		inst.set_card_type(new_top[0], new_top[1], txr)
+		inst.set_stack_cards(new_stack)
+
 
 
 func card_nodes_to_transferables(nodes: Array) -> Array:
@@ -42,6 +44,10 @@ func card_nodes_to_transferables(nodes: Array) -> Array:
 		transferables.append([node.value, node.color])
 
 	return transferables
+
+
+func get_up_cards() -> Array:
+	return up_cards.get_children()
 
 
 func is_card_in_array(card: Array, array: Array) -> bool:
