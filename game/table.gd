@@ -11,6 +11,7 @@ onready var done_trading_label: Label = get_node("donetradinglabel")
 onready var phase_label: Label = get_node("phase")
 onready var banner: Control = get_node("banner")
 onready var deck_ammount_label: Label = get_node("deck/ammount")
+onready var pass_buttons: Control = get_node("passbuttons")
 
 onready var net: Node = get_node("/root/net")
 onready var game: Control = get_parent()
@@ -410,8 +411,17 @@ func start_playing_phase():
 	done_trading_button.visible = false
 	done_trading_label.visible = false
 	pile.visible = true
+	pass_buttons.visible = true
 	update_card_availability()
 
 
 func update_deck_ammount(ammount: int):
 	deck_ammount_label.set_text(str(ammount))
+
+
+func take_chance():
+	net.rpc_id(1, "take_chance")
+
+
+func pick_up_cards():
+	net.rpc_id(1, "pick_up_cards")

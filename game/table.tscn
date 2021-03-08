@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://game/pile/pile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/cards/mycard.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://game/banner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://imgs/deckofcards.svg" type="Texture" id=9]
 [ext_resource path="res://font/Yumin36.tres" type="DynamicFont" id=10]
+[ext_resource path="res://widgets/button/flatbtn.tscn" type="PackedScene" id=11]
 
 [node name="table" type="Control"]
 anchor_right = 1.0
@@ -173,6 +174,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="passbuttons" type="Control" parent="."]
+visible = false
+margin_left = 48.0
+margin_top = 236.595
+margin_right = 258.0
+margin_bottom = 361.595
+
+[node name="chance" parent="passbuttons" instance=ExtResource( 7 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 180.0
+margin_bottom = 48.0
+
+[node name="Label" parent="passbuttons/chance" index="2"]
+text = "TAKE_CHANCE"
+
+[node name="pickup" parent="passbuttons" instance=ExtResource( 11 )]
+margin_top = 60.0
+margin_right = 180.0
+margin_bottom = 108.0
+
+[node name="Label" parent="passbuttons/pickup" index="2"]
+text = "PICK_UP"
+
 [node name="deck" type="Control" parent="."]
 anchor_left = 1.0
 anchor_top = 0.5
@@ -213,5 +242,11 @@ margin_left = -7.15256e-07
 [node name="leavepopup" parent="." instance=ExtResource( 6 )]
 [connection signal="pressed" from="leavebutton" to="leavepopup" method="display"]
 [connection signal="pressed" from="donetrading" to="." method="send_done_trading"]
+[connection signal="pressed" from="passbuttons/chance" to="." method="take_chance"]
+[connection signal="pressed" from="passbuttons/pickup" to="." method="pick_up_cards"]
 
 [editable path="donetrading"]
+
+[editable path="passbuttons/chance"]
+
+[editable path="passbuttons/pickup"]

@@ -220,7 +220,7 @@ remote func cards_placed(cards: Array, placer_pid: int):
 	table.cards_placed(cards, placer_pid)
 
 
-func place_down_card(_card_node: Control):
+func place_down_card():
 	rpc_id(1, "place_down_card")
 
 
