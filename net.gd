@@ -61,6 +61,10 @@ remote func go_to_waiting_room():
 	if get_tree().get_rpc_sender_id() != 1:
 		return
 
+	load_and_go_to_waiting_room()
+
+
+func load_and_go_to_waiting_room():
 	var path = "res://waitingroom/waiting.tscn"
 	start.call_deferred("load_and_set_scene", path)
 
@@ -232,7 +236,7 @@ remote func empty_pile():
 
 
 func leave_game():
-	rpc_id(0, "leave_game")
+	rpc_id(1, "leave_game")
 	game.queue_free()
 	var waiting_room: Control = get_node("/root/start/Next/WaitingRoom")
 	if waiting_room:
@@ -259,3 +263,35 @@ remote func deck_ammount_changed(ammount: int):
 		return
 
 	table.update_deck_ammount(ammount)
+
+
+remote func player_finished(pid: int, successfully: bool):
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+
+	# Only care about other players for now
+	# TODO also show for myself
+	if pid != get_tree().get_network_unique_id():
+		table.player_finished(pid, successfully)
+
+
+remote func go_to_leaderboard(order: Array):
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+
+	game.go_to_leaderboard(order)
+
+
+remote func update_players_who_want_to_play_again(ammount: int):
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+
+	game.update_players_who_want_to_play_again(ammount)
+
+
+remote func restart_game():
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+		
+	game.restart_game()
+	load_and_go_to_waiting_room()

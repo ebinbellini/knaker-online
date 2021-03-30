@@ -229,11 +229,28 @@ func card_held(card_node: Control):
 	held_card = card_node
 
 
+func update_selected_ammount():
+	selected_cards_ammount = 0
+	for card in my_hand.get_children():
+		if card.is_selected():
+			selected_cards_ammount += 1
+
+	for stack in my_up.get_children():
+		if stack.is_selected():
+			selected_cards_ammount += 1
+
+	for card in my_down.get_children():
+		if card.is_selected():
+			selected_cards_ammount += 1
+		
+
+
 func card_clicked(card_node: Control):
 	if card_node.get_parent().name == "myup":
 		net.rpc_id(1, "pick_up_card", [card_node.value, card_node.color])
 	else:
-		# TODO Loop over hand cards to update selected_cards_ammount
+		update_selected_ammount()
+
 		if not card_node.is_selected():
 			selected_cards_ammount += 1
 			card_node.select_with_number(selected_cards_ammount)
@@ -242,7 +259,6 @@ func card_clicked(card_node: Control):
 			card_node.deselect()
 
 			# Decrease number on all cards with a higher number than this card
-			# TODO ammount can become negative somehow
 			selected_cards_ammount -= 1
 			for cdn in card_node.get_parent().get_children():
 				var order: int = cdn.get_selected_order()
@@ -398,7 +414,7 @@ func empty_pile():
 
 func send_done_trading():
 	done_trading_button.visible = false
-	net.rpc_id(0, "done_trading")
+	net.rpc_id(1, "done_trading")
 
 	
 func update_done_trading_button_text(text: String):
@@ -425,3 +441,10 @@ func take_chance():
 
 func pick_up_cards():
 	net.rpc_id(1, "pick_up_cards")
+
+
+func player_finished(pid: int, successfully: bool):
+	for opponent in opponents.get_children():
+		if opponent.pid == pid:
+			opponent.finished(successfully)
+			return

@@ -1,10 +1,11 @@
 extends Node
 
 
-onready var nametag = get_node("name")
-onready var down_count = get_node("downarrow/down")
-onready var hand_count = get_node("handcount")
-onready var up_cards = get_node("upcards")
+onready var nametag: Label = get_node("name")
+onready var hand_count: Label = get_node("handcount")
+onready var up_cards: Control = get_node("upcards")
+onready var down_count: Control = get_node("downarrow/down")
+onready var done: Control = get_node("done")
 
 onready var table: Control = get_parent().get_parent()
 
@@ -69,3 +70,8 @@ func set_player_data(id: int, assigned_name: String):
 	# Instead store in variable and use in _ready()
 	pname = assigned_name
 	
+
+func finished(successfully: bool):
+	if not successfully:
+		done.set_text(tr("UNLUCKY"))
+	done.visible = true

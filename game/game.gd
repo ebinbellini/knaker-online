@@ -3,9 +3,15 @@ extends Node
 
 onready var loader: Control = get_node("loader")
 onready var anim: AnimationPlayer = get_node("anim")
-onready var table: Node = get_node("table")
+onready var table: Control = get_node("table")
+
+onready var net: Node = get_node("/root/net")
 
 var card_backside_texture: Resource = preload("res://cards/baksida.png")
+var leaderboard: Resource = preload("res://game/leaderboard/leaderboard.tscn")
+var table_res: Resource = preload("res://game/table.tscn")
+
+var leaderboard_instance: Control = null
 
 enum { Spade, Heart, Diamond, Clover }
 enum { Knight = 11, Queen, King, Ace, Knaker }
@@ -90,3 +96,19 @@ func find_card_texture(card: Array) -> Texture:
 			return txr.res
 
 	return null
+
+
+func go_to_leaderboard(order: Array):
+	var inst = leaderboard.instance()
+	leaderboard_instance = inst
+	inst.set_names(order)
+	add_child(inst)
+
+
+func update_players_who_want_to_play_again(ammount: int):
+	if leaderboard_instance != null:
+		leaderboard_instance.update_players_who_want_to_play_again(ammount, net.player_count())
+
+
+func restart_game():
+	leaderboard_instance.hide()

@@ -223,3 +223,7 @@ func set_stack_cards(cards: Array):
 
 func get_top_card() -> Array:
 	return stack_cards[len(stack_cards) - 1]
+
+
+func get_stack_cards() -> Array:
+	return stack_cards
