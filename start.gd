@@ -30,7 +30,6 @@ func connected_ok():
 
 
 func network_error():
-	# TODO retry button
 	neterranim.play("display")
 
 
@@ -50,19 +49,22 @@ func start_netclient_node():
 
 func remove_old_scenes():
 	for scene in scenes_to_remove:
-		scene.queue_free()
+		if is_instance_valid(scene):
+			scene.queue_free()
 
 
-func load_and_set_scene(path, caller = null, callback = null):
-	# Remove old scenes after 1 second
+func load_and_set_scene(path):
+	# Select old scenes to remove after loading
 	for child in next_node.get_children():
 		if not scenes_to_remove.has(child):
 			scenes_to_remove.append(child)
 
+	# Start loading
 	var loader = ResourceLoader.load_interactive(path)
 	load_interactively(loader)
-	if caller != null:
-		caller.call(callback)
+
+	# Remove old scenes in 1 second
+	remove_timer.start()
 
 
 func load_interactively(loader):

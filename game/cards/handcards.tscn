@@ -1,0 +1,175 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://imgs/cardbackground.png" type="Texture" id=1]
+[ext_resource path="res://game/cards/handcards.gd" type="Script" id=2]
+[ext_resource path="res://font/Yumin750.tres" type="DynamicFont" id=3]
+[ext_resource path="res://cards/baksida.png" type="Texture" id=4]
+[ext_resource path="res://cards/baksida cutout.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "dance"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("cards/card1:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 625.457, -0.25, 0, 0.25, 0, 442.906, -0.25, 0, 0.25, 0, 625.457, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3, 0.6 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("cards/card1:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 501.229, -0.25, 0, 0.25, 0, 183.748, -0.25, 0, 0.25, 0, 501.229, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3, 0.6 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("cards/card2:rect_position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 417.983, -0.25, 0, 0.25, 0, 41.958, -0.25, 0, 0.25, 0, 417.983, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.2, 0.5, 0.8 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("cards/card3:rect_position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 2076.29, -0.25, 0, 0.25, 0, 2300.78, -0.25, 0, 0.25, 0, 2076.29, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.4, 0.7, 1 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("cards/card3:rect_position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 667.717, -0.25, 0, 0.25, 0, 201.895, -0.25, 0, 0.25, 0, 667.717, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.4, 0.7, 1 )
+}
+
+[node name="handcards" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cards" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.05, 0.05 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="card1" type="Control" parent="cards"]
+margin_left = 625.457
+margin_top = 501.229
+margin_right = 2304.46
+margin_bottom = 2859.23
+rect_rotation = -17.2529
+rect_pivot_offset = Vector2( 839, 1179 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="TextureRect" parent="cards/card1"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fg" type="TextureRect" parent="cards/card1"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="card2" type="Control" parent="cards"]
+margin_left = 1277.52
+margin_top = 417.983
+margin_right = 2956.52
+margin_bottom = 2775.98
+rect_pivot_offset = Vector2( 839, 1179 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="TextureRect" parent="cards/card2"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fg" type="TextureRect" parent="cards/card2"]
+margin_right = 1675.0
+margin_bottom = 2359.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="card3" type="Control" parent="cards"]
+margin_left = 2076.29
+margin_top = 667.717
+margin_right = 3755.29
+margin_bottom = 3025.72
+rect_rotation = 14.1218
+rect_pivot_offset = Vector2( 839, 1179 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="TextureRect" parent="cards/card3"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fg" type="TextureRect" parent="cards/card3"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="cards/card3"]
+margin_left = -3.0
+margin_top = 50.0
+margin_right = 1671.0
+margin_bottom = 2361.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.843137, 0.678431, 0.262745, 1 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/dance = SubResource( 1 )
+[connection signal="animation_finished" from="anim" to="." method="animation_finished"]

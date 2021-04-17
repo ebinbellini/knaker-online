@@ -12,8 +12,6 @@
 [ext_resource path="res://matchmaking/btnmodalcreate.gd" type="Script" id=10]
 [ext_resource path="res://matchmaking/popups/joinroom.tscn" type="PackedScene" id=11]
 
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "SlideIn"
 length = 0.3

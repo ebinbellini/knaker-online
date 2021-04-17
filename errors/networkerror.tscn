@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://font/Yumin36.tres" type="DynamicFont" id=1]
 [ext_resource path="res://imgs/neterr.svg" type="Texture" id=2]
+[ext_resource path="res://widgets/button/btn.tscn" type="PackedScene" id=3]
+[ext_resource path="res://errors/networkerror.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "display"
@@ -57,6 +59,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 50.0
 margin_bottom = 50.0
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -70,12 +73,13 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -192.0
-margin_top = 163.0
-margin_right = 193.0
-margin_bottom = -372.0
+anchor_bottom = 0.5
+margin_left = -192.5
+margin_top = -170.5
+margin_right = 192.5
+margin_bottom = -105.5
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Unable to reach server..."
@@ -88,14 +92,27 @@ anims/display = SubResource( 1 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -224.359
-margin_top = 259.905
-margin_right = 2042.64
-margin_bottom = 781.905
+anchor_bottom = 0.5
+margin_left = -232.245
+margin_top = -112.905
+margin_right = 2034.76
+margin_bottom = 1009.09
 rect_scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="coolbutton" parent="." instance=ExtResource( 3 )]
+margin_left = 326.797
+margin_top = 407.895
+margin_right = 526.797
+margin_bottom = 455.895
+
+[node name="Label" parent="coolbutton" index="2"]
+text = "RETRY"
+[connection signal="pressed" from="coolbutton" to="." method="retry"]
+
+[editable path="coolbutton"]

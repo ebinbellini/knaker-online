@@ -100,7 +100,7 @@ func enable_dragging():
 func disable_dragging():
 	if dragging:
 		table.remove_child(self)
-		previous_parent.add_child(self)
+		table.insert_card_node_in_container(self, previous_parent)
 		dragging = false
 		holding = false
 

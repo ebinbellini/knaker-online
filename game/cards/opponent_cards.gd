@@ -2,7 +2,7 @@ extends Node
 
 
 onready var nametag: Label = get_node("name")
-onready var hand_count: Label = get_node("handcount")
+onready var hand_cards: Control = get_node("handcards")
 onready var up_cards: Control = get_node("upcards")
 onready var down_count: Control = get_node("downarrow/down")
 onready var done: Control = get_node("done")
@@ -21,7 +21,7 @@ func _ready():
 
 func update_cards(new_up: Array, new_downc: int, new_handc: int):
 	down_count.text = str(new_downc)
-	hand_count.text = str(new_handc)
+	hand_cards.update_card_ammount(new_handc)
 
 	# Remove old up cards
 	for card in up_cards.get_children():
@@ -36,7 +36,6 @@ func update_cards(new_up: Array, new_downc: int, new_handc: int):
 		up_cards.add_child(inst)
 		inst.set_card_type(new_top[0], new_top[1], txr)
 		inst.set_stack_cards(new_stack)
-
 
 
 func card_nodes_to_transferables(nodes: Array) -> Array:
@@ -71,7 +70,16 @@ func set_player_data(id: int, assigned_name: String):
 	pname = assigned_name
 	
 
-func finished(successfully: bool):
-	if not successfully:
-		done.set_text(tr("UNLUCKY"))
+func finished(reason: String):
+	done.set_text(tr(reason))
 	done.visible = true
+	for card in up_cards.get_children():
+		card.queue_free()
+
+
+func recieve_turn():
+	hand_cards.play_dance()
+
+
+func lose_turn():
+	hand_cards.stop_dance()

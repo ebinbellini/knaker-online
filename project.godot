@@ -58,7 +58,6 @@ limits/tcp/connect_timeout_seconds=10
 quality/intended_usage/framebuffer_allocation=1
 quality/intended_usage/framebuffer_allocation.mobile=1
 vram_compression/import_etc=true
-vram_compression/import_etc2=false
 quality/reflections/high_quality_ggx=false
 environment/default_clear_color=Color( 1, 1, 1, 1 )
 quality/depth/hdr=false

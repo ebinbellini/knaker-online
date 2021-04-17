@@ -31,6 +31,9 @@ onready var textures: Array = []
 func _ready():
 	prepare_game_scene()
 
+	# Tell the server that I've finished loading
+	net.ready_for_game()
+
 
 func prepare_game_scene():
 	load_textures()

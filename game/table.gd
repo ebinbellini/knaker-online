@@ -10,8 +10,9 @@ onready var done_trading_button: Button = get_node("donetrading")
 onready var done_trading_label: Label = get_node("donetradinglabel")
 onready var phase_label: Label = get_node("phase")
 onready var banner: Control = get_node("banner")
-onready var deck_ammount_label: Label = get_node("deck/ammount")
+onready var deck: Control = get_node("deck")
 onready var pass_buttons: Control = get_node("passbuttons")
+onready var iamdone: Label = get_node("iamdone")
 
 onready var net: Node = get_node("/root/net")
 onready var game: Control = get_parent()
@@ -24,16 +25,17 @@ var removed_all_hover_styles: bool = false
 var cards_to_place: Array = []
 var held_card: Control = null
 var selected_cards_ammount: int = 0
+var turn_pid: int = 0
 
 
 func _ready():
-	pile.connect("clicked", self, "place_selected_cards")
-
 	# The down cards are not inserted dynamically
 	for card in my_down.get_children():
 		# Down cards cannot be selected, so no "clicked" signal is needed
 		card.connect("held", self, "card_held")
 		card.connect("dropped", self, "card_dropped")
+		# TODO check if selecting down cards works
+		card.connect("clicked", self, "card_clicked")
 
 
 func _gui_input(event: InputEvent):
@@ -108,22 +110,30 @@ func are_cards_equal(card1: Array, card2: Array) -> bool:
 
 
 func insert_card_in_container(card: Array, container: Control) -> Control:
+	# Create card node
 	var card_node = create_card_node(card)
 	container.add_child(card_node)
 	card_node.connect("held", self, "card_held")
 	card_node.connect("clicked", self, "card_clicked")
 	card_node.connect("dropped", self, "card_dropped")
 
+	insert_card_node_in_container(card_node, container)
+
+	return card_node
+
+
+func insert_card_node_in_container(card_node: Control, container: Control):
+	if card_node.get_parent() == null:
+		container.add_child(card_node)
+
 	# Move card to make container sorted, assuming the container was sorted before insertion
 	var children: Array = container.get_children()
 	for i in range(len(children)):
 		var child = children[i]
 		# Insert before the first higher card
-		if child.value > card[0] or (child.value == card[0] and child.color > card[1]):
+		if child.value > card_node.value or (child.value == card_node.value and child.color > card_node.color):
 			container.move_child(card_node, i)
 			break
-
-	return card_node
 
 
 func update_my_down_count(count: int):
@@ -427,12 +437,11 @@ func start_playing_phase():
 	done_trading_button.visible = false
 	done_trading_label.visible = false
 	pile.visible = true
-	pass_buttons.visible = true
 	update_card_availability()
 
 
 func update_deck_ammount(ammount: int):
-	deck_ammount_label.set_text(str(ammount))
+	deck.update_card_ammount(ammount)
 
 
 func take_chance():
@@ -443,8 +452,36 @@ func pick_up_cards():
 	net.rpc_id(1, "pick_up_cards")
 
 
-func player_finished(pid: int, successfully: bool):
+func player_finished(pid: int, reason: String):
 	for opponent in opponents.get_children():
 		if opponent.pid == pid:
-			opponent.finished(successfully)
+			opponent.finished(reason)
 			return
+
+
+func i_am_finished(reason: String):
+	iamdone.set_text(reason)
+	iamdone.visible = true
+
+
+func my_turn():
+	player_lost_turn(turn_pid)
+	turn_pid = get_tree().get_network_unique_id()
+	pass_buttons.visible = true
+
+
+func new_player_has_turn(has_turn_pid: int):
+	pass_buttons.visible = false
+
+	player_lost_turn(turn_pid)
+	turn_pid = has_turn_pid
+
+	var opponent = find_opponent(has_turn_pid)
+	if opponent != null:
+		opponent.recieve_turn()
+
+
+func player_lost_turn(lost_pid: int):
+	var opponent = find_opponent(lost_pid)
+	if opponent != null:
+		opponent.lose_turn()

@@ -93,7 +93,7 @@ remote func start_loading_game():
 
 	var path = "res://game/game.tscn"
 	# Wait for the scene to load, then tell the server I am ready
-	start.call_deferred("load_and_set_scene", path, self, "ready_for_game")
+	start.call_deferred("load_and_set_scene", path)
 
 
 func ready_for_game():
@@ -237,10 +237,8 @@ remote func empty_pile():
 
 func leave_game():
 	rpc_id(1, "leave_game")
-	game.queue_free()
-	var waiting_room: Control = get_node("/root/start/Next/WaitingRoom")
-	if waiting_room:
-		waiting_room.queue_free()
+	var path = "res://matchmaking/matchmaking.tscn"
+	start.call_deferred("load_and_set_scene", path)
 
 
 remote func update_done_trading_ammount(ammount: int):
@@ -265,14 +263,15 @@ remote func deck_ammount_changed(ammount: int):
 	table.update_deck_ammount(ammount)
 
 
-remote func player_finished(pid: int, successfully: bool):
+remote func player_finished(pid: int, reason: String):
 	if get_tree().get_rpc_sender_id() != 1:
 		return
 
 	# Only care about other players for now
-	# TODO also show for myself
 	if pid != get_tree().get_network_unique_id():
-		table.player_finished(pid, successfully)
+		table.player_finished(pid, reason)
+	else:
+		table.i_am_finished(reason)
 
 
 remote func go_to_leaderboard(order: Array):
@@ -295,3 +294,13 @@ remote func restart_game():
 		
 	game.restart_game()
 	load_and_go_to_waiting_room()
+
+
+remote func this_player_has_turn(has_turn_pid: int):
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+		
+	if has_turn_pid == get_tree().get_network_unique_id():
+		table.my_turn()
+	else:
+		table.new_player_has_turn(has_turn_pid)
