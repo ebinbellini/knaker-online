@@ -76,13 +76,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -192.5
-margin_top = -170.5
-margin_right = 192.5
-margin_bottom = -105.5
+margin_left = -349.0
+margin_top = -160.5
+margin_right = 349.0
+margin_bottom = -95.5
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Unable to reach server..."
+text = "UTRS"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -16,10 +16,10 @@ _global_script_class_icons={
 [application]
 
 config/name="knaker"
-run/main_scene="res://Start.tscn"
-boot_splash/image="res://imgs/smolicon.png"
-boot_splash/bg_color=Color( 1, 1, 1, 1 )
-config/icon="res://imgs/icon.png"
+run/main_scene="res://splash.tscn"
+boot_splash/image="res://imgs/empty splash.png"
+boot_splash/bg_color=Color( 0.980392, 0.980392, 0.980392, 1 )
+config/icon="res://imgs/knaker face.png"
 
 [audio]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://font/YuminTitle.tres" type="DynamicFont" id=1]
 [ext_resource path="res://start.gd" type="Script" id=2]
@@ -50,7 +50,21 @@ tracks/2/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=2]
+resource_name = "startfadein"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+
 [node name="start" type="Control"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -136,6 +150,10 @@ one_shot = true
 one_shot = true
 
 [node name="neterror" parent="." instance=ExtResource( 4 )]
+
+[node name="anim" type="AnimationPlayer" parent="."]
+autoplay = "startfadein"
+anims/startfadein = SubResource( 2 )
 [connection signal="finished" from="ColorRect/VideoPlayer" to="ColorRect" method="restart_loader_video"]
 [connection signal="timeout" from="ColorRect/Timer" to="ColorRect" method="_on_Timer_timeout"]
 [connection signal="timeout" from="ColorRect/MoveTimer" to="ColorRect" method="move_timer_done"]
