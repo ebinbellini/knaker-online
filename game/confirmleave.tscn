@@ -127,7 +127,7 @@ margin_left = -676.023
 margin_top = -413.842
 margin_right = 738.977
 margin_bottom = 435.226
-rect_scale = Vector2( 0.25, 0.25 )
+rect_scale = Vector2( 0.25, 0.15 )
 rect_pivot_offset = Vector2( 900, 550 )
 texture = ExtResource( 6 )
 __meta__ = {
@@ -135,10 +135,10 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="content"]
-margin_left = 39.3109
-margin_top = 50.1522
-margin_right = 431.311
-margin_bottom = 95.1522
+margin_left = 35.0683
+margin_top = 79.1436
+margin_right = 427.068
+margin_bottom = 124.144
 custom_fonts/font = ExtResource( 2 )
 text = "AYSYWTL"
 __meta__ = {
@@ -146,10 +146,10 @@ __meta__ = {
 }
 
 [node name="coolbutton" parent="content" instance=ExtResource( 3 )]
-margin_left = 255.301
-margin_top = 203.864
-margin_right = 401.301
-margin_bottom = 245.864
+margin_left = 258.837
+margin_top = 148.71
+margin_right = 404.837
+margin_bottom = 190.71
 
 [node name="Label" parent="content/coolbutton" index="2"]
 anchor_left = 0.033
@@ -167,10 +167,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -339.382
-margin_top = -61.0958
-margin_right = -188.382
-margin_bottom = -19.0958
+margin_left = -335.846
+margin_top = -116.25
+margin_right = -184.846
+margin_bottom = -74.2501
 
 [node name="Label" parent="content/coolbutton2" index="2"]
 text = "CANCEL"

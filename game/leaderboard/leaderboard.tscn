@@ -115,6 +115,9 @@ margin_top = 350.0
 margin_right = 800.0
 margin_bottom = 398.0
 
+[node name="Label" parent="leavebtn" index="2"]
+text = "LEAVE"
+
 [node name="inserttimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true

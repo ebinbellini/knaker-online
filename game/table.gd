@@ -22,7 +22,6 @@ onready var opponents: Control = get_node("opponents")
 onready var pile: Control = get_node("pile")
 onready var done_trading_button: Button = get_node("donetrading")
 onready var done_trading_label: Label = get_node("donetradinglabel")
-onready var phase_label: Label = get_node("phase")
 onready var banner: Control = get_node("banner")
 onready var deck: Control = get_node("deck")
 onready var pass_buttons: Control = get_node("passbuttons")
@@ -332,8 +331,6 @@ func get_selected_cards() -> Array:
 		if child.is_selected():
 			selected.append(child)
 
-	# TODO down
-
 	return selected
 
 
@@ -341,6 +338,16 @@ func place_selected_cards():
 	var placing: Array = get_selected_cards()
 	placing.sort_custom(self, "sort_card_placements")
 	request_placing_of_cards(placing)
+
+
+func clear_selection():
+	for container in [my_hand, my_up]:
+		for card in container.get_children():
+			if card.is_selected():
+				card.deselect()
+			card.remove_hovered_style()
+
+	selected_cards_ammount = 0
 
 
 func sort_card_placements(card1, card2):
@@ -447,7 +454,6 @@ func update_done_trading_button_text(text: String):
 
 func start_playing_phase():
 	banner.display_message(tr("PLAYING_PHASE"))
-	phase_label.set_text(tr("PLAYING_PHASE"))
 	done_trading_button.visible = false
 	done_trading_label.visible = false
 	pile.visible = true
