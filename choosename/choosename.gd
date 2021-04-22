@@ -12,6 +12,6 @@ func enter():
 	input.grab_focus()
 	
 
-func create_room(_unused):
+func choose_name(_unused):
 	net.call_deferred("set_username", input.text)
 	start.load_and_set_scene("res://matchmaking/matchmaking.tscn")

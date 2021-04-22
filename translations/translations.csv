@@ -20,6 +20,7 @@ PICK_UP,Pick up,Plocka,取り上げて
 PLAYERS_DONE, players are done, spelare är klara,人のゲーマーが完了
 PLAYING_PHASE,Playing phase,Spelfas,プレイの時期
 PLYRS_IN_ROOM, players in room, spelare i rummet,人のゲーマーがいる
+PUBLIC_ROOM,Public room,Offentligt rum,公開のルーム
 PRO,Pro,Proffs,プロ
 RESULTS,Results,Resultat,成績
 RETRY,Retry,Försök igen,再試行
