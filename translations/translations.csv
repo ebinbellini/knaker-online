@@ -1,39 +1,40 @@
-keys,en,sv,ja
-AEHO,An error has occurred,Ett fel har uppstått,エラーが発生しました
-AGAIN,Play again,Spela igen,再びプレイ
-AYSYWTL,Are you certain that you want to leave?,Är du säker på att du vill lämna?,本当に離れたいですか
-CANCEL,Cancel,Avbryt,キャンセル
-CHOOSE_RNAME,Choose a name for your room,Välj ett namn till ditt rum,ルームに名前をつけて
-CREATE_RBTN,Create room,Skapa rum,ルームを作る
-DONE,Done,Klar,終わった
-DONE_TRDNG,Done trading,Klar med byten,交換は完了
-ENTER_NAME,Enter a nickname,Skriv in ett namn,ニックネームを入力
-ENTER_RNAME,Enter the name of the room,Skriv in rummets namn,ルームの名前を入力
-HTSMT0C,You have to select more than 0 cards,Du måste välja fler än 0 kort,０より多くのカードを選びて下さい
-INYTY,It's not your turn yet,Det är inte din tur ännu,まだ君の番ではない
-JOIN_RBTN,Join room,Gå med i rum,ルームに加わる
-LEAVE,Leave,Lämna,離れて
-LEFT,Left,Stack,出かけた
-OPLAYERS_DONE,0 players are done,0 spelare är klara,0人のゲーマーが完了
-OPLYR_IN_ROOM,1 player in room,1 spelare i rummet,1人のゲーマーがいる
-PICK_UP,Pick up,Plocka,取り上げて
-PLAYERS_DONE, players are done, spelare är klara,人のゲーマーが完了
-PLAYING_PHASE,Playing phase,Spelfas,プレイの時期
-PLYRS_IN_ROOM, players in room, spelare i rummet,人のゲーマーがいる
-PUBLIC_ROOM,Public room,Offentligt rum,公開のルーム
-PRO,Pro,Proffs,プロ
-RESULTS,Results,Resultat,成績
-RETRY,Retry,Försök igen,再試行
-STARTING_GAME,Starting game...,Startar spelet...,ゲームを始める。。。
-START_GAME,Start game!!,Starta spel!!,スタート！！
-SUBMIT,Submit,Bekräfta,適用
-TAKE_CHANCE,Take a chance,Chansa,チャンスをつかんで
-TRADING_PHASE,Trading phase,Bytesfas,交換の時期
-UNLUCKY,Unlucky,Otursam,因果
-UTRS,Unable to reach server,Kan inte nå servern,サーバーに接続できません
-WAITING_FPLY,Waiting for players,Inväntar spelare,ゲーマーズを待ってる
-WTPA, want to play again, vill spela igen,は再びプレイしたい
-YMNPCDTP,You may not place cards during the trading phase,Du får inte placera kort under bytesfasen,交換の時期にカードを選びてはいけない
-YMNPTCH,You may not place that card here,Du får inte spela det kortet här,そのカードはこの堆に置いてはいけません
-YMNPTCN,You may not play that card now,Du får inte spela det kortet ännu,そのカードはまだダメです
-YMNPTHCH,You may not place those cards here,Du får inte spela de korten här,そのカードはこの堆に置いてはいけません
+keys,en,sv,ja,nb
+AEHO,An error has occurred,Ett fel har uppstått,エラーが発生しました,Det har oppstått en feil
+AGAIN,Play again,Spela igen,再びプレイ,Spille en gang til
+AYSYWTL,Are you certain that you want to leave?,Är du säker på att du vill lämna?,本当に離れたいですか,Er du sikker på att du vil forlate?
+CANCEL,Cancel,Avbryt,キャンセル,Avbryt
+CHOOSE_RNAME,Choose a name for your room,Välj ett namn till ditt rum,ルームに名前をつけて,Velg et navn til rommet ditt
+CREATE_RBTN,Create room,Skapa rum,ルームを作る,Skape rom
+DONE,Done,Klar,終わった,Klar
+DONE_TRDNG,Done trading,Klar med byten,交換は完了,Bytten klare
+ENTER_NAME,Enter a nickname,Skriv in ett namn,ニックネームを入力,Skriv in et navn
+ENTER_RNAME,Enter the name of the room,Skriv in rummets namn,ルームの名前を入力,Skriv in navnet til rommet
+HTSMT0C,You have to select more than 0 cards,Du måste välja fler än 0 kort,０より多くのカードを選びて下さい,Du må velge mer enn 0 kort
+INYTY,It's not your turn yet,Det är inte din tur ännu,まだ君の番ではない,Det er ikke din tur
+JOIN_RBTN,Join room,Gå med i rum,ルームに加わる,Bli med i rom
+LEAVE,Leave,Lämna,離れて,Forlate
+LEFT,Left,Stack,出かけた,Stakk
+OPLAYERS_DONE,0 players are done,0 spelare är klara,0人のゲーマーが完了,0 spillere er klare
+PICK_UP,Pick up,Plocka,取り上げて,Plukke opp
+PLAYERS_DONE, players are done, spelare är klara,人のゲーマーが完了, spillere klare
+PLAYING_PHASE,Playing phase,Spelfas,プレイの時期,Spillfase
+PLYRS_IN_ROOM,Players in room:,Spelare i rummet:,ルームのゲーマーは,Spillere i rommet:
+PRO,Pro,Proffs,プロ,Proff
+RESULTS,Results,Resultat,成績,Sluttresultat
+RETRY,Retry,Försök igen,再試行,Prøv på nytt
+STARTING_GAME,Starting game...,Startar spelet...,ゲームを始める。。。,Starter spillet...
+START_GAME,Start game!!,Starta spel!!,スタート！！,Begynn spillet!!
+SUBMIT,Submit,Bekräfta,適用,Bekrefte
+TAKE_CHANCE,Take a chance,Chansa,チャンスをつかんで,Sjanse
+TRADING_PHASE,Trading phase,Bytesfas,交換の時期,Byttesfase
+UNLUCKY,Unlucky,Otursam,因果,Uflaks
+UTRS,Unable to reach server,Kan inte nå servern,サーバーに接続できません,Kan ikke nå servern
+WAITING_FPLY,Waiting for players,Inväntar spelare,ゲーマーズを待ってる,Venter på spillere
+WTPA, want to play again, vill spela igen, は再びプレイしたい, vil spille igjen
+YMNPCDTP,You may not place cards during the trading phase,Du får inte placera kort under bytesfasen,交換の時期にカードを選びてはいけない,Du får ikke plassere kort der under byttesfasen
+YMNPTCH,You may not place that card here,Du får inte spela det kortet här,そのカードはこの堆に置いてはいけません,Du får ikke plassere kortet her
+YMNPTCN,You may not play that card now,Du får inte spela det kortet ännu,そのカードはまだダメです,Du får ikke spille dette kortet ennå
+YMNPTHCH,You may not place those cards here,Du får inte spela de korten här,そのカードはこの堆に置いてはいけません,Du får ikke spille disse korten her
+PUBLIC_ROOM,Public room,Offentligt rum,公開のルーム,TODO
+PUBLIC_ROOMS,Public rooms,Offentliga rum,公開のルーム,TODO
+CLICK_TO_JOIN,Click to join,Tryck för att gå med,クリックして加わる,TODO

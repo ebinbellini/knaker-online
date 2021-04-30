@@ -2,7 +2,7 @@ extends "res://matchmaking/popups/popup.gd"
 
 
 onready var input: LineEdit = get_node("content/LineEdit")
-onready var public_checkbox: CheckBox = content/PublicCheckbox
+onready var public_checkbox: CheckBox = get_node("content/PublicCheckbox")
 onready var net = get_node("/root/net")
 
 

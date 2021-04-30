@@ -46,7 +46,7 @@ Click={
 
 [locale]
 
-translations=PoolStringArray( "res://translations/translations.ja.translation", "res://translations/translations.sv.translation", "res://translations/translations.en.translation" )
+translations=PoolStringArray( "res://translations/translations.ja.translation", "res://translations/translations.sv.translation", "res://translations/translations.en.translation", "res://translations/translations.nb.translation" )
 locale_filter=[ 0, [ "en_US", "ja", "sv_SE" ] ]
 
 [network]

@@ -108,7 +108,7 @@ __meta__ = {
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = -233.362
 margin_top = 126.637
-margin_right = 209.647
+margin_right = 209.648
 margin_bottom = 750.637
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
@@ -120,6 +120,8 @@ __meta__ = {
 wait_time = 0.7
 one_shot = true
 autostart = true
-[connection signal="text_entered" from="LineEdit" to="." method="create_room"]
+[connection signal="text_entered" from="LineEdit" to="." method="choose_name"]
 [connection signal="pressed" from="coolbutton" to="." method="choose_name" binds= [ false ]]
 [connection signal="timeout" from="Timer" to="." method="enter"]
+
+[editable path="coolbutton"]

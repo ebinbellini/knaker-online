@@ -15,7 +15,8 @@
 
 extends Node
 
-signal player_count_changed(new_num)
+signal player_names_changed(new_names)
+signal public_rooms_recieved(public_rooms)
 
 const SERVER_URL = "127.0.0.1"
 const PORT = 1840
@@ -46,8 +47,6 @@ var rname = ""
 var game: Control
 var table: Control
 
-export remote var room_names = []
-
 onready var start = get_node("/root/start/ColorRect")
 
 func _ready():
@@ -60,16 +59,27 @@ func connect_to_server():
 	get_tree().network_peer = peer
 
 
-func create_room(room_name):
+func create_room(room_name, public):
 	rname = room_name
 	room_owner = true
-	rpc_id(1, "create_room", room_name)
+	rpc_id(1, "create_room", room_name, public)
 
 
 func join_room(room_name):
 	rname = room_name
 	room_owner = false
 	rpc_id(1, "join_room", room_name)
+
+
+func get_public_rooms():
+	rpc_id(1, "get_public_rooms")
+
+
+remote func recieve_public_rooms(public_rooms: Array):
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+
+	emit_signal("public_rooms_recieved", public_rooms)
 
 
 remote func go_to_waiting_room():
@@ -164,7 +174,8 @@ remote func update_my_cards(thand: Array, tup: Array, down_count: int):
 
 
 remote func update_player_names(names: Array):
-	# names is an array consisting of elements with the form [PID, Username]
+	# names is an array consisting of elements with the form
+	# [pid: Int, username: String]
 
 	if get_tree().get_rpc_sender_id() != 1:
 		return
@@ -181,7 +192,15 @@ remote func update_player_names(names: Array):
 			# Update existing player's name
 			find_player(player[0]).name = player[1]
 
-	emit_signal("player_count_changed", len(names))
+	emit_signal("player_names_changed", get_player_names())
+
+
+func get_player_names() -> Array:
+	var names = []
+	for p in players:
+		names.append(p.name)
+
+	return names
 
 
 remote func update_player_cards(id: int, hand_count: int, up: Array, down_count: int):
