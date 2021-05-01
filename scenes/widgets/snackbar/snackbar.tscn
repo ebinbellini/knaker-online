@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://font/KiwiMaru18.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/widgets/snackbar/snackbar.gd" type="Script" id=2]
+[ext_resource path="res://imgs/info.png" type="Texture" id=3]
+
+
+
+
+[node name="Snackbar" type="Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -239.835
+margin_top = 5.58154
+margin_right = 242.165
+margin_bottom = 57.5815
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 14.2738
+margin_top = 13.9105
+margin_right = 38.2738
+margin_bottom = 37.9105
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -185.0
+margin_top = -49.9999
+margin_right = 230.0
+margin_bottom = -0.999939
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.929412, 0.929412, 0.929412, 1 )
+text = "tesxt tesxt tesxt "
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="leave_scene"]

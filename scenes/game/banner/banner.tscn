@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/game/banner/banner.gd" type="Script" id=1]
+[ext_resource path="res://font/KiwiMaru80.tres" type="DynamicFont" id=2]
+[ext_resource path="res://imgs/arrow banner.svg" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "display"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("arrow:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -1410, -0.25, 0, 0.0564104, 117.652, -250, -0.448126, -43.4138, 0.40237, 31.4815, -150, -0.332541, -57.8192, 0.374759, 67.8193, 1080, -0.00827754, -211.921, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.6, 1.4, 2 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6, 1.4, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="banner" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0.25098 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="arrow" type="TextureRect" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -1410.0
+margin_top = -100.0
+margin_right = -1034.0
+margin_bottom = 104.0
+mouse_filter = 2
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="arrow"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.972549, 0.972549, 0.972549, 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/display = SubResource( 1 )

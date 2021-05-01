@@ -1,0 +1,244 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://font/KiwiMaru25.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/widgets/button/flatbtn.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/game/cards/mycard.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/game/confirmleave.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/game/pile/pile.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/widgets/button/btn.tscn" type="PackedScene" id=6]
+[ext_resource path="res://font/KiwiMaru64.tres" type="DynamicFont" id=7]
+[ext_resource path="res://scenes/game/table.gd" type="Script" id=8]
+[ext_resource path="res://imgs/deselect.svg" type="Texture" id=9]
+[ext_resource path="res://imgs/leaveroom.png" type="Texture" id=10]
+[ext_resource path="res://scenes/game/cards/deck.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/game/banner/banner.tscn" type="PackedScene" id=12]
+
+
+
+
+
+[node name="table" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.05948
+margin_right = -1.05945
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="opponents" type="HBoxContainer" parent="."]
+margin_left = 6.73477
+margin_right = 1030.73
+margin_bottom = 209.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="myhand" type="ScrollContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 12.0
+margin_top = -175.0
+margin_right = -402.0
+mouse_filter = 1
+scroll_vertical_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hbox" type="HBoxContainer" parent="myhand"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="handbuttons" type="Control" parent="."]
+margin_left = 11.9449
+margin_top = 380.921
+margin_right = 67.9449
+margin_bottom = 433.921
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="clearselect" type="TextureButton" parent="handbuttons"]
+texture_normal = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="mydown" type="HBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -273.0
+margin_top = -128.0
+margin_right = 119.0
+margin_bottom = 72.0
+rect_scale = Vector2( 0.7, 0.7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="card" parent="mydown" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 60.0
+margin_bottom = 200.0
+
+[node name="card2" parent="mydown" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 64.0
+margin_right = 124.0
+margin_bottom = 200.0
+
+[node name="card3" parent="mydown" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 128.0
+margin_right = 188.0
+margin_bottom = 200.0
+
+[node name="myup" type="HBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -273.0
+margin_top = -243.0
+margin_right = 115.0
+margin_bottom = -52.0
+rect_min_size = Vector2( 388, 191 )
+rect_scale = Vector2( 0.7, 0.7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pile" parent="." instance=ExtResource( 5 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -195.665
+margin_top = -59.3213
+margin_right = 198.335
+margin_bottom = 118.679
+
+[node name="leavebutton" type="TextureButton" parent="."]
+margin_left = 965.4
+margin_top = 17.946
+margin_right = 1050.4
+margin_bottom = 111.946
+rect_scale = Vector2( 0.5, 0.5 )
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="donetrading" parent="." instance=ExtResource( 6 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -127.0
+margin_top = -50.0
+margin_right = 127.0
+margin_bottom = -2.0
+
+[node name="Label" parent="donetrading" index="2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -117.0
+margin_top = -24.0
+margin_right = 117.0
+margin_bottom = 24.0
+text = "DONE_TRDNG"
+
+[node name="donetradinglabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -168.0
+margin_top = 10.0
+margin_right = 168.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "OPLAYERS_DONE"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="passbuttons" type="Control" parent="."]
+visible = false
+margin_left = 67.0703
+margin_top = 266.26
+margin_right = 277.07
+margin_bottom = 391.26
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="chance" parent="passbuttons" instance=ExtResource( 6 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 180.0
+margin_bottom = 48.0
+
+[node name="Label" parent="passbuttons/chance" index="2"]
+text = "TAKE_CHANCE"
+
+[node name="pickup" parent="passbuttons" instance=ExtResource( 2 )]
+margin_top = 60.0
+margin_right = 180.0
+margin_bottom = 108.0
+
+[node name="Label" parent="passbuttons/pickup" index="2"]
+text = "PICK_UP"
+
+[node name="deck" parent="." instance=ExtResource( 11 )]
+margin_left = 833.121
+margin_top = 183.095
+margin_right = -34.8794
+margin_bottom = -275.905
+
+[node name="banner" parent="." instance=ExtResource( 12 )]
+margin_left = -1.18921
+margin_right = -1.18921
+
+[node name="leavepopup" parent="." instance=ExtResource( 4 )]
+
+[node name="iamdone" type="Label" parent="."]
+visible = false
+margin_left = 438.883
+margin_top = 481.536
+margin_right = 578.883
+margin_bottom = 553.536
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "PRO"
+[connection signal="pressed" from="handbuttons/clearselect" to="." method="clear_selection"]
+[connection signal="clicked" from="pile" to="." method="place_selected_cards"]
+[connection signal="pressed" from="leavebutton" to="leavepopup" method="display"]
+[connection signal="pressed" from="donetrading" to="." method="send_done_trading"]
+[connection signal="pressed" from="passbuttons/chance" to="." method="take_chance"]
+[connection signal="pressed" from="passbuttons/pickup" to="." method="pick_up_cards"]
+
+[editable path="donetrading"]
+
+[editable path="passbuttons/chance"]
+
+[editable path="passbuttons/pickup"]

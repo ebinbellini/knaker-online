@@ -1,0 +1,264 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://imgs/popup.svg" type="Texture" id=1]
+[ext_resource path="res://font/KiwiMaru25.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scenes/widgets/button/btn.tscn" type="PackedScene" id=3]
+[ext_resource path="res://font/KiwiMaru18.tres" type="DynamicFont" id=4]
+[ext_resource path="res://scenes/matchmaking/popups/joinroom.gd" type="Script" id=5]
+[ext_resource path="res://font/KiwiMaru16.tres" type="DynamicFont" id=6]
+[ext_resource path="res://imgs/refresh.svg" type="Texture" id=7]
+
+
+
+
+
+
+
+
+
+
+
+[sub_resource type="Animation" id=1]
+resource_name = "popup"
+length = 0.22
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.22 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.168627 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("content:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 50, -0.25, 0, 0.25, 0, 40, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.22 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("content:rect_scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0.85, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.22 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("content:rect_scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0.85, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.22 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("content:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.22 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.01 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="popup" type="ColorRect"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.420288
+margin_right = -0.420288
+color = Color( 0, 0, 0, 0 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/popup = SubResource( 1 )
+
+[node name="Button" type="Button" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1.62997
+margin_bottom = 1.63
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="content" type="Control" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -233.0
+margin_top = -250.0
+margin_right = 233.0
+margin_bottom = 270.0
+rect_scale = Vector2( 0.85, 0.85 )
+rect_pivot_offset = Vector2( 259, 150 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="content"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -677.837
+margin_top = -289.982
+margin_right = 745.163
+margin_bottom = 323.018
+rect_scale = Vector2( 0.25, 0.5 )
+rect_pivot_offset = Vector2( 900, 550 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="content"]
+margin_left = 31.8154
+margin_top = 32.4469
+margin_right = 423.816
+margin_bottom = 77.447
+custom_fonts/font = ExtResource( 2 )
+text = "ENTER_RNAME"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="content"]
+margin_left = 31.6567
+margin_top = 66.6751
+margin_right = 375.657
+margin_bottom = 102.675
+custom_fonts/font = ExtResource( 4 )
+max_length = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coolbutton" parent="content" instance=ExtResource( 3 )]
+margin_left = 213.744
+margin_top = 103.453
+margin_right = 404.744
+margin_bottom = 145.453
+rect_scale = Vector2( 0.8, 0.8 )
+
+[node name="Label" parent="content/coolbutton" index="2"]
+text = "JOIN_RBTN"
+
+[node name="Divider" type="Control" parent="content"]
+margin_left = 25.4926
+margin_top = 154.011
+margin_right = 443.493
+margin_bottom = 197.011
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="leftdivider" type="ColorRect" parent="content/Divider"]
+margin_left = 9.26755
+margin_top = 29.4297
+margin_right = 137.268
+margin_bottom = 31.4297
+color = Color( 0.741176, 0.741176, 0.741176, 1 )
+
+[node name="Label2" type="Label" parent="content/Divider"]
+margin_left = 138.268
+margin_top = 21.4297
+margin_right = 266.268
+margin_bottom = 46.4297
+custom_fonts/font = ExtResource( 6 )
+text = "OR"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rightdivider" type="ColorRect" parent="content/Divider"]
+margin_left = 266.268
+margin_top = 29.4297
+margin_right = 406.268
+margin_bottom = 31.4297
+color = Color( 0.741176, 0.741176, 0.741176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="publicrooms" type="ScrollContainer" parent="content"]
+margin_left = 34.0
+margin_top = 266.941
+margin_right = 434.0
+margin_bottom = 503.941
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vbox" type="VBoxContainer" parent="content/publicrooms"]
+
+[node name="publicroomsheader" type="Label" parent="content"]
+margin_left = 34.7231
+margin_top = 203.726
+margin_right = 241.723
+margin_bottom = 231.726
+custom_fonts/font = ExtResource( 2 )
+text = "PUBLIC_ROOMS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="clicktojoin" type="Label" parent="content"]
+margin_left = 35.0
+margin_top = 236.0
+margin_right = 242.0
+margin_bottom = 266.0
+custom_fonts/font = ExtResource( 6 )
+text = "CLICK_TO_JOIN"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="refreshbutton" type="TextureButton" parent="content"]
+margin_left = 381.617
+margin_top = 200.899
+margin_right = 429.617
+margin_bottom = 248.899
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="text_entered" from="content/LineEdit" to="." method="submit"]
+[connection signal="pressed" from="content/coolbutton" to="." method="submit" binds= [ false ]]
+[connection signal="pressed" from="content/refreshbutton" to="." method="fetch_public_rooms"]
+
+[editable path="content/coolbutton"]

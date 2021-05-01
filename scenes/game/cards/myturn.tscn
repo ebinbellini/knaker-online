@@ -1,0 +1,228 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://imgs/hand no thumb.svg" type="Texture" id=1]
+[ext_resource path="res://imgs/hand only thumb.svg" type="Texture" id=2]
+[ext_resource path="res://imgs/cardbackground.png" type="Texture" id=3]
+[ext_resource path="res://cards/knakers/black knaker.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "myturn"
+loop = true
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("cards/card1:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 2035.16, -0.25, 0, 0.25, 0, 1529.75, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("cards/card1:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 5200.58, -0.25, 0, 0.25, 0, 2465.39, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("cards/card1:rect_rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -22.1562, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.15, 0.5 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("cards/card2:rect_position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 2035.16, -0.25, 0, 0.25, 0, 2520.88, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.55 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("cards/card2:rect_position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 5200.58, -0.25, 0, 0.25, 0, 1886.31, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.55 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("cards/card2:rect_rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.2, 0.55 )
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("cards/card3:rect_position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray( 2035.16, -0.25, 0, 0.25, 0, 3556.54, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.6 )
+}
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("cards/card3:rect_position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"points": PoolRealArray( 5200.58, -0.25, 0, 0.25, 0, 1875.17, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.6 )
+}
+tracks/8/type = "bezier"
+tracks/8/path = NodePath("cards/card3:rect_rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 19.297, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.2, 0.6 )
+}
+tracks/9/type = "bezier"
+tracks/9/path = NodePath("cards:rect_scale:x")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"points": PoolRealArray( 0.02, -0.25, 0, 0.0840436, 0.0018631, 0.0399018, -0.132165, -0.00170893, 0.25, 0 ),
+"times": PoolRealArray( 0.2, 0.5 )
+}
+tracks/10/type = "bezier"
+tracks/10/path = NodePath("cards:rect_scale:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"points": PoolRealArray( 0.02, -0.25, 0, 0.0969503, 0.0018631, 0.0397119, -0.0808864, 0.000569642, 0.25, 0 ),
+"times": PoolRealArray( 0.2, 0.5 )
+}
+
+[node name="myturn" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hand" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cards" type="Control" parent="."]
+margin_left = -3166.03
+margin_top = -4798.16
+margin_right = 2271.97
+margin_bottom = 611.84
+rect_scale = Vector2( 0.0399018, 0.0397119 )
+rect_pivot_offset = Vector2( 3300, 5000 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="card1" type="Control" parent="cards"]
+margin_left = 1529.75
+margin_top = 2465.39
+margin_right = 1569.75
+margin_bottom = 2505.39
+rect_rotation = -22.1562
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="TextureRect" parent="cards/card1"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+
+[node name="fg" type="TextureRect" parent="cards/card1"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 4 )
+
+[node name="card2" type="Control" parent="cards"]
+margin_left = 2516.34
+margin_top = 1917.3
+margin_right = 2556.34
+margin_bottom = 1957.3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="TextureRect" parent="cards/card2"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+
+[node name="fg" type="TextureRect" parent="cards/card2"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 4 )
+
+[node name="card3" type="Control" parent="cards"]
+margin_left = 3485.67
+margin_top = 2030.08
+margin_right = 3525.67
+margin_bottom = 2070.08
+rect_rotation = 18.1374
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="TextureRect" parent="cards/card3"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+
+[node name="fg" type="TextureRect" parent="cards/card3"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 4 )
+
+[node name="thumb" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim" type="AnimationPlayer" parent="."]
+autoplay = "myturn"
+anims/myturn = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 97.0
+margin_top = 202.0
+margin_right = 134.0
+margin_bottom = 242.0
+rect_scale = Vector2( 1.28, 1.28 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

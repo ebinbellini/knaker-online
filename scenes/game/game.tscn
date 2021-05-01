@@ -1,0 +1,169 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://font/KiwiMaru25.tres" type="DynamicFont" id=1]
+[ext_resource path="res://video/loader.ogv" type="VideoStream" id=2]
+[ext_resource path="res://scenes/game/game.gd" type="Script" id=3]
+[ext_resource path="res://scenes/game/table.tscn" type="PackedScene" id=4]
+
+
+
+
+
+[sub_resource type="Animation" id=1]
+resource_name = "rem_loader"
+length = 0.6
+step = 0.01
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("loader:rect_position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 153.5, -0.25, 0, 0.25, 0, 200, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("loader:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("table:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.28, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("table:rect_position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 100, -0.25, 0, 0.00726151, -50.5372, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.3, 0.6 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("table:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("loader/VideoPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "stop"
+} ]
+}
+
+[node name="game" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.10803
+margin_top = -1.10803
+margin_right = 1.10803
+margin_bottom = -1.10803
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="loader" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -229.0
+margin_top = -146.5
+margin_right = 229.0
+margin_bottom = 146.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="loader"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -172.579
+margin_top = -77.1316
+margin_right = 175.421
+margin_bottom = -40.1316
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "STARTING_GAME"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VideoPlayer" type="VideoPlayer" parent="loader"]
+margin_left = 169.263
+margin_top = 112.409
+margin_right = 300.263
+margin_bottom = 200.409
+stream = ExtResource( 2 )
+autoplay = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="loader"]
+margin_left = 275.418
+margin_top = 108.403
+margin_right = 315.418
+margin_bottom = 148.403
+rect_scale = Vector2( 0.96, 2.44 )
+
+[node name="ColorRect2" type="ColorRect" parent="loader"]
+margin_left = 158.261
+margin_top = 175.437
+margin_right = 306.261
+margin_bottom = 187.437
+rect_scale = Vector2( 0.96, 2.44 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/rem_loader = SubResource( 1 )
+
+[node name="table" parent="." instance=ExtResource( 4 )]
+visible = false
+modulate = Color( 1, 1, 1, 0.0173605 )
+margin_top = 100.0
+margin_right = -1.05951
+margin_bottom = 100.0

@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://font/KiwiMaru18.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/widgets/button/flatbtn.gd" type="Script" id=2]
+
+
+
+
+[sub_resource type="Animation" id=1]
+resource_name = "pressed"
+length = 0.2
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:rect_scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0, -0.227848, 0.8, -0.110945, 0.00742275, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:rect_scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.00564741, -0.0925633, 0.8, -0.1662, 0.00645232, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2 )
+}
+
+[node name="coolbutton" type="Button"]
+margin_right = 200.0
+margin_bottom = 48.0
+rect_pivot_offset = Vector2( 100, 24 )
+focus_mode = 0
+mouse_default_cursor_shape = 2
+enabled_focus_mode = 0
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/pressed = SubResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 1 )
+text = "SUBMIT"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

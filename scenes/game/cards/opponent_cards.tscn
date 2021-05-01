@@ -1,0 +1,125 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://font/KiwiMaru25.tres" type="DynamicFont" id=1]
+[ext_resource path="res://font/KiwiMaru18.tres" type="DynamicFont" id=2]
+[ext_resource path="res://font/KiwiMaru36.tres" type="DynamicFont" id=3]
+[ext_resource path="res://scenes/game/cards/handcards.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/game/cards/opponent_cards.gd" type="Script" id=5]
+[ext_resource path="res://imgs/down arrow.svg" type="Texture" id=6]
+[ext_resource path="res://imgs/deckofcards.svg" type="Texture" id=7]
+
+
+
+
+
+
+
+
+[node name="opponent" type="Control"]
+margin_right = 157.0
+margin_bottom = 208.0
+rect_min_size = Vector2( 157, 208 )
+mouse_filter = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="oldhandcards" type="TextureRect" parent="."]
+visible = false
+margin_left = 7.12385
+margin_top = 5.2949
+margin_right = 457.124
+margin_bottom = 455.296
+rect_scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="handcount" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -56.7383
+margin_top = 19.2703
+margin_right = 7.26165
+margin_bottom = 65.2703
+rect_rotation = 15.082
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "3"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="handcards" parent="." instance=ExtResource( 4 )]
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="name" type="Label" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 1.12245
+margin_top = -20.1022
+margin_right = 1.12245
+margin_bottom = -0.102158
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "{{name}}"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="downarrow" type="TextureRect" parent="."]
+margin_left = 99.5682
+margin_top = 27.0452
+margin_right = 175.569
+margin_bottom = 77.0459
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="down" type="Label" parent="downarrow"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 8.00016
+margin_top = 7.0
+margin_right = 28.0002
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="upcards" type="HBoxContainer" parent="."]
+margin_left = -0.0224359
+margin_top = 86.9965
+margin_right = 187.978
+margin_bottom = 236.997
+rect_scale = Vector2( 0.7, 0.7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="done" type="Label" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -11.3393
+margin_top = 9.11907
+margin_right = -11.3393
+margin_bottom = 90.1191
+rect_rotation = -10.1586
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "DONE"
+align = 1
+valign = 1

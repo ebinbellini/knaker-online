@@ -1,0 +1,273 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://imgs/card laying down.png" type="Texture" id=1]
+[ext_resource path="res://scenes/waitingroom/waiting.gd" type="Script" id=2]
+[ext_resource path="res://font/KiwiMaru80.tres" type="DynamicFont" id=3]
+[ext_resource path="res://font/KiwiMaru25.tres" type="DynamicFont" id=4]
+[ext_resource path="res://scenes/widgets/button/btn.tscn" type="PackedScene" id=5]
+
+
+
+
+
+
+
+
+
+[sub_resource type="Animation" id=1]
+resource_name = "cardfly"
+length = 2.4
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("flyingcard:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 95, -0.25, 0, 0.25, 0, 95, -0.25, 0, 0.359558, 65.1236, 618.257, -0.251259, 0.266724, 0.25, 0, 618.257, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.4, 0.7, 1.7, 2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("flyingcard:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 7, -0.25, 0, 0.14608, -8.16328, -100, -0.182447, 9.94785, 0.25, 0, -100, -0.25, 0, 0.180715, 14.1145, 7, -0.135586, -11.6355, 0.25, 0 ),
+"times": PoolRealArray( 0.4, 0.7, 1.7, 2 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("flyingcard:rect_rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.863319, 4.60358, 360, -0.881352, 6.04364, 0.25, 0 ),
+"times": PoolRealArray( 0.4, 2 )
+}
+
+[node name="WaitingRoom" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="White background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardFlyAnimation" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -306.464
+margin_top = -187.54
+margin_right = 717.536
+margin_bottom = 79.4597
+rect_scale = Vector2( 0.6, 0.6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pile1" type="Control" parent="CardFlyAnimation"]
+anchor_bottom = 1.0
+margin_left = 68.0
+margin_top = -1.0
+margin_right = 427.0
+margin_bottom = -1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CardFlyAnimation/Pile1"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 27.0
+margin_top = -240.0
+margin_right = 327.0
+margin_bottom = -4.99997
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="CardFlyAnimation/Pile1"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 27.0
+margin_top = -245.0
+margin_right = 327.0
+margin_bottom = -9.99997
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="CardFlyAnimation/Pile1"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 27.0
+margin_top = -250.0
+margin_right = 327.0
+margin_bottom = -15.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect4" type="TextureRect" parent="CardFlyAnimation/Pile1"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 27.0
+margin_top = -255.0
+margin_right = 327.0
+margin_bottom = -20.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pile2" type="Control" parent="CardFlyAnimation"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -433.065
+margin_top = -266.619
+margin_right = -74.0652
+margin_bottom = 0.38147
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CardFlyAnimation/Pile2"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 27.0
+margin_top = -240.0
+margin_right = 327.0
+margin_bottom = -4.99997
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="CardFlyAnimation/Pile2"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 27.0
+margin_top = -245.0
+margin_right = 327.0
+margin_bottom = -9.99997
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="CardFlyAnimation/Pile2"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 27.0
+margin_top = -250.0
+margin_right = 327.0
+margin_bottom = -15.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect4" type="TextureRect" parent="CardFlyAnimation/Pile2"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 27.0
+margin_top = -255.0
+margin_right = 327.0
+margin_bottom = -20.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="flyingcard" type="TextureRect" parent="CardFlyAnimation"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 95.0
+margin_top = -260.0
+margin_right = 395.0
+margin_bottom = -25.0
+rect_pivot_offset = Vector2( 145.713, 111.268 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CardFlyAnimation"]
+anims/cardfly = SubResource( 1 )
+
+[node name="waiting_label" type="Label" parent="."]
+margin_left = 82.0
+margin_top = 44.0
+margin_right = 919.0
+margin_bottom = 149.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "WAITING_FPLY"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="players_label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -284.0
+margin_top = -152.0
+margin_right = -12.0
+margin_bottom = -114.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "PLYRS_IN_ROOM"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coolbutton" parent="." instance=ExtResource( 5 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -35.0
+margin_right = 100.0
+margin_bottom = 13.0
+
+[node name="Label" parent="coolbutton" index="2"]
+text = "START_GAME"
+
+[node name="player_names" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 31.0
+margin_top = -154.5
+margin_right = 421.0
+margin_bottom = 81.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="coolbutton" to="." method="start_game"]
+
+[editable path="coolbutton"]
