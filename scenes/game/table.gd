@@ -25,6 +25,7 @@ onready var done_trading_label: Label = get_node("donetradinglabel")
 onready var banner: Control = get_node("banner")
 onready var deck: Control = get_node("deck")
 onready var pass_buttons: Control = get_node("passbuttons")
+onready var chance: Button = get_node("passbuttons/chance")
 onready var iamdone: Label = get_node("iamdone")
 
 onready var net: Node = get_node("/root/net")
@@ -466,6 +467,10 @@ func start_playing_phase():
 
 func update_deck_ammount(ammount: int):
 	deck.update_card_ammount(ammount)
+
+	# You can't take a chance if there are no cards left
+	if ammount == 0:
+		chance.visible = false
 
 
 func take_chance():
