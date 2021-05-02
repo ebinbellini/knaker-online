@@ -486,6 +486,9 @@ func player_finished(pid: int, reason: String):
 func i_am_finished(reason: String):
 	iamdone.set_text(reason)
 	iamdone.visible = true
+	
+	for child in pass_buttons.get_children():
+		child.visible = false
 
 
 func my_turn():
