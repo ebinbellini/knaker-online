@@ -39,7 +39,9 @@ var hovered: bool = false
 var selected: bool = false
 # Is this a card on the player's hand
 var is_hand_card: bool = false
-# Is this a down facing card
+# Is this an upwards facing card
+var is_up_card: bool = false
+# Is this a downwards facing card
 var is_down_card: bool = false
 # All cards in this stack. Only used for up cards.
 var stack_cards: Array = []
@@ -53,6 +55,9 @@ func _ready():
 	elif get_parent().name == "mydown":
 		# Only true for down facing cards
 		is_down_card = true
+	else:
+		# All other possibilities are ruled out
+		is_up_card = true
 
 	connect("mouse_entered", self, "show_hovered_style")
 

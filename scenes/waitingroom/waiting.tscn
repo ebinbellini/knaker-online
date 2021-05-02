@@ -6,14 +6,6 @@
 [ext_resource path="res://font/KiwiMaru25.tres" type="DynamicFont" id=4]
 [ext_resource path="res://scenes/widgets/button/btn.tscn" type="PackedScene" id=5]
 
-
-
-
-
-
-
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "cardfly"
 length = 2.4
@@ -214,9 +206,9 @@ anims/cardfly = SubResource( 1 )
 
 [node name="waiting_label" type="Label" parent="."]
 margin_left = 82.0
-margin_top = 44.0
+margin_top = 29.0
 margin_right = 919.0
-margin_bottom = 149.0
+margin_bottom = 161.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "WAITING_FPLY"

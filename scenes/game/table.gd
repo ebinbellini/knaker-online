@@ -265,7 +265,6 @@ func update_selected_ammount():
 	for card in my_down.get_children():
 		if card.is_selected():
 			selected_cards_ammount += 1
-		
 
 
 func card_clicked(card_node: Control):
@@ -292,20 +291,19 @@ func card_clicked(card_node: Control):
 
 
 func card_placed(card_node: Control):
-	var placing: Array = []
+	if card_node.get_parent() == my_down:
+		net.place_down_card()
+	else:
+		var placing: Array = []
 
-	if card_node == null or card_node.get_parent() != my_down:
 		if card_node == null or card_node.is_selected():
-			# Ignore placed card and instead place all selected cards
-			placing = get_selected_cards()
-			placing.sort_custom(self, "sort_card_placements")
+			# Ignore the placed card and instead place all selected cards
+			place_selected_cards()
 		else:
 			# Place only the placed card
 			placing = [card_node]
 
 		request_placing_of_cards(placing)
-	else:
-		net.place_down_card()
 
 
 func request_placing_of_cards(placing: Array):
@@ -313,8 +311,14 @@ func request_placing_of_cards(placing: Array):
 	cards_to_place = placing
 
 	var transferable: Array = []
-	for p in placing:
-		transferable.append([p.get_card_value(), p.get_card_color()])
+	for plc in placing:
+		if plc.is_up_card:
+			# Insert all cards in the stack
+			for card in plc.get_stack_cards():
+				transferable.append([card[0], card[1]])
+		else:
+			# Regular card
+			transferable.append([plc.get_card_value(), plc.get_card_color()])
 
 	# Send placement order through net 
 	net.place_cards(transferable)
@@ -327,9 +331,9 @@ func get_selected_cards() -> Array:
 		if child.is_selected():
 			selected.append(child)
 
-	for child in my_up.get_children():
-		if child.is_selected():
-			selected.append(child)
+	for stack in my_up.get_children():
+		if stack.is_selected():
+			selected.append(stack)
 
 	return selected
 
