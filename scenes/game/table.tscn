@@ -13,10 +13,6 @@
 [ext_resource path="res://scenes/game/cards/deck.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/game/banner/banner.tscn" type="PackedScene" id=12]
 
-
-
-
-
 [node name="table" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -108,9 +104,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -273.0
-margin_top = -243.0
+margin_top = -128.0
 margin_right = 115.0
-margin_bottom = -52.0
+margin_bottom = 63.0
 rect_min_size = Vector2( 388, 191 )
 rect_scale = Vector2( 0.7, 0.7 )
 __meta__ = {
@@ -216,8 +212,8 @@ margin_right = -34.8794
 margin_bottom = -275.905
 
 [node name="banner" parent="." instance=ExtResource( 12 )]
-margin_left = -1.18921
-margin_right = -1.18921
+margin_left = -0.245362
+margin_right = -0.245361
 
 [node name="leavepopup" parent="." instance=ExtResource( 4 )]
 

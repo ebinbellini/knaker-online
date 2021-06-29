@@ -270,23 +270,37 @@ func update_selected_ammount():
 
 func card_clicked(card_node: Control):
 	if card_node.get_parent().name == "myup":
+		# This is an up card
 		net.rpc_id(1, "pick_up_card", [card_node.value, card_node.color])
 	else:
-		update_selected_ammount()
+		# This is a hand card
 
-		if not card_node.is_selected():
-			selected_cards_ammount += 1
-			card_node.select_with_number(selected_cards_ammount)
+		if pile.visible:
+			# In playing phase
+
+			update_selected_ammount()
+
+			if not card_node.is_selected():
+				# Select
+				selected_cards_ammount += 1
+				card_node.select_with_number(selected_cards_ammount)
+			else:
+				# Deselect
+				var dorder: int = card_node.get_selected_order()
+				card_node.deselect()
+
+				# Decrease selected order on all cards with a higher number than
+				# this card
+				selected_cards_ammount -= 1
+				for cdn in card_node.get_parent().get_children():
+					var order: int = cdn.get_selected_order()
+					if dorder < order:
+						cdn.set_selected_order(order-1)
 		else:
-			var dorder: int = card_node.get_selected_order()
-			card_node.deselect()
+			# In trading phase
 
-			# Decrease number on all cards with a higher number than this card
-			selected_cards_ammount -= 1
-			for cdn in card_node.get_parent().get_children():
-				var order: int = cdn.get_selected_order()
-				if dorder < order:
-					cdn.set_selected_order(order-1)
+			# Move card to up cards
+			net.rpc_id(1, "put_down_card", [card_node.value, card_node.color], -1)
 	
 	update_card_availability()
 

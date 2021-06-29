@@ -270,6 +270,10 @@ remote func empty_pile():
 
 
 func leave_game():
+	# If players are not reset they are visible on the next "Waiting for
+	# players" scene
+	players = []
+
 	rpc_id(1, "leave_game")
 	var path = "res://scenes/matchmaking/matchmaking.tscn"
 	start.call_deferred("load_and_set_scene", path)
