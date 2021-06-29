@@ -15,19 +15,22 @@
 
 extends Control
 
-onready var my_hand: Control = get_node("myhand/hbox")
-onready var my_down: Control = get_node("mydown")
-onready var my_up: Control = get_node("myup")
-onready var opponents: Control = get_node("opponents")
-onready var pile: Control = get_node("pile")
+# Child nodes
+onready var banner: Control = get_node("banner")
+onready var chance: Button = get_node("passbuttons/chance")
+onready var deck: Control = get_node("deck")
+onready var deselect_button: TextureButton = get_node("handbuttons/clearselect")
 onready var done_trading_button: Button = get_node("donetrading")
 onready var done_trading_label: Label = get_node("donetradinglabel")
-onready var banner: Control = get_node("banner")
-onready var deck: Control = get_node("deck")
-onready var pass_buttons: Control = get_node("passbuttons")
-onready var chance: Button = get_node("passbuttons/chance")
 onready var iamdone: Label = get_node("iamdone")
+onready var my_down: Control = get_node("mydown")
+onready var my_hand: Control = get_node("myhand/hbox")
+onready var my_up: Control = get_node("myup")
+onready var opponents: Control = get_node("opponents")
+onready var pass_buttons: Control = get_node("passbuttons")
+onready var pile: Control = get_node("pile")
 
+# Other related nodes
 onready var net: Node = get_node("/root/net")
 onready var game: Control = get_parent()
 
@@ -255,6 +258,7 @@ func card_held(card_node: Control):
 
 func update_selected_ammount():
 	selected_cards_ammount = 0
+
 	for card in my_hand.get_children():
 		if card.is_selected():
 			selected_cards_ammount += 1
@@ -266,6 +270,12 @@ func update_selected_ammount():
 	for card in my_down.get_children():
 		if card.is_selected():
 			selected_cards_ammount += 1
+	
+	if selected_cards_ammount > 0:
+		deselect_button.visible = true
+	else:
+		deselect_button.visible = false
+
 
 
 func card_clicked(card_node: Control):
@@ -284,6 +294,8 @@ func card_clicked(card_node: Control):
 				# Select
 				selected_cards_ammount += 1
 				card_node.select_with_number(selected_cards_ammount)
+
+				deselect_button.visible = true
 			else:
 				# Deselect
 				var dorder: int = card_node.get_selected_order()
@@ -296,6 +308,10 @@ func card_clicked(card_node: Control):
 					var order: int = cdn.get_selected_order()
 					if dorder < order:
 						cdn.set_selected_order(order-1)
+
+				if selected_cards_ammount <= 0:
+					selected_cards_ammount = 0
+				deselect_button.visible = true
 		else:
 			# In trading phase
 
@@ -367,6 +383,7 @@ func clear_selection():
 			card.remove_hovered_style()
 
 	selected_cards_ammount = 0
+	deselect_button.visible = false
 
 
 func sort_card_placements(card1, card2):
@@ -391,6 +408,8 @@ func cards_placed(cards, placer_pid):
 
 func move_accepted():
 	selected_cards_ammount = 0
+	deselect_button.visible = false
+
 	for card in cards_to_place:
 		card.queue_free()
 	cards_to_place = []

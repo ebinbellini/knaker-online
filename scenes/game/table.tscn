@@ -59,6 +59,7 @@ __meta__ = {
 }
 
 [node name="clearselect" type="TextureButton" parent="handbuttons"]
+visible = false
 texture_normal = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
