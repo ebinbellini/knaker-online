@@ -62,12 +62,14 @@ func connect_to_server():
 func create_room(room_name, public):
 	rname = room_name
 	room_owner = true
+	players = []
 	rpc_id(1, "create_room", room_name, public)
 
 
 func join_room(room_name):
 	rname = room_name
 	room_owner = false
+	players = []
 	rpc_id(1, "join_room", room_name)
 
 
@@ -270,10 +272,6 @@ remote func empty_pile():
 
 
 func leave_game():
-	# If players are not reset they are visible on the next "Waiting for
-	# players" scene
-	players = []
-
 	rpc_id(1, "leave_game")
 	var path = "res://scenes/matchmaking/matchmaking.tscn"
 	start.call_deferred("load_and_set_scene", path)

@@ -15,6 +15,7 @@
 
 extends Node
 
+
 var time_max = 50
 var first_load = true
 var timer_done = false
@@ -29,6 +30,7 @@ onready var remove_timer: Timer = get_node("RemoveTimer")
 onready var neterranim: Node = get_node("../neterror/anim")
 onready var loader_vid: VideoPlayer = get_node("VideoPlayer")
 onready var next_node: Control = get_node("/root/start/Next")
+
 
 func _ready():
 	start_netclient_node()

@@ -79,7 +79,7 @@ tracks/5/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "rotate_refreshbutton"
 length = 0.5
 tracks/0/type = "bezier"
@@ -252,13 +252,13 @@ __meta__ = {
 }
 
 [node name="anim_refresh" type="AnimationPlayer" parent="content"]
-anims/rotate_refreshbutton = SubResource( 4 )
+anims/rotate_refreshbutton = SubResource( 2 )
 
 [node name="refreshbutton" type="TextureButton" parent="content"]
 margin_left = 381.617
-margin_top = 200.899
+margin_top = 215.388
 margin_right = 429.617
-margin_bottom = 248.899
+margin_bottom = 263.388
 rect_pivot_offset = Vector2( 24, 24 )
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 7 )

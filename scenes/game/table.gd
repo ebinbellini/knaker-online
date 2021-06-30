@@ -48,7 +48,6 @@ var turn_pid: int = 0
 func _ready():
 	# The down cards are not inserted dynamically
 	for card in my_down.get_children():
-		# Down cards cannot be selected, so no "clicked" signal is needed
 		card.connect("held", self, "card_held")
 		card.connect("dropped", self, "card_dropped")
 		# TODO check if selecting down cards works
@@ -277,11 +276,13 @@ func update_selected_ammount():
 		deselect_button.visible = false
 
 
-
 func card_clicked(card_node: Control):
 	if card_node.get_parent().name == "myup":
 		# This is an up card
 		net.rpc_id(1, "pick_up_card", [card_node.value, card_node.color])
+	elif card_node.get_parent().name == "mydown":
+		# This is a down card
+		net.place_down_card()
 	else:
 		# This is a hand card
 
@@ -470,11 +471,14 @@ func are_my_down_placeable() -> bool:
 func enable_down_cards():
 	for card in my_down.get_children():
 		card.enable_hover()
+		# The up cards block mouse input
+		my_up.visible = false
 
 
 func disable_down_cards():
 	for card in my_down.get_children():
 		card.disable_hover()
+		my_up.visible = true
 
 
 func empty_pile():

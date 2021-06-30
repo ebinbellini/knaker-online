@@ -111,8 +111,7 @@ func disable_dragging():
 
 		emit_signal("dropped", self)
 	elif holding:
-		if not is_down_card:
-			emit_signal("clicked", self)
+		emit_signal("clicked", self)
 		holding = false
 
 

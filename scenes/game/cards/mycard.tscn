@@ -146,9 +146,9 @@ __meta__ = {
 
 [node name="front" type="TextureRect" parent="Control"]
 margin_left = 20.76
-margin_top = 15.4967
+margin_top = 15.6358
 margin_right = 1695.76
-margin_bottom = 2374.5
+margin_bottom = 2374.64
 rect_scale = Vector2( 0.094, 0.094 )
 texture = ExtResource( 4 )
 __meta__ = {

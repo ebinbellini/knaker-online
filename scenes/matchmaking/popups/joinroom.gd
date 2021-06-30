@@ -14,6 +14,11 @@ func _ready():
 	net.connect("public_rooms_recieved", self, "public_rooms_recieved")
 	anim_refresh.connect("animation_finished", self, "done_spinning")
 
+	# Fetch rooms when this popup is opened
+	anim.connect("animation_started", self, "popup_opened")
+
+
+func popup_opened(_ignored):
 	fetch_public_rooms()
 
 
