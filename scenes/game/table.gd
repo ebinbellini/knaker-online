@@ -28,6 +28,7 @@ onready var my_hand: Control = get_node("myhand/hbox")
 onready var my_up: Control = get_node("myup")
 onready var opponents: Control = get_node("opponents")
 onready var pass_buttons: Control = get_node("passbuttons")
+onready var pickup: Button = get_node("passbuttons/pickup")
 onready var pile: Control = get_node("pile")
 
 # Other related nodes
@@ -78,7 +79,7 @@ func update_my_hand(new_hand: Array):
 			card.queue_free()
 
 
-func update_my_up(new_up: Array):
+func update_my_up(new_up: Array, locked_indexes: Array):
 	# Add new up cards
 	for new_stack in new_up:
 		var new_top: Array = new_stack[len(new_stack)-1]
@@ -96,6 +97,12 @@ func update_my_up(new_up: Array):
 			card_node.connect("held", self, "card_held")
 			card_node.connect("clicked", self, "card_clicked")
 			card_node.connect("dropped", self, "card_dropped")
+
+			# Is the card locked?
+			var index = new_up.find(new_stack)
+			if locked_indexes.find(index) != -1:
+				card_node.lock()
+
 
 	# Remove old up cards
 	for i in my_up.get_child_count():
@@ -232,10 +239,10 @@ func find_opponent(pid: int) -> Control:
 	return null
 
 
-func update_player_cards(pid, up, downc, handc):
+func update_player_cards(pid: int, up: Array, downc: int, handc: int, locked_up_indexes: Array):
 	var opnt = find_opponent(pid)
 	if opnt != null:
-		opnt.update_cards(up, downc, handc)
+		opnt.update_cards(up, downc, handc, locked_up_indexes)
 	
 
 func remove_hover_on_all_cards_except(exception):
@@ -293,6 +300,7 @@ func card_clicked(card_node: Control):
 
 			if not card_node.is_selected():
 				# Select
+				# TODO allow selecting multiple by shift+clicking
 				selected_cards_ammount += 1
 				card_node.select_with_number(selected_cards_ammount)
 
@@ -501,6 +509,13 @@ func start_playing_phase():
 	pile.visible = true
 	update_card_availability()
 
+	for card in my_up.get_children():
+		card.unlock()
+
+	for opponent in opponents.get_children():
+		for card in opponent.get_up_cards():
+			card.unlock()
+
 
 func update_deck_ammount(ammount: int):
 	deck.update_card_ammount(ammount)
@@ -536,7 +551,12 @@ func i_am_finished(reason: String):
 func my_turn():
 	player_lost_turn(turn_pid)
 	turn_pid = get_tree().get_network_unique_id()
+
 	pass_buttons.visible = true
+	if pile.is_empty():
+		pickup.visible = false
+	else:
+		pickup.visible = true
 
 
 func new_player_has_turn(has_turn_pid: int):

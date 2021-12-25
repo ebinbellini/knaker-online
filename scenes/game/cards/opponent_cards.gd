@@ -19,7 +19,7 @@ func _ready():
 	nametag.text = pname
 
 
-func update_cards(new_up: Array, new_downc: int, new_handc: int):
+func update_cards(new_up: Array, new_downc: int, new_handc: int, locked_indexes: Array):
 	down_count.text = str(new_downc)
 	hand_cards.update_card_ammount(new_handc)
 
@@ -36,6 +36,11 @@ func update_cards(new_up: Array, new_downc: int, new_handc: int):
 		up_cards.add_child(inst)
 		inst.set_card_type(new_top[0], new_top[1], txr)
 		inst.set_stack_cards(new_stack)
+
+		# Should the card be locked?
+		var index = new_up.find(new_stack)
+		if locked_indexes.find(index) != -1:
+			inst.lock()
 
 
 func card_nodes_to_transferables(nodes: Array) -> Array:

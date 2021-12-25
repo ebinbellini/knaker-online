@@ -67,3 +67,7 @@ func update_scrollbar():
 	else:
 		scrollbar.visible = true
 		scrollbar.max_value = max_scroll
+
+
+func is_empty():
+	return card_ammount == 0

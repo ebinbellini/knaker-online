@@ -18,7 +18,7 @@ extends Node
 signal player_names_changed(new_names)
 signal public_rooms_recieved(public_rooms)
 
-const SERVER_URL = "127.0.0.1"
+const SERVER_URL = "localhost"
 const PORT = 1840
 
 
@@ -97,7 +97,6 @@ func load_and_go_to_waiting_room():
 
 
 func update_rooms():
-	# TODO view list of public rooms
 	rpc_id(1, "update_rooms")
 
 
@@ -159,7 +158,7 @@ func find_player(pid: int) -> Player:
 	return players[find_player_index(pid)]
 
 
-remote func update_my_cards(thand: Array, tup: Array, down_count: int):
+remote func update_my_cards(thand: Array, tup: Array, down_count: int, locked_up_indexes: Array):
 	if get_tree().get_rpc_sender_id() != 1:
 		return
 
@@ -171,7 +170,7 @@ remote func update_my_cards(thand: Array, tup: Array, down_count: int):
 	my_down_count = down_count
 
 	table.update_my_hand(thand)
-	table.update_my_up(tup)
+	table.update_my_up(tup, locked_up_indexes)
 	table.update_my_down_count(down_count)
 
 
@@ -205,7 +204,7 @@ func get_player_names() -> Array:
 	return names
 
 
-remote func update_player_cards(id: int, hand_count: int, up: Array, down_count: int):
+remote func update_player_cards(id: int, hand_count: int, up: Array, down_count: int, locked_up_indexes: Array):
 	if get_tree().get_rpc_sender_id() != 1:
 		return
 
@@ -214,7 +213,7 @@ remote func update_player_cards(id: int, hand_count: int, up: Array, down_count:
 	p.up_cards = up
 	p.down_count = down_count
 
-	table.update_player_cards(id, up, down_count, hand_count)
+	table.update_player_cards(id, up, down_count, hand_count, locked_up_indexes)
 	
 
 func card_to_transferable(card: Card) -> Array:

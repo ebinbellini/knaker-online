@@ -45,6 +45,8 @@ var is_up_card: bool = false
 var is_down_card: bool = false
 # All cards in this stack. Only used for up cards.
 var stack_cards: Array = []
+# Is this card locked
+var locked: bool = false
 
 
 func _ready():
@@ -231,3 +233,16 @@ func get_top_card() -> Array:
 
 func get_stack_cards() -> Array:
 	return stack_cards
+
+
+func lock():
+	# TODO Disable dragging?
+	locked = true
+	anim.play("lock")
+
+
+func unlock():
+	if not locked:
+		return
+	locked = false
+	anim.play_backwards("lock")

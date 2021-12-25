@@ -11,6 +11,8 @@ var player_name: Resource = load("res://scenes/waitingroom/player_name.tscn")
 var stop: bool = false
 var backwards: bool = false
 
+# TODO leave room button
+
 func _ready():
 	anim.connect("animation_finished", self, "restart_video")
 	anim.play("cardfly");
