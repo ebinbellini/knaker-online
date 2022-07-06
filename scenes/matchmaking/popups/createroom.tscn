@@ -7,16 +7,6 @@
 [ext_resource path="res://font/KiwiMaru16.tres" type="DynamicFont" id=5]
 [ext_resource path="res://imgs/popup.svg" type="Texture" id=6]
 
-
-
-
-
-
-
-
-
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "popup"
 length = 0.22
@@ -89,14 +79,13 @@ tracks/5/keys = {
 }
 
 [node name="popup" type="ColorRect"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -0.420288
 margin_top = 1.16635
 margin_right = -0.420288
 margin_bottom = 1.16638
-color = Color( 0, 0, 0, 0 )
+color = Color( 0, 0, 0, 0.168627 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -116,16 +105,14 @@ __meta__ = {
 }
 
 [node name="content" type="Control" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -237.0
-margin_top = -160.0
+margin_top = -169.0
 margin_right = 237.0
-margin_bottom = 116.0
-rect_scale = Vector2( 0.85, 0.85 )
+margin_bottom = 107.0
 rect_pivot_offset = Vector2( 259, 150 )
 __meta__ = {
 "_edit_use_anchors_": false

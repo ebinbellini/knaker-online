@@ -5,10 +5,6 @@
 [ext_resource path="res://scenes/game/game.gd" type="Script" id=3]
 [ext_resource path="res://scenes/game/table.tscn" type="PackedScene" id=4]
 
-
-
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "rem_loader"
 length = 0.6

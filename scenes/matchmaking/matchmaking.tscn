@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://imgs/heart.svg" type="Texture" id=1]
 [ext_resource path="res://imgs/clover.svg" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/matchmaking/popups/createroom.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/matchmaking/btnmodalcreate.gd" type="Script" id=10]
 [ext_resource path="res://scenes/matchmaking/popups/joinroom.tscn" type="PackedScene" id=11]
+[ext_resource path="res://imgs/cog.svg" type="Texture" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "SlideIn"
@@ -129,6 +130,17 @@ margin_top = 373.763
 margin_right = 508.873
 margin_bottom = 573.763
 texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsCog" type="TextureRect" parent="ColorRect3"]
+margin_left = 431.74
+margin_top = 32.92
+margin_right = 531.74
+margin_bottom = 132.92
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
