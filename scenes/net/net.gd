@@ -18,7 +18,7 @@ extends Node
 signal player_names_changed(new_names)
 signal public_rooms_recieved(public_rooms)
 
-const SERVER_URL = "localhost"
+const SERVER_URL = "knaker.ebinbellini.com"
 const PORT = 1840
 
 

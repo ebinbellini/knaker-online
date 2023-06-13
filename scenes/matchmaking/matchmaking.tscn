@@ -41,9 +41,6 @@ tracks/1/keys = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -135,6 +132,7 @@ __meta__ = {
 }
 
 [node name="SettingsCog" type="TextureRect" parent="ColorRect3"]
+visible = false
 margin_left = 431.74
 margin_top = 32.92
 margin_right = 531.74
@@ -160,4 +158,5 @@ anims/SlideIn = SubResource( 1 )
 wait_time = 0.1
 one_shot = true
 autostart = true
+
 [connection signal="timeout" from="Timer" to="." method="slide_in_ui"]
