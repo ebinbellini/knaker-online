@@ -126,9 +126,6 @@ margin_bottom = -424.0
 rect_min_size = Vector2( 60, 150 )
 mouse_default_cursor_shape = 2
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/hover = SubResource( 1 )
@@ -187,11 +184,8 @@ margin_left = 20.76
 margin_top = 15.6358
 margin_right = 1695.76
 margin_bottom = 2374.64
-rect_scale = Vector2( 0.094, 0.094 )
+rect_scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ordernumber" type="Label" parent="Control"]
 margin_left = 22.0
@@ -200,8 +194,8 @@ margin_right = 126.0
 margin_bottom = 286.0
 rect_scale = Vector2( 1.5, 1.5 )
 mouse_filter = 1
-custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

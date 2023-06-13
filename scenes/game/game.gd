@@ -124,7 +124,7 @@ func go_to_leaderboard(order: Array):
 
 
 func update_players_who_want_to_play_again(ammount: int):
-	if leaderboard_instance != null:
+	if is_instance_valid(leaderboard_instance):
 		leaderboard_instance.update_players_who_want_to_play_again(ammount, net.player_count())
 
 

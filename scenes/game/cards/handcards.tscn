@@ -98,6 +98,7 @@ __meta__ = {
 [node name="fg" type="TextureRect" parent="cards/card1"]
 margin_right = 40.0
 margin_bottom = 40.0
+rect_scale = Vector2( 3.2, 3.2 )
 texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -124,6 +125,7 @@ __meta__ = {
 [node name="fg" type="TextureRect" parent="cards/card2"]
 margin_right = 1675.0
 margin_bottom = 2359.0
+rect_scale = Vector2( 3.2, 3.2 )
 texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -151,6 +153,7 @@ __meta__ = {
 [node name="fg" type="TextureRect" parent="cards/card3"]
 margin_right = 40.0
 margin_bottom = 40.0
+rect_scale = Vector2( 3.2, 3.2 )
 texture = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -161,8 +164,8 @@ margin_left = -3.0
 margin_top = -135.0
 margin_right = 1671.0
 margin_bottom = 2361.0
-custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0.843137, 0.678431, 0.262745, 1 )
+custom_fonts/font = ExtResource( 1 )
 text = "3"
 align = 1
 valign = 1
@@ -172,4 +175,5 @@ __meta__ = {
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/dance = SubResource( 1 )
+
 [connection signal="animation_finished" from="anim" to="." method="animation_finished"]

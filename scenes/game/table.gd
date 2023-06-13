@@ -60,7 +60,7 @@ func _gui_input(event: InputEvent):
 		remove_hover_on_all_cards_except(null)
 		removed_all_hover_styles = true
 	else:
-		if held_card != null:
+		if is_instance_valid(held_card):
 			if event is InputEventMouseMotion:
 				held_card.mouse_moved(event.get_global_position())
 			elif event.is_action_released("Click"):

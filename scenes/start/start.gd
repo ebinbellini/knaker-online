@@ -130,7 +130,7 @@ func insert_node(scene):
 
 func _on_Timer_timeout():
 	timer_done = true;
-	if (loaded_scene != null):
+	if (is_instance_valid(loaded_scene)):
 		set_scene(loaded_scene)
 
 
