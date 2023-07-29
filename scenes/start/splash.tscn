@@ -50,9 +50,6 @@ margin_top = 71.5556
 margin_right = 983.696
 margin_bottom = 518.556
 texture = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "splash"

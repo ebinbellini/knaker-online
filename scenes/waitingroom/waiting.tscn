@@ -44,9 +44,6 @@ tracks/2/keys = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="White background" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -209,8 +206,8 @@ margin_left = 82.0
 margin_top = 29.0
 margin_right = 919.0
 margin_bottom = 161.0
-custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
 text = "WAITING_FPLY"
 align = 1
 __meta__ = {
@@ -226,15 +223,15 @@ margin_left = -284.0
 margin_top = -152.0
 margin_right = -12.0
 margin_bottom = -114.0
-custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 4 )
 text = "PLYRS_IN_ROOM"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="coolbutton" parent="." instance=ExtResource( 5 )]
+[node name="startbutton" parent="." instance=ExtResource( 5 )]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
@@ -245,7 +242,7 @@ margin_top = -87.877
 margin_right = -11.0
 margin_bottom = -39.877
 
-[node name="Label" parent="coolbutton" index="2"]
+[node name="Label" parent="startbutton" index="2"]
 text = "START_GAME"
 
 [node name="player_names" type="VBoxContainer" parent="."]
@@ -260,6 +257,7 @@ margin_bottom = 81.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="coolbutton" to="." method="start_game"]
 
-[editable path="coolbutton"]
+[connection signal="pressed" from="startbutton" to="." method="start_game"]
+
+[editable path="startbutton"]

@@ -43,16 +43,13 @@ __meta__ = {
 }
 
 [node name="handbuttons" type="Control" parent="."]
-margin_left = 11.9449
-margin_top = 380.921
-margin_right = 67.9449
-margin_bottom = 433.921
-__meta__ = {
-"_edit_use_anchors_": false
-}
+visible = false
+margin_left = 8.0
+margin_top = 346.0
+margin_right = 64.0
+margin_bottom = 399.0
 
 [node name="clearselect" type="TextureButton" parent="handbuttons"]
-visible = false
 texture_normal = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -117,9 +114,6 @@ margin_bottom = 111.946
 rect_scale = Vector2( 0.5, 0.5 )
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="donetrading" parent="." instance=ExtResource( 6 )]
 anchor_left = 0.5
@@ -197,8 +191,6 @@ margin_right = -34.8794
 margin_bottom = -275.905
 
 [node name="banner" parent="." instance=ExtResource( 12 )]
-margin_left = -0.245362
-margin_right = -0.245361
 
 [node name="leavepopup" parent="." instance=ExtResource( 4 )]
 

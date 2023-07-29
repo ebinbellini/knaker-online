@@ -7,6 +7,7 @@ var top_color: int = 0
 var card_ammount: int = 0
 
 onready var game: Control = get_node("../../")
+onready var background: Control = get_node("background")
 onready var cards: Button = get_node("cards")
 onready var scrollbar: HScrollBar = get_node("HScrollBar")
 
@@ -71,3 +72,10 @@ func update_scrollbar():
 
 func is_empty():
 	return card_ammount == 0
+
+
+func set_is_my_turn(my_turn: bool):
+	if my_turn:
+		background.self_modulate = Color(0, 0, 0, 0)
+	else:
+		background.self_modulate = Color(1, 1, 1, 0)

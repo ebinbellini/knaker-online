@@ -551,6 +551,7 @@ func i_am_finished(reason: String):
 func my_turn():
 	player_lost_turn(turn_pid)
 	turn_pid = get_tree().get_network_unique_id()
+	pile.set_is_my_turn(true)
 
 	pass_buttons.visible = true
 	if pile.is_empty():
@@ -564,6 +565,7 @@ func new_player_has_turn(has_turn_pid: int):
 
 	player_lost_turn(turn_pid)
 	turn_pid = has_turn_pid
+	pile.set_is_my_turn(false)
 
 	var opponent = find_opponent(has_turn_pid)
 	if opponent != null:
