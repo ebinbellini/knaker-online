@@ -39,10 +39,9 @@ export var mycard = preload("res://scenes/game/cards/mycard.tscn")
 var opponent_cards = preload("res://scenes/game/cards/opponent_cards.tscn")
 var snackbar = preload("res://scenes/widgets/snackbar/snackbar.tscn")
 
-var removed_all_hover_styles: bool = false
 var cards_to_place: Array = []
 var held_card: Control = null
-var selected_cards_ammount: int = 0
+var selected_cards_amount: int = 0
 var turn_pid: int = 0
 
 
@@ -56,15 +55,14 @@ func _ready():
 
 
 func _gui_input(event: InputEvent):
-	if event is InputEventMouseMotion && not removed_all_hover_styles:
+	if event is InputEventMouseMotion:
 		remove_hover_on_all_cards_except(null)
-		removed_all_hover_styles = true
-	else:
-		if is_instance_valid(held_card):
-			if event is InputEventMouseMotion:
-				held_card.mouse_moved(event.get_global_position())
-			elif event.is_action_released("Click"):
-				held_card.disable_dragging()
+
+	if is_instance_valid(held_card):
+		if event is InputEventMouseMotion:
+			held_card.mouse_moved(event.get_global_position())
+		elif event.is_action_released("Click"):
+			held_card.disable_dragging()
 
 
 func update_my_hand(new_hand: Array):
@@ -107,7 +105,6 @@ func update_my_up(new_up: Array, locked_indexes: Array):
 	# Remove old up cards
 	for i in my_up.get_child_count():
 		var top_card: Array = my_up.get_child(i).get_top_card()
-
 		var found: bool = false
 
 		for new_stack in new_up:
@@ -200,12 +197,12 @@ func card_dropped(card: Control):
 
 
 func is_mouse_over_node(node: Control):
-	var pos: Vector2 = node.get_global_position()
-	var size: Vector2 = node.get_global_position() + node.rect_size
+	var pos_min: Vector2 = node.get_global_position()
+	var pos_max: Vector2 = node.get_global_position() + node.rect_size
 
 	# Check if mouse is within a given rectangle on the viewport
 	var mp: Vector2 = get_viewport().get_mouse_position()
-	return mp.x > pos.x and mp.y > pos.y and mp.x < size.x and mp.y < size.y
+	return mp.x > pos_min.x and mp.y > pos_min.y and mp.x < pos_max.x and mp.y < pos_max.y
 
 
 func create_card_node(card: Array) -> Control:
@@ -247,7 +244,6 @@ func update_player_cards(pid: int, up: Array, downc: int, handc: int, locked_up_
 
 func remove_hover_on_all_cards_except(exception):
 	remove_hover(self, exception)
-	removed_all_hover_styles = false
 
 
 func remove_hover(current, exception):
@@ -262,65 +258,72 @@ func card_held(card_node: Control):
 	held_card = card_node
 
 
-func update_selected_ammount():
-	selected_cards_ammount = 0
+func update_selected_amount():
+	selected_cards_amount = 0
 
 	for card in my_hand.get_children():
 		if card.is_selected():
-			selected_cards_ammount += 1
+			selected_cards_amount += 1
 
 	for stack in my_up.get_children():
 		if stack.is_selected():
-			selected_cards_ammount += 1
+			selected_cards_amount += 1
 
 	for card in my_down.get_children():
 		if card.is_selected():
-			selected_cards_ammount += 1
+			selected_cards_amount += 1
 	
-	if selected_cards_ammount > 0:
+	if selected_cards_amount > 0:
 		deselect_button.visible = true
 	else:
 		deselect_button.visible = false
+
+	
+func selectable_card_clicked(card_node: Control):
+	update_selected_amount()
+
+	if not card_node.is_selected():
+		# Select
+		# TODO allow selecting multiple by shift+clicking
+		selected_cards_amount += 1
+		card_node.select_with_number(selected_cards_amount)
+
+		deselect_button.visible = true
+	else:
+		# Deselect
+		var dorder: int = card_node.get_selected_order()
+		card_node.deselect()
+
+		# Decrease selected order on all cards with a higher number than
+		# this card
+		selected_cards_amount -= 1
+		for cdn in my_up.get_children() + my_hand.get_children():
+			var order: int = cdn.get_selected_order()
+			if dorder < order:
+				cdn.set_selected_order(order-1)
+
+		if selected_cards_amount < 0:
+			selected_cards_amount = 0
+		deselect_button.visible = true
 
 
 func card_clicked(card_node: Control):
 	if card_node.get_parent().name == "myup":
 		# This is an up card
-		net.rpc_id(1, "pick_up_card", [card_node.value, card_node.color])
+		if not pile.visible:
+			# In trading phase
+			net.pick_up_card(card_node)
+		else:
+			# In playing phase
+			selectable_card_clicked(card_node)
 	elif card_node.get_parent().name == "mydown":
 		# This is a down card
 		net.place_down_card()
 	else:
 		# This is a hand card
-
 		if pile.visible:
 			# In playing phase
-
-			update_selected_ammount()
-
-			if not card_node.is_selected():
-				# Select
-				# TODO allow selecting multiple by shift+clicking
-				selected_cards_ammount += 1
-				card_node.select_with_number(selected_cards_ammount)
-
-				deselect_button.visible = true
-			else:
-				# Deselect
-				var dorder: int = card_node.get_selected_order()
-				card_node.deselect()
-
-				# Decrease selected order on all cards with a higher number than
-				# this card
-				selected_cards_ammount -= 1
-				for cdn in card_node.get_parent().get_children():
-					var order: int = cdn.get_selected_order()
-					if dorder < order:
-						cdn.set_selected_order(order-1)
-
-				if selected_cards_ammount <= 0:
-					selected_cards_ammount = 0
-				deselect_button.visible = true
+			selectable_card_clicked(card_node)
 		else:
 			# In trading phase
 
@@ -360,7 +363,7 @@ func request_placing_of_cards(placing: Array):
 			# Regular card
 			transferable.append([plc.get_card_value(), plc.get_card_color()])
 
-	# Send placement order through net 
+	# Send placement order to server
 	net.place_cards(transferable)
 
 
@@ -391,7 +394,7 @@ func clear_selection():
 				card.deselect()
 			card.remove_hovered_style()
 
-	selected_cards_ammount = 0
+	selected_cards_amount = 0
 	deselect_button.visible = false
 
 
@@ -416,7 +419,7 @@ func cards_placed(cards, placer_pid):
 
 
 func move_accepted():
-	selected_cards_ammount = 0
+	selected_cards_amount = 0
 	deselect_button.visible = false
 
 	for card in cards_to_place:
@@ -465,12 +468,8 @@ func are_my_down_placeable() -> bool:
 	if not pile.visible:
 		return false
 
-	for card in my_hand.get_children():
-		if not card.is_queued_for_deletion() and not card.is_selected():
-			return false
-
 	for card in my_up.get_children():
-		if not card.is_queued_for_deletion() and not card.is_selected():
+		if not card.is_queued_for_deletion():
 			return false
 
 	return true
@@ -517,11 +516,11 @@ func start_playing_phase():
 			card.unlock()
 
 
-func update_deck_ammount(ammount: int):
-	deck.update_card_ammount(ammount)
+func update_deck_amount(amount: int):
+	deck.update_card_amount(amount)
 
 	# You can't take a chance if there are no cards left
-	if ammount == 0:
+	if amount == 0:
 		chance.visible = false
 
 

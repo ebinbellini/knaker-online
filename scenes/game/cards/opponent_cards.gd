@@ -21,7 +21,7 @@ func _ready():
 
 func update_cards(new_up: Array, new_downc: int, new_handc: int, locked_indexes: Array):
 	down_count.text = str(new_downc)
-	hand_cards.update_card_ammount(new_handc)
+	hand_cards.update_card_amount(new_handc)
 
 	# Remove old up cards
 	for card in up_cards.get_children():

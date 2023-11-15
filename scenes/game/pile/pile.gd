@@ -4,7 +4,7 @@ signal clicked
 
 var top_value: int = 1
 var top_color: int = 0
-var card_ammount: int = 0
+var card_amount: int = 0
 
 onready var game: Control = get_node("../../")
 onready var background: Control = get_node("background")
@@ -21,7 +21,7 @@ func _ready():
 
 
 func insert_card(value: int, color: int):
-	card_ammount += 1
+	card_amount += 1
 
 	top_value = value
 	top_color = color
@@ -39,7 +39,7 @@ func insert_card(value: int, color: int):
 func empty_pile():
 	top_value = 0
 	top_color = 0
-	card_ammount = 0
+	card_amount = 0
 
 	# Remove all cards
 	for card in cards.get_children():
@@ -56,11 +56,11 @@ func scroll():
 
 func update_card_positions():
 	for i in cards.get_child_count():
-		cards.get_child(i).set_x_position(21 + (card_ammount - i - 1) * card_width - scrollbar.value)
+		cards.get_child(i).set_x_position(21 + (card_amount - i - 1) * card_width - scrollbar.value)
 
 
 func update_scrollbar():
-	var required_space: int = 21 + (2 + card_ammount) * card_width
+	var required_space: int = 21 + (2 + card_amount) * card_width
 	var max_scroll: int = int(required_space - rect_size.x)
 
 	if max_scroll <= 0:
@@ -71,11 +71,11 @@ func update_scrollbar():
 
 
 func is_empty():
-	return card_ammount == 0
+	return card_amount == 0
 
 
 func set_is_my_turn(my_turn: bool):
 	if my_turn:
-		background.self_modulate = Color(0, 0, 0, 0)
+		background.self_modulate = Color(1, 1, 1, 1)
 	else:
-		background.self_modulate = Color(1, 1, 1, 0)
+		background.self_modulate = Color(0, 0, 0, 0)

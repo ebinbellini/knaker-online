@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="256"
    height="256"
    viewBox="0 0 256 256"
    version="1.1"
    id="svg8"
-   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
    sodipodi:docname="lock.svg"
-   inkscape:export-filename="C:\Projects\Godot\knaker-online\imgs\lock.png"
+   inkscape:export-filename="lock.png"
    inkscape:export-xdpi="20"
-   inkscape:export-ydpi="20">
+   inkscape:export-ydpi="20"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -27,18 +27,21 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="132.6245"
-     inkscape:cy="130.42199"
+     inkscape:zoom="2"
+     inkscape:cx="145.75"
+     inkscape:cy="87.500001"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1046"
-     inkscape:window-x="-11"
-     inkscape:window-y="-11"
-     inkscape:window-maximized="1" />
+     inkscape:window-width="1852"
+     inkscape:window-height="990"
+     inkscape:window-x="32"
+     inkscape:window-y="54"
+     inkscape:window-maximized="1"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -47,7 +50,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -55,14 +57,18 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <path
-       d="m 25.625002,86.34379 -1,152.24999 206.749998,1 -0.25,-153.24999 z m 94.328118,32.13867 c 5.62493,-0.0294 15.94141,0.0215 15.94141,0.0215 0,0 5.26953,-0.60351 5.39453,6.27149 0.12517,6.875 0.30664,39.6289 0.30664,39.6289 17.62275,6.5588 18.07285,47.08958 -12.60547,47.39844 -30.550321,0.30754 -33.853171,-36.47012 -15.09765,-46.60547 l -0.0996,-40.09766 c 0,0 0.19147,-6.58594 6.16015,-6.61718 z"
-       style="fill:#212121;fill-opacity:1;stroke:#212121;stroke-width:10;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="path835" />
-    <path
-       sodipodi:nodetypes="cc"
-       id="path851"
-       d="M 64.058474,89.176631 C 63.800466,-14.967602 191.96252,-14.633761 191.94191,89.422478"
-       style="fill:none;stroke:#212121;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <g
+       id="g1"
+       transform="translate(0,3.4943342)">
+      <path
+         id="path835"
+         style="fill:#212121;fill-opacity:1;stroke:#212121;stroke-width:9.19138;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 45.390625,82.746094 44.583984,242.14453 211.41602,243.19141 211.21289,82.746094 Z m 82.611325,24.876956 a 31.591234,31.299381 0 0 1 31.58985,31.29883 31.591234,31.299381 0 0 1 -9.83008,22.59179 v 22.22461 c 0,10.46054 -8.42227,18.88086 -18.88281,18.88086 h -5.75586 c -10.46055,0 -18.88086,-8.42032 -18.88086,-18.88086 v -22.22461 a 31.591234,31.299381 0 0 1 -9.832034,-22.59179 31.591234,31.299381 0 0 1 31.591794,-31.29883 z" />
+      <path
+         sodipodi:nodetypes="cc"
+         id="path851"
+         d="M 64.058474,89.176631 C 63.800466,-14.967602 191.96252,-14.633761 191.94191,89.422478"
+         style="fill:none;stroke:#212121;stroke-width:20;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
   </g>
 </svg>

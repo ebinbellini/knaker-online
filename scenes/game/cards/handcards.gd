@@ -6,8 +6,8 @@ onready var anim: AnimationPlayer = get_node("anim")
 var shall_we_dance: bool = false
 
 
-func update_card_ammount(ammount: int): 
-	card_counter.text = str(ammount)
+func update_card_amount(amount: int): 
+	card_counter.text = str(amount)
 	
 
 func play_dance():

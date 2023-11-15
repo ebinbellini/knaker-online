@@ -123,9 +123,9 @@ func go_to_leaderboard(order: Array):
 	add_child(inst)
 
 
-func update_players_who_want_to_play_again(ammount: int):
+func update_players_who_want_to_play_again(amount: int):
 	if is_instance_valid(leaderboard_instance):
-		leaderboard_instance.update_players_who_want_to_play_again(ammount, net.player_count())
+		leaderboard_instance.update_players_who_want_to_play_again(amount, net.player_count())
 
 
 func restart_game():

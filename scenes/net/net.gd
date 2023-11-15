@@ -18,8 +18,10 @@ extends Node
 signal player_names_changed(new_names)
 signal public_rooms_recieved(public_rooms)
 
-const SERVER_URL = "knaker.ebinbellini.com"
-const PORT = 1840
+#const SERVER_URL = "wss://knaker.ebinbellini.com"
+#const PORT = 1840
+const SERVER_URL = "ws://127.0.0.1"
+const PORT = 1841
 
 
 class Player:
@@ -55,7 +57,7 @@ func _ready():
 
 func connect_to_server():
 	var peer = WebSocketClient.new()
-	peer.connect_to_url("ws://" + SERVER_URL + ":" + str(PORT), PoolStringArray(["ludus"]), true)
+	peer.connect_to_url(SERVER_URL + ":" + str(PORT), PoolStringArray([]), true)
 	get_tree().network_peer = peer
 
 
@@ -176,7 +178,7 @@ remote func update_my_cards(thand: Array, tup: Array, down_count: int, locked_up
 
 remote func update_player_names(names: Array):
 	# names is an array consisting of elements with the form
-	# [pid: Int, username: String]
+	# {pid: Int, username: String}
 
 	if get_tree().get_rpc_sender_id() != 1:
 		return
@@ -263,6 +265,10 @@ func place_down_card():
 	rpc_id(1, "place_down_card")
 
 
+func pick_up_card(card_node: Control):
+	rpc_id(1, "pick_up_card", [card_node.value, card_node.color])
+
+
 remote func empty_pile():
 	if get_tree().get_rpc_sender_id() != 1:
 		return
@@ -276,11 +282,11 @@ func leave_game():
 	start.call_deferred("load_and_set_scene", path)
 
 
-remote func update_done_trading_ammount(ammount: int):
+remote func update_done_trading_amount(amount: int):
 	if get_tree().get_rpc_sender_id() != 1:
 		return
 
-	var text: String = str(ammount) + "/" + str(len(players)) + tr("PLAYERS_DONE")
+	var text: String = str(amount) + "/" + str(len(players)) + tr("PLAYERS_DONE")
 	table.update_done_trading_button_text(text)
 
 
@@ -291,11 +297,11 @@ remote func start_playing_phase():
 	table.start_playing_phase()
 
 
-remote func deck_ammount_changed(ammount: int):
+remote func deck_amount_changed(amount: int):
 	if get_tree().get_rpc_sender_id() != 1:
 		return
 
-	table.update_deck_ammount(ammount)
+	table.update_deck_amount(amount)
 
 
 remote func player_finished(pid: int, reason: String):
@@ -316,11 +322,11 @@ remote func go_to_leaderboard(order: Array):
 	game.go_to_leaderboard(order)
 
 
-remote func update_players_who_want_to_play_again(ammount: int):
+remote func update_players_who_want_to_play_again(amount: int):
 	if get_tree().get_rpc_sender_id() != 1:
 		return
 
-	game.update_players_who_want_to_play_again(ammount)
+	game.update_players_who_want_to_play_again(amount)
 
 
 remote func restart_game():

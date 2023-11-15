@@ -174,6 +174,7 @@ margin_top = 16.4877
 margin_right = 1695.76
 margin_bottom = 2375.49
 rect_scale = Vector2( 0.094, 0.094 )
+mouse_filter = 2
 texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -185,6 +186,7 @@ margin_top = 15.6358
 margin_right = 1695.76
 margin_bottom = 2374.64
 rect_scale = Vector2( 0.3, 0.3 )
+mouse_filter = 2
 texture = ExtResource( 4 )
 
 [node name="ordernumber" type="Label" parent="Control"]

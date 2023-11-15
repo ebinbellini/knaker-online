@@ -10,7 +10,8 @@ export var color: int = 0
 
 # Only used for up cards where there can be multiple cards stacked on top of
 # each other
-export var ammount: int = -1
+export var amount: int = -1
+
 
 # Should this card not react to mouse events
 export var disabled: bool = false
@@ -23,30 +24,19 @@ onready var hover_effect: Control = get_node("Control/hovereffect")
 onready var select_effect: Control = get_node("Control/selecteffect")
 onready var table: Control = get_parent().get_parent()
 
-# Is this card being dragged
-var dragging: bool = false
-# Is this card being held
-var holding: bool = false
-# Position of the card relative to the mouse
-var mouse_rel_pos: Vector2
-# Where on the viewport did the user grab the card
-var holding_start_position: Vector2
-# Parent node before dragging started
-var previous_parent: Control = null
-# Is hovering style actived
-var hovered: bool = false
-# Is this card selected
-var selected: bool = false
-# Is this a card on the player's hand
-var is_hand_card: bool = false
-# Is this an upwards facing card
-var is_up_card: bool = false
-# Is this a downwards facing card
-var is_down_card: bool = false
-# All cards in this stack. Only used for up cards.
-var stack_cards: Array = []
-# Is this card locked
-var locked: bool = false
+var dragging: bool = false           # Is this card being dragged
+var holding: bool = false            # Is this card being held
+var holding_start_position: Vector2  # Where on the viewport did the user grab the card
+var hovered: bool = false            # Is hovering style actived
+var is_down_card: bool = false       # Is this a downwards facing card
+var is_hand_card: bool = false       # Is this a card on the player's hand
+var is_up_card: bool = false         # Is this an upwards facing card
+var locked: bool = false             # Is this card locked
+var mouse_rel_pos: Vector2           # Position of the card relative to the mouse
+var previous_parent: Control = null  # Parent node before dragging started
+var selected: bool = false           # Is this card selected
+var stack_cards: Array = []          # All cards in this stack. Only used for up cards.
+var selected_order: int = 0          # Number in selection order
 
 
 func _ready():
@@ -174,6 +164,7 @@ func select_with_number(num: int):
 		selected = true
 		hover_effect.set_visible(false)
 		select_effect.set_visible(true)
+		selected_order = num
 		order_number.set_text(str(num))
 
 
@@ -186,14 +177,15 @@ func deselect():
 
 		# Only for up cards
 		if not is_hand_card and not is_down_card:
-			set_ammount(ammount)
+			set_amount(amount)
 
 
 func get_selected_order() -> int:
-	return int(order_number.get_text())
+	return selected_order
 
 
 func set_selected_order(num: int):
+	selected_order = num
 	order_number.set_text(str(num))
 
 
@@ -209,22 +201,22 @@ func get_card_color():
 	return color
 
 
-func set_ammount(num: int):
-	ammount = num
-	if ammount > 1:
+func set_amount(num: int):
+	amount = num
+	if amount > 1:
 		order_number.set_text(str(num))
 	else:
 		order_number.set_text("")
 
 
-func increase_ammount():
-	ammount += 1
-	set_ammount(ammount)
+func increase_amount():
+	amount += 1
+	set_amount(amount)
 
 
 func set_stack_cards(cards: Array):
 	stack_cards = cards
-	set_ammount(len(stack_cards))
+	set_amount(len(stack_cards))
 
 
 func get_top_card() -> Array:

@@ -90,6 +90,7 @@ __meta__ = {
 [node name="bg" type="TextureRect" parent="cards/card1"]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -99,6 +100,7 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 40.0
 rect_scale = Vector2( 3.2, 3.2 )
+mouse_filter = 2
 texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -117,6 +119,7 @@ __meta__ = {
 [node name="bg" type="TextureRect" parent="cards/card2"]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -126,6 +129,7 @@ __meta__ = {
 margin_right = 1675.0
 margin_bottom = 2359.0
 rect_scale = Vector2( 3.2, 3.2 )
+mouse_filter = 2
 texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -145,6 +149,7 @@ __meta__ = {
 [node name="bg" type="TextureRect" parent="cards/card3"]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -154,6 +159,7 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 40.0
 rect_scale = Vector2( 3.2, 3.2 )
+mouse_filter = 2
 texture = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false

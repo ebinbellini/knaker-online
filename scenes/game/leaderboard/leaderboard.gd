@@ -64,8 +64,8 @@ func show_next_entry():
 		timer.start()
 	
 
-func update_players_who_want_to_play_again(ammount: int, total: int):
-	playagainlabel.set_text(str(ammount) + "/" + str(total) + tr("WTPA"))
+func update_players_who_want_to_play_again(amount: int, total: int):
+	playagainlabel.set_text(str(amount) + "/" + str(total) + tr("WTPA"))
 
 
 func vote_play_again():

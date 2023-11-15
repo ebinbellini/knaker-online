@@ -21,15 +21,14 @@ __meta__ = {
 margin_right = 1675.0
 margin_bottom = 2359.0
 rect_scale = Vector2( 0.094, 0.094 )
+mouse_filter = 2
 texture = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="front" type="TextureRect" parent="Control"]
 margin_right = 1675.0
 margin_bottom = 2359.0
 rect_scale = Vector2( 0.3, 0.3 )
+mouse_filter = 2
 texture = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]

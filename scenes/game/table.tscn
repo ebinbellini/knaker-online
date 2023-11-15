@@ -34,7 +34,6 @@ margin_top = -212.0
 margin_right = -434.0
 margin_bottom = -35.0
 rect_scale = Vector2( 1.2, 1.2 )
-mouse_filter = 1
 scroll_vertical_enabled = false
 
 [node name="hbox" type="HBoxContainer" parent="myhand"]
@@ -43,13 +42,13 @@ __meta__ = {
 }
 
 [node name="handbuttons" type="Control" parent="."]
-visible = false
 margin_left = 8.0
 margin_top = 346.0
 margin_right = 64.0
 margin_bottom = 399.0
 
 [node name="clearselect" type="TextureButton" parent="handbuttons"]
+visible = false
 texture_normal = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -103,8 +102,9 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -195.665
 margin_top = -87.321
-margin_right = 177.335
+margin_right = 204.335
 margin_bottom = 79.679
+rect_clip_content = true
 
 [node name="leavebutton" type="TextureButton" parent="."]
 margin_left = 965.4
